@@ -32,7 +32,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
     return (
         <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
 
-            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
+            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled="true" autoFocus autoComplete="off" textContent={transcript} />
         </form>
     );
   }
@@ -40,7 +40,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   return (
     <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
 
-        <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled="true" autoFocus autoComplete="off" textContent={transcript} />
+        <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
     </form>
   );
   
