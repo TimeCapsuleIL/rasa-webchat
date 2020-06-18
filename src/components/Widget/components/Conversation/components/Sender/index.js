@@ -7,18 +7,26 @@ import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
 import './style.scss';
 
-const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening, resetTranscript }) => {
-  const [inputValue, setInputValue] = useState('');
-  const [transcriptCopy, setTranscriptCopy] = useState('');
-  const formRef = useRef('');
+class Sender extends React.Component {
+    
+  constructor(props) {
+      super(props);
+      
+      this.state = {inputValue: ""};
+      this.formRef = React.createRef();
+      
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.onEnterPress = this.onEnterPress.bind(this);
+  }
   
   function handleChange(e) {
-    setInputValue(e.target.value);
+    this.setState({inputValue: e.target.value}});
   }
 
   function handleSubmit(e) {
-    sendMessage(e);
-    setInputValue('');
+    this.props.sendMessage(e);
+    this.setState({inputValue: ""});
   }
 
 
@@ -27,46 +35,46 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
       e.preventDefault();
       // by dispatching the event we trigger onSubmit
       // formRef.current.submit() would not trigger onSubmit
-      formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
+      this.formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
     }
   }
   
-  if ((browserSupportsSpeechRecognition && !inputValue && !transcript) || listening) {
-    recognition.lang = "he-IL";
-    
-    return (
-        <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
-            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={transcript} autoFocus autoComplete="off" value={transcript} />
-            <button type="button" className="rw-mic" onClick={listening ? stopListening : startListening}>
-                <Mic className="rw-mic-icon" listening={listening} alt="send" />
-            </button>
-        </form>
-    );
-  }
-  else
-  {
-    if (transcript) {
-        if (!transcriptCopy) {
-            setTranscriptCopy(transcript);
-        } else {
-            resetTranscript();
+  render() {
+      if ((this.props.browserSupportsSpeechRecognition && !this.state.inputValue && !this.props.transcript) || this.props.listening) {
+        this.props.recognition.lang = "he-IL";
+        
+        return (
+            <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+                <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" placeholder={this.props.inputTextFieldHint} disabled={this.props.transcript} autoFocus autoComplete="off" value={this.props.transcript} />
+                <button type="button" className="rw-mic" onClick={this.props.listening ? this.props.stopListening : this.props.startListening}>
+                    <Mic className="rw-mic-icon" listening={this.props.listening} alt="send" />
+                </button>
+            </form>
+        );
+      }
+      else
+      { 
+        if (this.props.transcript) {
+            if(!this.state.inputValue) {
+                this.setState({inputValue: transcript});
+            } else {
+                this.props.resetTranscript();
+            }
         }
-    } else if (transcriptCopy && !(transcriptCopy === inputValue)) {
-        setInputValue(transcriptCopy);
-    }
-    
-    return (
-        userInput === 'hide' ? <div /> : (
-          <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
+        return (
+            this.props.userInput === 'hide' ? <div /> : (
+              <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
 
-            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" defaultValue={transcriptCopy && transcriptCopy} placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
-            <button type="submit" className="rw-send" disabled={!(inputValue && inputValue.length > 0)}>
-              <Send className="rw-send-icon" ready={!!(inputValue && inputValue.length > 0)} alt="send" />
-            </button>
-          </form>)
-    );
+                <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" defaultValue={this.state.inputValue} placeholder={this.props.inputTextFieldHint} disabled={this.props.disabledInput || this.props.userInput === 'disable'} autoFocus autoComplete="off" />
+                <button type="submit" className="rw-send" disabled={!(this.props.inputValue && this.props.inputValue.length > 0)}>
+                  <Send className="rw-send-icon" ready={!!(this.props.inputValue && this.props.inputValue.length > 0)} alt="send" />
+                </button>
+              </form>)
+        );
+      }      
   }
-};
+}
+
 const mapStateToProps = state => ({
   inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
   userInput: state.metadata.get('userInput')
