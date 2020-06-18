@@ -9,6 +9,7 @@ import './style.scss';
 
 const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening, resetTranscript }) => {
   const [inputValue, setInputValue] = useState('');
+  const [transcriptCopy, setTranscriptCopy] = useState('');
   const formRef = useRef('');
   
   function handleChange(e) {
@@ -45,17 +46,20 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   else
   {
     if (transcript) {
-        console.log(transcript)
-        let copy_transcript = transcript;
-        resetTranscript();
-        setInputValue(copy_transcript);
+        if (!transcriptCopy) {
+            setTranscriptCopy(transcript);
+        } else {
+            resetTranscript();
+        }
+    } else if (transcriptCopy !=== inputValue) {
+        setInputValue(transcriptCopy);
     }
     
     return (
         userInput === 'hide' ? <div /> : (
           <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
 
-            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" defaultValue={inputValue} placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
+            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" defaultValue={transcriptCopy} placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
             <button type="submit" className="rw-send" disabled={!(inputValue && inputValue.length > 0)}>
               <Send className="rw-send-icon" ready={!!(inputValue && inputValue.length > 0)} alt="send" />
             </button>
