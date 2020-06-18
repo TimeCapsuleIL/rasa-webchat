@@ -45,6 +45,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   else
   {
     if (transcript) {
+        console.log(transcript)
         let copy_transcript = transcript;
         resetTranscript();
         setInputValue(copy_transcript);
