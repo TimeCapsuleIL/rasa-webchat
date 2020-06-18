@@ -33,7 +33,9 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   if (browserSupportsSpeechRecognition && !inputValue || listening) {
     recognition.lang = "he-IL";
     
-    setInputValue(transcript)
+    if (transcript) {
+        setInputValue(transcript);
+    }
     
     return (
         <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
