@@ -66,8 +66,8 @@ class Sender extends React.Component {
               <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
 
                 <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" value={this.state.inputValue} placeholder={this.props.inputTextFieldHint} disabled={this.props.disabledInput || this.props.userInput === 'disable'} autoFocus autoComplete="off" />
-                <button type="submit" className="rw-send" disabled={!(this.props.inputValue && this.props.inputValue.length > 0)}>
-                  <Send className="rw-send-icon" ready={!!(this.props.inputValue && this.props.inputValue.length > 0)} alt="send" />
+                <button type="submit" className="rw-send" disabled={!(this.state.inputValue && this.state.inputValue.length > 0)}>
+                  <Send className="rw-send-icon" ready={!!(this.state.inputValue && this.state.inputValue.length > 0)} alt="send" />
                 </button>
               </form>)
         );
