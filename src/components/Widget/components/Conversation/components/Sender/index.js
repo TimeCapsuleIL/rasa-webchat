@@ -51,7 +51,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
         } else {
             resetTranscript();
         }
-    } else if (transcriptCopy !=== inputValue) {
+    } else if (!(transcriptCopy === inputValue)) {
         setInputValue(transcriptCopy);
     }
     
