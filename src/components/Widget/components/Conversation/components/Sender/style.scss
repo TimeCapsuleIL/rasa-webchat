@@ -41,6 +41,21 @@
     }
   }
   
+  .#{$namespace}mic {
+    background: $grey-2;
+    border: 0;
+    
+    .#{$namespace}mic-icon {
+      fill: #424242;
+      transition: fill 0.35s;
+    }
+
+    .#{$namespace}mic-icon-stop {
+      fill: #cf1515;
+      transition: fill 0.35s;
+    }
+  }
+  
   @media screen and (max-width: 800px)  {
     .#{$namespace}sender {
       border-radius: 0;
