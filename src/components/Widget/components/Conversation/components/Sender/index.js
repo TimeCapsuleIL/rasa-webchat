@@ -7,7 +7,7 @@ import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
 import './style.scss';
 
-const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening }) => {
+const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening, resetTranscript}) => {
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef('');
   
@@ -42,17 +42,22 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
         </form>
     );
   }
-  
-  return (
-    userInput === 'hide' ? <div /> : (
-      <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
+  else
+  {
+    let last_transcript = transcript
+    
+    
+    return (
+        userInput === 'hide' ? <div /> : (
+          <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
 
-        <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
-        <button type="submit" className="rw-send" disabled={!(inputValue && inputValue.length > 0)}>
-          <Send className="rw-send-icon" ready={!!(inputValue && inputValue.length > 0)} alt="send" />
-        </button>
-      </form>)
+            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
+            <button type="submit" className="rw-send" disabled={!(inputValue && inputValue.length > 0)}>
+              <Send className="rw-send-icon" ready={!!(inputValue && inputValue.length > 0)} alt="send" />
+            </button>
+          </form>)
     );
+  }
 };
 const mapStateToProps = state => ({
   inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
@@ -69,12 +74,13 @@ Sender.propTypes = {
   listening: PropTypes.bool,
   recognition: PropTypes.object,
   startListening: PropTypes.func,
-  stopListening: PropTypes.func
+  stopListening: PropTypes.func,
+  resetTranscript: PropTypes.func
 };
 
 const options = {
   autoStart: false,
-  continous: false
+  continuous: false
 };
 
 export default SpeechRecognition(options)(connect(mapStateToProps)(Sender));
