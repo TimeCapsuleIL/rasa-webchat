@@ -20,17 +20,17 @@ class Sender extends React.Component {
       this.onEnterPress = this.onEnterPress.bind(this);
   }
   
-  function handleChange(e) {
+  handleChange(e) {
     this.setState({inputValue: e.target.value}});
   }
 
-  function handleSubmit(e) {
+  handleSubmit(e) {
     this.props.sendMessage(e);
     this.setState({inputValue: ""});
   }
 
 
-  function onEnterPress(e) {
+  onEnterPress(e) {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
       // by dispatching the event we trigger onSubmit
