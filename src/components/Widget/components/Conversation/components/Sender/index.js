@@ -34,9 +34,9 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
     recognition.lang = "he-IL";
     
     return (
-        <form ref={formRef} className="rw-sender">
+        <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
             <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled={transcript} autoFocus autoComplete="off" value={transcript} />
-            <button className="rw-mic" onClick={listening ? stopListening : startListening}>
+            <button type="button" className="rw-mic" onClick={listening ? stopListening : startListening}>
                 <Mic className="rw-mic-icon" listening={listening} alt="send" />
             </button>
         </form>
