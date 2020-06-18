@@ -56,7 +56,7 @@ class Sender extends React.Component {
       { 
         if (this.props.transcript) {
             if(!this.state.inputValue) {
-                this.setState({inputValue: transcript});
+                this.setState({inputValue: this.props.transcript});
             } else {
                 this.props.resetTranscript();
             }
