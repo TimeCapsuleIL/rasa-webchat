@@ -44,11 +44,8 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   }
   else
   {
-    
-    let copy_transcript = ""
-    
     if (transcript) {
-        copy_transcript = transcript;
+        let copy_transcript = transcript;
         resetTranscript();
         setInputValue(copy_transcript);
     }
@@ -57,7 +54,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
         userInput === 'hide' ? <div /> : (
           <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
 
-            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" defaultValue={copy_transcript} placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
+            <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} onChange={handleChange} className="rw-new-message" name="message" defaultValue={inputValue} placeholder={inputTextFieldHint} disabled={disabledInput || userInput === 'disable'} autoFocus autoComplete="off" />
             <button type="submit" className="rw-send" disabled={!(inputValue && inputValue.length > 0)}>
               <Send className="rw-send-icon" ready={!!(inputValue && inputValue.length > 0)} alt="send" />
             </button>
