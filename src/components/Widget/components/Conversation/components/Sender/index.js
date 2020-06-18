@@ -32,7 +32,7 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
     }
   }
   
-  if (browserSupportsSpeechRecognition && inputValue && inputValue.length > 0) {
+  if (browserSupportsSpeechRecognition && !inputValue) {
     return (
         <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
             <TextareaAutosize type="text" minRows={1} onKeyDown={onEnterPress} maxRows={3} className="rw-new-message" name="message" placeholder={inputTextFieldHint} disabled="true" autoFocus autoComplete="off" value={transcript} />
