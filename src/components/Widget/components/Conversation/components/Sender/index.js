@@ -7,7 +7,7 @@ import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
 import './style.scss';
 
-const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening, resetTranscript}) => {
+const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, transcript, browserSupportsSpeechRecognition, listening, recognition, startListening, stopListening, resetTranscript }) => {
   const [inputValue, setInputValue] = useState('');
   const formRef = useRef('');
   
@@ -44,9 +44,6 @@ const Sender = ({ sendMessage, inputTextFieldHint, disabledInput, userInput, tra
   }
   else
   {
-    let last_transcript = transcript
-    
-    
     return (
         userInput === 'hide' ? <div /> : (
           <form ref={formRef} className="rw-sender" onSubmit={handleSubmit}>
