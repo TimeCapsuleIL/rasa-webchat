@@ -68,6 +68,8 @@ export default function (socketUrl, customData, _path, options) {
 
   socketProxy.onIncomingMessage = (payload) => {
     const message = JSON.parse(payload.body);
+    
+    console.log(message);
 
     if (message.type === 'JOIN') {
       socketProxy.emit('connect');
