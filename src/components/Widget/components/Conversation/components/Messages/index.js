@@ -112,6 +112,7 @@ class Messages extends Component {
       );
 
       messages.forEach((msg, index) => {
+        if (msg.get('hidden')) return;
         if (group === null || group.from !== msg.get('sender')) {
           if (group !== null) groups.push(group);
 
@@ -127,7 +128,7 @@ class Messages extends Component {
       groups.push(group); // finally push last group of messages.
 
       return groups.map((g, index) => (
-        <div className={`rw-group-message rw-from-${g.from}`} key={`group_${index}`}>
+        <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
           {g.messages}
         </div>
       ));

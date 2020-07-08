@@ -1,3 +1,4 @@
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,7 +24,6 @@ import {
   triggerMessageDelayed,
   triggerTooltipSent,
   showTooltip,
-  emitMessageIfFirst,
   clearMetadata,
   setUserInput,
   setLinkTarget,
@@ -77,6 +77,7 @@ class Widget extends Component {
         localStorage.removeItem(SESSION_NAME);
       }
     } else {
+      this.checkVersionBeforePull();
       dispatch(pullSession());
       if (lastUpdate) this.initializeWidget();
     }
@@ -116,14 +117,27 @@ class Widget extends Component {
     return localId;
   }
 
-  sendMessage(payload, text = '', when = 'always') {
-    const { dispatch, initialized } = this.props;
+  sendMessage(payload, text = '', when = 'always', tooltipSelector = false) {
+    const { dispatch, initialized, messages } = this.props;
     const emit = () => {
-      if (when === 'always') {
+      const send = () => {
         dispatch(emitUserMessage(payload));
-        if (text !== '') dispatch(addUserMessage(text));
+        if (text !== '') {
+          dispatch(addUserMessage(text, tooltipSelector));
+        } else {
+          dispatch(addUserMessage('hidden', tooltipSelector, true));
+        }
+        if (tooltipSelector) {
+          dispatch(closeChat());
+          showTooltip(true);
+        }
+      };
+      if (when === 'always') {
+        send();
       } else if (when === 'init') {
-        dispatch(emitMessageIfFirst(payload, text));
+        if (messages.size === 0) {
+          send();
+        }
       }
     };
     if (!initialized) {
@@ -137,6 +151,7 @@ class Widget extends Component {
 
   handleMessageReceived(messageWithMetadata) {
     const { dispatch, isChatOpen, disableTooltips } = this.props;
+
     // we extract metadata so we are sure it does not interfer with type checking of the message
     const { metadata, ...message } = messageWithMetadata;
     if (!isChatOpen) {
@@ -325,6 +340,14 @@ class Widget extends Component {
     }
   }
 
+  checkVersionBeforePull() {
+    const { storage } = this.props;
+    const localSession = getLocalSession(storage, SESSION_NAME);
+    if (localSession && (localSession.version !== 'PACKAGE_VERSION_TO_BE_REPLACED')) {
+      storage.removeItem(SESSION_NAME);
+    }
+  }
+
   initializeWidget(sendInitPayload = true) {
     const {
       storage,
@@ -344,6 +367,8 @@ class Widget extends Component {
         // console.log(botUttered);
         this.handleBotUtterance(botUttered);
       });
+
+      this.checkVersionBeforePull();
 
       dispatch(pullSession());
 
@@ -593,7 +618,8 @@ const mapStateToProps = state => ({
   tooltipSent: state.metadata.get('tooltipSent'),
   oldUrl: state.behavior.get('oldUrl'),
   pageChangeCallbacks: state.behavior.get('pageChangeCallbacks'),
-  domHighlight: state.metadata.get('domHighlight')
+  domHighlight: state.metadata.get('domHighlight'),
+  messages: state.messages
 });
 
 Widget.propTypes = {
@@ -630,7 +656,8 @@ Widget.propTypes = {
   disableTooltips: PropTypes.bool,
   defaultHighlightAnimation: PropTypes.string,
   defaultHighlightCss: PropTypes.string,
-  defaultHighlightClassname: PropTypes.string
+  defaultHighlightClassname: PropTypes.string,
+  messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map)
 };
 
 Widget.defaultProps = {

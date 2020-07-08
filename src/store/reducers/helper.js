@@ -3,14 +3,16 @@ import { MESSAGES_TYPES, MESSAGE_SENDER, SESSION_NAME } from 'constants';
 
 import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
 
-export function createNewMessage(text, sender) {
+export function createNewMessage(text, sender, nextMessageIsTooltip, hidden) {
   return Map({
     type: MESSAGES_TYPES.TEXT,
     component: Message,
     text,
     sender,
     showAvatar: sender === MESSAGE_SENDER.RESPONSE,
-    timestamp: new Date().getTime()
+    timestamp: new Date().getTime(),
+    nextMessageIsTooltip,
+    hidden
   });
 }
 
@@ -145,7 +147,8 @@ export const storeParamsTo = storage => (params) => {
     // Since immutable Map is not a native JS object, store conversation as array
     ...localSession,
     params: params.toJS(),
-    lastUpdate: Date.now()
+    lastUpdate: Date.now(),
+    version: 'PACKAGE_VERSION_TO_BE_REPLACED'
   };
   storage.setItem(SESSION_NAME, JSON.stringify(newSession));
   return params;

@@ -1,7 +1,9 @@
 
 
 const path = require('path');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { version } = require('./package.json');
 
 module.exports = [{
   // entry: ['babel-polyfill', './index.js'],
@@ -21,7 +23,16 @@ module.exports = [{
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'PACKAGE_VERSION_TO_BE_REPLACED',
+              replace: version
+            }
+          },
+          { loader: 'babel-loader' }
+        ]
       },
       {
         test: /\.scss$/,
@@ -37,7 +48,11 @@ module.exports = [{
         ]
       },
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpg|png|gif|svg|woff|ttf|eot)$/,
         use: {
           loader: 'url-loader'
         }
@@ -78,7 +93,16 @@ module.exports = [{
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'PACKAGE_VERSION_TO_BE_REPLACED',
+              replace: version
+            }
+          },
+          { loader: 'babel-loader' }
+        ]
       },
       {
         test: /\.scss$/,
@@ -94,7 +118,11 @@ module.exports = [{
         ]
       },
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpg|png|gif|svg|woff|ttf|eot)$/,
         use: {
           loader: 'url-loader'
         }

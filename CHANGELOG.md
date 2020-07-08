@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.5](https://https///compare/v0.11.4...v0.11.5) (2020-06-24)
+
+
+### Features
+
+* choose tooltip placement ([aba68c8](https://https///commit/aba68c8b2ad883b85cdf8931d876d809f2beb79e))
+
+### [0.11.4](https://https///compare/v0.11.3...v0.11.4) (2020-06-24)
+
+### [0.11.3](https://https///compare/v0.11.2...v0.11.3) (2020-06-24)
+
+
+### Bug Fixes
+
+* sequence with highlights ([2c69f08](https://https///commit/2c69f08930ab213c1548ec6b1d7d8fac59bae010))
+
+### [0.11.2](https://https///compare/v0.11.1...v0.11.2) (2020-06-23)
+
+
+### Bug Fixes
+
+* bullet points in tooltips ([2c9e92f](https://https///commit/2c9e92f9d20d672ad7d8c991ec7b3db4358bc3a7))
+
+### [0.11.1](https://https///compare/v0.11.0...v0.11.1) (2020-06-23)
+
+
+### Bug Fixes
+
+* webchat opening ([14f457f](https://https///commit/14f457f6a142a1fbde7db972d2f6de0b2063fa34))
+
+## [0.11.0](https://https///compare/v0.10.4...v0.11.0) (2020-06-23)
+
+
+### Features
+
+* auto clear storage on new version to prevent errors ([db2df1e](https://https///commit/db2df1eec7841e2bbcdc20e228c143361218d4dc))
+* placed tooltips ([6857448](https://https///commit/6857448bee206b53c9a10ed3975f6c7247070253))
+* tooltip sequences ([80f048f](https://https///commit/80f048f516b29f032337f07ff85cb787824f3e70))
+
 ### [0.10.4](https://https///compare/v0.10.3...v0.10.4) (2020-06-06)
 
 
