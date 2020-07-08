@@ -15,8 +15,8 @@ class VidReply extends PureComponent {
         </b>
         <div className="rw-video-details">
           <Player
-            playsInline=true
-            autoPlay=true
+            playsInline
+            autoPlay
             poster="/assets/poster.png"
             src={this.props.message.get('video')}
           />    
