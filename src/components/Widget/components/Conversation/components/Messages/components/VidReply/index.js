@@ -13,7 +13,7 @@ class VidReply extends PureComponent {
         <div className="rw-video-details">
           <div className="rw-videoFrame">
             <video controls autoplay="autoplay">
-              <source src={this.props.message.get('video')} type="video/mp4">
+              <source src={this.props.message.get('video')} type="video/mp4" />
             </video>
           </div>
         </div>
