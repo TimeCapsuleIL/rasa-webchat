@@ -4,8 +4,6 @@ import { Player } from 'video-react';
 
 import './styles.scss';
 
-import "node_modules/video-react/dist/video-react.css";
-
 class VidReply extends PureComponent {
   render() {
     return (
