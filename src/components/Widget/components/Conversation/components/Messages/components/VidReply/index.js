@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { PROP_TYPES } from 'constants';
-import { Player } from 'video-react';
 
 import './styles.scss';
 
@@ -12,11 +11,11 @@ class VidReply extends PureComponent {
           { this.props.message.get('title') }
         </b>
         <div className="rw-video-details">
-          <Player
-            playsInline
-            autoPlay
-            src={this.props.message.get('video')}
-          />    
+          <div className="rw-videoFrame">
+            <video controls autoplay="autoplay">
+              <source src={this.props.message.get('video')} type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     );
