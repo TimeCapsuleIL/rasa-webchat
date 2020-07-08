@@ -1,7 +1,10 @@
 import React, { PureComponent } from 'react';
 import { PROP_TYPES } from 'constants';
+import { Player } from 'video-react';
 
 import './styles.scss';
+
+import "node_modules/video-react/dist/video-react.css";
 
 class VidReply extends PureComponent {
   render() {
@@ -11,7 +14,12 @@ class VidReply extends PureComponent {
           { this.props.message.get('title') }
         </b>
         <div className="rw-video-details">
-          <iframe src={this.props.message.get('video')} className="rw-videoFrame" />
+          <Player
+            playsInline=true
+            autoPlay=true
+            poster="/assets/poster.png"
+            src={this.props.message.get('video')}
+          />    
         </div>
       </div>
     );
