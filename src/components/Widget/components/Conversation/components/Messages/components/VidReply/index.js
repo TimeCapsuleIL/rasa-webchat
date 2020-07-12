@@ -11,11 +11,7 @@ class VidReply extends PureComponent {
           { this.props.message.get('title') }
         </b>
         <div className="rw-video-details">
-          <div className="rw-videoFrame">
-            <video controls autoPlay="autoplay" height="100%" width="100%">
-              <source src={this.props.message.get('video')} type="video/mp4" />
-            </video>
-          </div>
+          <iframe src={this.props.message.get('video')} className="rw-videoFrame" allow="autoplay" />
         </div>
       </div>
     );
