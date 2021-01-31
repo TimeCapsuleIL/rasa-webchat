@@ -47,7 +47,7 @@ class Buttons extends PureComponent {
     const { mainColor } = this.context;
     return (
       <div>
-        <Message message={message} />
+        {message && <Message message={message}/>}
         {(isLast || persit) && (
           <div className="rw-replies">
             {buttons.map((reply, index) => {
