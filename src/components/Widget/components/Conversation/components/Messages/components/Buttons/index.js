@@ -97,7 +97,7 @@ class Buttons extends PureComponent {
     if (message.get('quick_replies') !== undefined) {
       const buttons = message.get('quick_replies');
       if (chosenReply) {
-        return {message.get("text") !== "null" ? <Message message={message} /> : null};
+        return (message.get("text") !== "null" ? <Message message={message} /> : null);
       }
       return this.renderButtons(message, buttons, false);
     } else if (message.get('buttons') !== undefined) {
