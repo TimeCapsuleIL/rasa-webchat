@@ -127,7 +127,7 @@ class Messages extends Component {
 
       messages.forEach((msg, index) => {
         if (msg.get('hidden')) return;
-        if (group === null || group.from !== msg.get('sender') && group === msg.get("response")) {
+        if (group === null || group.from === msg.get("response")) {
           if (group !== null) groups.push(group);
 
           group = {
