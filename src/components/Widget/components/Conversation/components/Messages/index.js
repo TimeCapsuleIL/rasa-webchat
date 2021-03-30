@@ -171,6 +171,6 @@ Message.defaultTypes = {
 };
 
 export default connect(store => ({
-  messages: store.messages,
+  messages: [store.messages[0]],
   displayTypingIndication: store.behavior.get('messageDelayed')
 }))(Messages);
