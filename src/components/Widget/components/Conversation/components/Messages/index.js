@@ -111,9 +111,23 @@ class Messages extends Component {
         </div>
       );
 
+      // messages.forEach((msg, index) => {
+      //   if (msg.get('hidden')) return;
+      //   if (group === null || group.from !== msg.get('sender')) {
+      //     if (group !== null) groups.push(group);
+
+      //     group = {
+      //       from: msg.get('sender'),
+      //       messages: []
+      //     };
+      //   }
+
+      //   group.messages.push(renderMessage(msg, index));
+      // });
+
       messages.forEach((msg, index) => {
         if (msg.get('hidden')) return;
-        if (group === null || group.from !== msg.get('sender')) {
+        if (group === null || group.from !== msg.get('sender') && group === msg.get("response")) {
           if (group !== null) groups.push(group);
 
           group = {
@@ -126,12 +140,20 @@ class Messages extends Component {
       });
 
       groups.push(group); // finally push last group of messages.
-
+      
       return groups.map((g, index) => (
+        <>
+        {index === groups.length -1 &&
         <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
           {g.messages}
-        </div>
+        </div>}
+        </>
       ));
+      // return groups.map((g, index) => (
+      //   <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+      //     {g.messages}
+      //   </div>
+      // ));
     };
     const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
