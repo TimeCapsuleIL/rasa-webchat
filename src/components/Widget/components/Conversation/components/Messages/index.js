@@ -129,7 +129,7 @@ class Messages extends Component {
 
       return groups.map((g, index) => (
         <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-          {g.messages}
+          {g.messages[0]}
         </div>
       ));
     };
