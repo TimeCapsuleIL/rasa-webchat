@@ -126,13 +126,13 @@ class Messages extends Component {
       });
 
       groups.push(group); // finally push last group of messages.
-
-      return groups.map((g, index) => (
-        <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-          {console.log(g.messages)}
-          {g.messages}
-        </div>
-      ));
+      return <div>Hi</div>
+      // return groups.map((g, index) => (
+      //   <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+      //     {console.log(g.messages)}
+      //     {g.messages}
+      //   </div>
+      // ));
     };
     const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
