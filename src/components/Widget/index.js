@@ -619,7 +619,7 @@ const mapStateToProps = state => ({
   oldUrl: state.behavior.get('oldUrl'),
   pageChangeCallbacks: state.behavior.get('pageChangeCallbacks'),
   domHighlight: state.metadata.get('domHighlight'),
-  messages: [state.messages[0]]
+  messages: state.messages
 });
 
 Widget.propTypes = {

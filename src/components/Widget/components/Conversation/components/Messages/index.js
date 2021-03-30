@@ -129,6 +129,7 @@ class Messages extends Component {
 
       return groups.map((g, index) => (
         <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+          {console.log(g.messages)}
           {g.messages}
         </div>
       ));
@@ -137,7 +138,7 @@ class Messages extends Component {
 
     return (
       <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
-        { renderMessages() }
+        { renderMessages()[0] }
         {displayTypingIndication && (
           <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
             {
