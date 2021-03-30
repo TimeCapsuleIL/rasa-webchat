@@ -111,23 +111,9 @@ class Messages extends Component {
         </div>
       );
 
-      // messages.forEach((msg, index) => {
-      //   if (msg.get('hidden')) return;
-      //   if (group === null || group.from !== msg.get('sender')) {
-      //     if (group !== null) groups.push(group);
-
-      //     group = {
-      //       from: msg.get('sender'),
-      //       messages: []
-      //     };
-      //   }
-
-      //   group.messages.push(renderMessage(msg, index));
-      // });
-
       messages.forEach((msg, index) => {
         if (msg.get('hidden')) return;
-        if (group === null || group.from === msg.get("response")) {
+        if (group === null || group.from !== msg.get('sender')) {
           if (group !== null) groups.push(group);
 
           group = {
@@ -138,23 +124,19 @@ class Messages extends Component {
 
         group.messages.push(renderMessage(msg, index));
       });
+      
 
       groups.push(group); // finally push last group of messages.
+
+      let lastMessage = [groups.pop()]
       
-      return groups.map((g, index) => (
-        <>
-        {index === groups.length -1 &&
+      return lastMessage.map((g, index) => (
         <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
           {g.messages}
-        </div>}
-        </>
+        </div>
       ));
-      // return groups.map((g, index) => (
-      //   <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-      //     {g.messages}
-      //   </div>
-      // ));
     };
+
     const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
     return (
