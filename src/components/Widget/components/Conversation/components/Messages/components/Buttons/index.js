@@ -45,9 +45,10 @@ class Buttons extends PureComponent {
     const { isLast, linkTarget
     } = this.props;
     const { mainColor } = this.context;
+    console.log(message)
     return (
       <div>
-        {message && <Message message={message}/>}
+        {message.get("text") !== "null" && <Message message={message} />}
         {(isLast || persit) && (
           <div className="rw-replies">
             {buttons.map((reply, index) => {
@@ -96,7 +97,7 @@ class Buttons extends PureComponent {
     if (message.get('quick_replies') !== undefined) {
       const buttons = message.get('quick_replies');
       if (chosenReply) {
-        return <Message message={message} />;
+        return (message.get("text") !== "null" ? <Message message={message} /> : null);
       }
       return this.renderButtons(message, buttons, false);
     } else if (message.get('buttons') !== undefined) {
