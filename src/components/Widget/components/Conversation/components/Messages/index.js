@@ -142,34 +142,13 @@ class Messages extends Component {
 
     return (
       <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
-        {/* {!displayTypingIndication && renderMessages() } */}
-        {!displayTypingIndication && (
+        {!displayTypingIndication && renderMessages() }
+        {displayTypingIndication && (
           <div className="circle-loader-wrapper">
               <div className="circle-loader"></div>
-              <img src="./loader_logo.png" alt="time capsule logo" />
+              {/* <img src="./loader_logo.png" alt="time capsule logo" /> */}
           </div>
-
-
-          // <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
-          //    <div className="circle-loader"></div>
-          //   <img src="./loader_logo.png" alt="time capsule logo" />
-          // </div>
         )}
-        {/* {displayTypingIndication && (
-          <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
-            {
-              profileAvatar &&
-              <img src={profileAvatar} className="rw-avatar" alt="profile" />
-            }
-            <div style={{ backgroundColor: assistBackgoundColor }} className="rw-response">
-              <div id="wave">
-                <span className="rw-dot" />
-                <span className="rw-dot" />
-                <span className="rw-dot" />
-              </div>
-            </div>
-          </div>
-        )} */}
       </div>
     );
   }

@@ -4,9 +4,10 @@
 .circle-loader-wrapper {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-self: center;
   margin: 0;
-  height: fit-content;
+  height: 500px;
   width: 864px;
 }
 
@@ -16,11 +17,11 @@
   display: inline-block;
   padding: 0px;
   border-radius: 100%;
-  border: 5px solid;
-  border-top-color: #02b7b0;
-  border-bottom-color: rgba(255, 255, 255, 0.3);
-  border-left-color: #02b7b0;
-  border-right-color: rgba(255, 255, 255, 0.3);
+  border: 5px solid !important;
+  border-top-color: #02b7b0 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+  border-left-color: #02b7b0 !important;
+  border-right-color: rgba(255, 255, 255, 0.3) !important;
   -webkit-animation: circle-loader 1s ease-in-out infinite;
   animation: circle-loader 1s ease-in-out infinite;
 }
