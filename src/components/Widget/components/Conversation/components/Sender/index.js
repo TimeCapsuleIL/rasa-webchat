@@ -62,7 +62,7 @@ class Sender extends React.Component {
         this.props.recognition.lang = "he-IL";
         
         return (
-          <>
+          <div className="form-wrapper">
             <button onClick={this.handleShowSearchHistory} className="search-history-button">
               שאלות קודמות
             </button>
@@ -79,7 +79,7 @@ class Sender extends React.Component {
                 })}
               </div>
             )}
-            </>
+            </div>
         );
       }
       else

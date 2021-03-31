@@ -2,6 +2,11 @@
 
 @import "common.scss";
 
+.form-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 .search-history-wrapper {
   /* position */
   position: absolute;
