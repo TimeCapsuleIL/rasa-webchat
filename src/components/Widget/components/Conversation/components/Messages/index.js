@@ -130,10 +130,11 @@ class Messages extends Component {
 
       let lastMessage = [groups.pop()]
       
-      return lastMessage.map((g, index) => (
+      return (
+        lastMessage.map((g, index) => (
         <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
           {g.messages}
-        </div>
+        </div>)
       ));
     };
 

@@ -13,11 +13,25 @@ class Sender extends React.Component {
       super(props);
       
       this.state = {inputValue: ""};
+      this.state = {showSearchHistory: ""};
+      this.state = {searchHistory: [
+        "יציק קליין",
+        "צבי גרוס",
+        "יציק קליין",
+        "צבי גרוס",
+        "יציק קליין",
+        "צבי גרוס",
+        "יציק קליין",
+        "צבי גרוס",
+        "יציק קליין",
+        "צבי גרוס",
+      ]}
       this.formRef = React.createRef();
       
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.onEnterPress = this.onEnterPress.bind(this);
+      this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
   }
   
   handleChange(e) {
@@ -38,6 +52,10 @@ class Sender extends React.Component {
       this.formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
     }
   }
+
+  handleShowSearchHistory() {
+    this.setState({showSearchHistory: !this.state.showSearchHistory})
+  };
   
   render() {
       if ((this.props.browserSupportsSpeechRecognition && !this.state.inputValue && !this.props.transcript) || this.props.listening) {
@@ -45,15 +63,22 @@ class Sender extends React.Component {
         
         return (
           <>
-          <button onClick={handleShowSearchHistory} className="search-history-button">
-            שאלות קודמות
-          </button>
+            <button onClick={handleShowSearchHistory} className="search-history-button">
+              שאלות קודמות
+            </button>
             <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
                 <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" placeholder={this.props.inputTextFieldHint} disabled={this.props.transcript} autoFocus autoComplete="off" value={this.props.transcript} />
                 <button type="button" className="rw-mic" onClick={this.props.listening ? this.props.stopListening : this.props.startListening}>
                     <Mic className="rw-mic-icon" listening={this.props.listening} alt="send" />
                 </button>
             </form>
+            {showSearchHistory && (
+              <div className="search-history-wrapper">
+                {this.state.searchHistory.map((item) => {
+                  return <div className="search-history-item">{item}</div>;
+                })}
+              </div>
+            )}
             </>
         );
       }

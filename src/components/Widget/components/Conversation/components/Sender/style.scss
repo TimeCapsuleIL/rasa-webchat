@@ -2,6 +2,39 @@
 
 @import "common.scss";
 
+.search-history-wrapper {
+  /* position */
+  position: absolute;
+  top: 645px;
+  left: 255px;
+
+  /* design */
+  background-color: #fffefc;
+  border: none;
+  border-radius: 10px;
+  color: #4a6287;
+  margin: 0 10px;
+  text-align-last: right;
+  width: 707px;
+  z-index: 100;
+  overflow-y: auto;
+  height: 150px;
+  direction: rtl;
+}
+
+.search-history-item {
+  background-color: #fffefc;
+  border: 1px solid #e0d0c3;
+  border-radius: 10px;
+  color: #4a6287;
+  direction: rtl;
+  padding: 7px;
+}
+
+.search-history-item:hover {
+  background-color: #fae7d9;
+}
+
 .search-history-button {
   /* flex */
   align-items: center;
