@@ -72,7 +72,7 @@ class Sender extends React.Component {
                     <Mic className="rw-mic-icon" listening={this.props.listening} alt="send" />
                 </button>
             </form>
-            {showSearchHistory && (
+            {this.state.showSearchHistory && (
               <div className="search-history-wrapper">
                 {this.state.searchHistory.map((item) => {
                   return <div className="search-history-item">{item}</div>;
