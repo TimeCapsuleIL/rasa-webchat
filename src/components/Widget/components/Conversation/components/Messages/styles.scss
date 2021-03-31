@@ -4,11 +4,14 @@
 .circle-loader-wrapper {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  justify-self: center;
+  justify-content: center;
   margin: 0;
-  height: 500px;
+  height: 492px;
   width: 864px;
+}
+
+.right-element-loader {
+  width: 376px;
 }
 
 .circle-loader {
