@@ -63,7 +63,7 @@ class Sender extends React.Component {
         
         return (
           <>
-            <button onClick={handleShowSearchHistory} className="search-history-button">
+            <button onClick={this.handleShowSearchHistory} className="search-history-button">
               שאלות קודמות
             </button>
             <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
