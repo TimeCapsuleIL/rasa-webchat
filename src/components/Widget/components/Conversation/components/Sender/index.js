@@ -2,131 +2,183 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
-import SpeechRecognition from "react-speech-recognition";
+import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
 import './style.scss';
 
 class Sender extends React.Component {
-    
-  constructor(props) {
-      super(props);
-      
-      this.state = {inputValue: ""};
-      this.state = {showSearchHistory: ""};
-      this.state = {searchHistory: [
-        "יציק קליין",
-        "צבי גרוס",
-        "יציק קליין",
-        "צבי גרוס",
-        "יציק קליין",
-        "צבי גרוס",
-        "יציק קליין",
-        "צבי גרוס",
-        "יציק קליין",
-        "צבי גרוס",
-      ]}
-      this.formRef = React.createRef();
-      
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      this.onEnterPress = this.onEnterPress.bind(this);
-      this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
-  }
-  
-  handleChange(e) {
-    this.setState({inputValue: e.target.value});
-  }
+    constructor(props) {
+        super(props);
 
-  handleSubmit(e) {
-    this.props.sendMessage(e);
-    this.setState({inputValue: ""});
-  }
+        this.state = { inputValue: '' };
+        this.state = { showSearchHistory: '' };
+        this.state = {
+            searchHistory: [
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+            ],
+        };
+        this.formRef = React.createRef();
 
-
-  onEnterPress(e) {
-    if (e.keyCode === 13 && e.shiftKey === false) {
-      e.preventDefault();
-      // by dispatching the event we trigger onSubmit
-      // formRef.current.submit() would not trigger onSubmit
-      this.formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.onEnterPress = this.onEnterPress.bind(this);
+        this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
     }
-  }
 
-  handleShowSearchHistory() {
-    this.setState({showSearchHistory: !this.state.showSearchHistory})
-  };
-  
-  render() {
-      if ((this.props.browserSupportsSpeechRecognition && !this.state.inputValue && !this.props.transcript) || this.props.listening) {
-        this.props.recognition.lang = "he-IL";
-        
-        return (
-          <div className="form-wrapper">
-            <button onClick={this.handleShowSearchHistory} className="search-history-button">
-              שאלות קודמות
-            </button>
-            <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
-                <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" placeholder={this.props.inputTextFieldHint} disabled={this.props.transcript} autoFocus autoComplete="off" value={this.props.transcript} />
-                <button type="button" className="rw-mic" onClick={this.props.listening ? this.props.stopListening : this.props.startListening}>
-                    <Mic className="rw-mic-icon" listening={this.props.listening} alt="send" />
-                </button>
-            </form>
-            {this.state.showSearchHistory && (
-              <div className="search-history-wrapper">
-                {this.state.searchHistory.map((item) => {
-                  return <div className="search-history-item">{item}</div>;
-                })}
-              </div>
-            )}
-            </div>
-        );
-      }
-      else
-      { 
-        if (this.props.transcript) {
-            if(!this.state.inputValue) {
-                this.setState({inputValue: this.props.transcript});
-            } else {
-                this.props.resetTranscript();
-            }
+    handleChange(e) {
+        this.setState({ inputValue: e.target.value });
+    }
+
+    handleSubmit(e) {
+        this.props.sendMessage(e);
+        this.setState({ inputValue: '' });
+    }
+
+    onEnterPress(e) {
+        if (e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            // by dispatching the event we trigger onSubmit
+            // formRef.current.submit() would not trigger onSubmit
+            this.formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
         }
-        return (
-            this.props.userInput === 'hide' ? <div /> : (
-              <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+    }
 
-                <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" value={this.state.inputValue} placeholder={this.props.inputTextFieldHint} disabled={this.props.disabledInput || this.props.userInput === 'disable'} autoFocus autoComplete="off" />
-                <button type="submit" className="rw-send" disabled={!(this.state.inputValue && this.state.inputValue.length > 0)}>
-                  <Send className="rw-send-icon" ready={!!(this.state.inputValue && this.state.inputValue.length > 0)} alt="send" />
-                </button>
-              </form>)
-        );
-      }      
-  }
+    handleShowSearchHistory() {
+        this.setState({ showSearchHistory: !this.state.showSearchHistory });
+    }
+
+    render() {
+        if (
+            (this.props.browserSupportsSpeechRecognition &&
+                !this.state.inputValue &&
+                !this.props.transcript) ||
+            this.props.listening
+        ) {
+            this.props.recognition.lang = 'he-IL';
+
+            return (
+                <div className="widget-form-wrapper">
+                    <button
+                        onClick={this.handleShowSearchHistory}
+                        className="search-history-button"
+                    >
+                        שאלות קודמות
+                    </button>
+                    <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+                        <TextareaAutosize
+                            type="text"
+                            minRows={1}
+                            onKeyDown={this.onEnterPress}
+                            maxRows={3}
+                            onChange={this.handleChange}
+                            className="rw-new-message"
+                            name="message"
+                            placeholder={this.props.inputTextFieldHint}
+                            disabled={this.props.transcript}
+                            autoFocus
+                            autoComplete="off"
+                            value={this.props.transcript}
+                        />
+                        <button
+                            type="button"
+                            className="rw-mic"
+                            onClick={
+                                this.props.listening
+                                    ? this.props.stopListening
+                                    : this.props.startListening
+                            }
+                        >
+                            <Mic
+                                className="rw-mic-icon"
+                                listening={this.props.listening}
+                                alt="send"
+                            />
+                        </button>
+                    </form>
+                    {this.state.showSearchHistory && (
+                        <div className="search-history-wrapper">
+                            {this.state.searchHistory.map(item => {
+                                return <div className="search-history-item">{item}</div>;
+                            })}
+                        </div>
+                    )}
+                </div>
+            );
+        } else {
+            if (this.props.transcript) {
+                if (!this.state.inputValue) {
+                    this.setState({ inputValue: this.props.transcript });
+                } else {
+                    this.props.resetTranscript();
+                }
+            }
+            return this.props.userInput === 'hide' ? (
+                <div />
+            ) : (
+                <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+                    <TextareaAutosize
+                        type="text"
+                        minRows={1}
+                        onKeyDown={this.onEnterPress}
+                        maxRows={3}
+                        onChange={this.handleChange}
+                        className="rw-new-message"
+                        name="message"
+                        value={this.state.inputValue}
+                        placeholder={this.props.inputTextFieldHint}
+                        disabled={this.props.disabledInput || this.props.userInput === 'disable'}
+                        autoFocus
+                        autoComplete="off"
+                    />
+                    <button
+                        type="submit"
+                        className="rw-send"
+                        disabled={!(this.state.inputValue && this.state.inputValue.length > 0)}
+                    >
+                        <Send
+                            className="rw-send-icon"
+                            ready={!!(this.state.inputValue && this.state.inputValue.length > 0)}
+                            alt="send"
+                        />
+                    </button>
+                </form>
+            );
+        }
+    }
 }
 
 const mapStateToProps = state => ({
-  inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
-  userInput: state.metadata.get('userInput')
+    inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
+    userInput: state.metadata.get('userInput'),
 });
 
 Sender.propTypes = {
-  sendMessage: PropTypes.func,
-  inputTextFieldHint: PropTypes.string,
-  disabledInput: PropTypes.bool,
-  userInput: PropTypes.string,
-  transcript: PropTypes.string,
-  browserSupportsSpeechRecognition: PropTypes.bool,
-  listening: PropTypes.bool,
-  recognition: PropTypes.object,
-  startListening: PropTypes.func,
-  stopListening: PropTypes.func,
-  resetTranscript: PropTypes.func
+    sendMessage: PropTypes.func,
+    inputTextFieldHint: PropTypes.string,
+    disabledInput: PropTypes.bool,
+    userInput: PropTypes.string,
+    transcript: PropTypes.string,
+    browserSupportsSpeechRecognition: PropTypes.bool,
+    listening: PropTypes.bool,
+    recognition: PropTypes.object,
+    startListening: PropTypes.func,
+    stopListening: PropTypes.func,
+    resetTranscript: PropTypes.func,
 };
 
 const options = {
-  autoStart: false,
-  continuous: false
+    autoStart: false,
+    continuous: false,
 };
 
 export default SpeechRecognition(options)(connect(mapStateToProps)(Sender));

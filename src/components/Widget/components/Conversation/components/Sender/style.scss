@@ -1,131 +1,124 @@
-@import "variables.scss";
+@import 'variables.scss';
 
-@import "common.scss";
+@import 'common.scss';
 
-.form-wrapper {
-  display: flex;
-  justify-content: space-between;
+.widget-form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    justify-self: flex-start;
 }
 
 .search-history-wrapper {
-  /* position */
-  position: absolute;
-  top: 645px;
-  left: 255px;
-
-  /* design */
-  background-color: #fffefc;
-  border: none;
-  border-radius: 10px;
-  color: #4a6287;
-  margin: 0 10px;
-  text-align-last: right;
-  width: 707px;
-  z-index: 100;
-  overflow-y: auto;
-  height: 150px;
-  direction: rtl;
+    /* design */
+    background-color: #fffefc;
+    border: none;
+    border-radius: 10px;
+    color: #4a6287;
+    margin: 0 10px;
+    text-align-last: right;
+    width: 707px;
+    z-index: 100;
+    overflow-y: auto;
+    height: 150px;
+    direction: rtl;
 }
 
 .search-history-item {
-  background-color: #fffefc;
-  border: 1px solid #e0d0c3;
-  border-radius: 10px;
-  color: #4a6287;
-  direction: rtl;
-  padding: 7px;
+    background-color: #fffefc;
+    border: 1px solid #e0d0c3;
+    border-radius: 10px;
+    color: #4a6287;
+    direction: rtl;
+    padding: 7px;
 }
 
 .search-history-item:hover {
-  background-color: #fae7d9;
+    background-color: #fae7d9;
 }
 
 .search-history-button {
-  /* flex */
-  align-items: center;
-  display: flex;
-  justify-content: center;
+    /* flex */
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
-  /* design */
-  width: 140px;
-  height: 40px;
-  background: linear-gradient(85.23deg, #5a5ac7 -6.55%, #2b82ad 105.2%);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-  border: none;
-  color: white;
-  outline: none;
-  // cursor: pointer;
-  font-size: 1em;
-  font-weight: 100;
+    /* design */
+    width: 140px;
+    height: 40px;
+    background: linear-gradient(85.23deg, #5a5ac7 -6.55%, #2b82ad 105.2%);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    outline: none;
+    // cursor: pointer;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .#{$namespace}conversation-container {
-  .#{$namespace}sender {
-    align-items: center;
-    display: flex;
-    background-color: $grey-2;
-    min-height: 30px;
-    padding: 15px 5px;
-   
-  }
-  
-  .#{$namespace}new-message {
-    font-size: 1em;
-    width: 100%;
-    border: 0;
-    background-color: $grey-2;
-    padding-left: 15px;
-    font-family: $fontfamily;
-    resize: none;
-    &:focus {
-      outline: none;
-    }
-  }
-  
-  
-  .#{$namespace}send {
-    background: $grey-2;
-    border: 0;
-    
-    .#{$namespace}send-icon {
-      fill: #00000000;;
-      transition: fill 0.35s;
-    }
-
-    .#{$namespace}send-icon-ready {
-      fill: #135afe;
-      transition: fill 0.35s;
-    }
-  }
-  
-  .#{$namespace}mic {
-    background: $grey-2;
-    border: 0;
-    
-    .#{$namespace}mic-icon {
-      fill: #424242;
-      transition: fill 0.35s;
-    }
-
-    .#{$namespace}mic-icon-stop {
-      fill: #cf1515;
-      transition: fill 0.35s;
-    }
-  }
-  
-  @media screen and (max-width: 800px)  {
     .#{$namespace}sender {
-      border-radius: 0;
-      flex-shrink: 0;
+        align-items: center;
+        display: flex;
+        background-color: $grey-2;
+        min-height: 30px;
+        padding: 15px 5px;
     }
-  }
-  
+
+    .#{$namespace}new-message {
+        font-size: 1em;
+        width: 100%;
+        border: 0;
+        background-color: $grey-2;
+        padding-left: 15px;
+        font-family: $fontfamily;
+        resize: none;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .#{$namespace}send {
+        background: $grey-2;
+        border: 0;
+
+        .#{$namespace}send-icon {
+            fill: #00000000;
+            transition: fill 0.35s;
+        }
+
+        .#{$namespace}send-icon-ready {
+            fill: #135afe;
+            transition: fill 0.35s;
+        }
+    }
+
+    .#{$namespace}mic {
+        background: $grey-2;
+        border: 0;
+
+        .#{$namespace}mic-icon {
+            fill: #424242;
+            transition: fill 0.35s;
+        }
+
+        .#{$namespace}mic-icon-stop {
+            fill: #cf1515;
+            transition: fill 0.35s;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .#{$namespace}sender {
+            border-radius: 0;
+            flex-shrink: 0;
+        }
+    }
 }
 
 .#{$namespace}widget-embedded {
-  .#{$namespace}sender {
-    flex: 0, 0, auto;
-    min-height: 35px;
-  }
+    .#{$namespace}sender {
+        flex: 0, 0, auto;
+        min-height: 35px;
+    }
 }
