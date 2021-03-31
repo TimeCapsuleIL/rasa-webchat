@@ -74,44 +74,46 @@ class Sender extends React.Component {
                     >
                         שאלות קודמות
                     </button>
-                    <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
-                        <TextareaAutosize
-                            type="text"
-                            minRows={1}
-                            onKeyDown={this.onEnterPress}
-                            maxRows={3}
-                            onChange={this.handleChange}
-                            className="rw-new-message"
-                            name="message"
-                            placeholder={this.props.inputTextFieldHint}
-                            disabled={this.props.transcript}
-                            autoFocus
-                            autoComplete="off"
-                            value={this.props.transcript}
-                        />
-                        <button
-                            type="button"
-                            className="rw-mic"
-                            onClick={
-                                this.props.listening
-                                    ? this.props.stopListening
-                                    : this.props.startListening
-                            }
-                        >
-                            <Mic
-                                className="rw-mic-icon"
-                                listening={this.props.listening}
-                                alt="send"
+                    <div className="input-form-wrapper">
+                        <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+                            <TextareaAutosize
+                                type="text"
+                                minRows={1}
+                                onKeyDown={this.onEnterPress}
+                                maxRows={3}
+                                onChange={this.handleChange}
+                                className="rw-new-message"
+                                name="message"
+                                placeholder={this.props.inputTextFieldHint}
+                                disabled={this.props.transcript}
+                                autoFocus
+                                autoComplete="off"
+                                value={this.props.transcript}
                             />
-                        </button>
-                    </form>
-                    {this.state.showSearchHistory && (
-                        <div className="search-history-wrapper">
-                            {this.state.searchHistory.map(item => {
-                                return <div className="search-history-item">{item}</div>;
-                            })}
-                        </div>
-                    )}
+                            <button
+                                type="button"
+                                className="rw-mic"
+                                onClick={
+                                    this.props.listening
+                                        ? this.props.stopListening
+                                        : this.props.startListening
+                                }
+                            >
+                                <Mic
+                                    className="rw-mic-icon"
+                                    listening={this.props.listening}
+                                    alt="send"
+                                />
+                            </button>
+                        </form>
+                        {this.state.showSearchHistory && (
+                            <div className="search-history-wrapper">
+                                {this.state.searchHistory.map(item => {
+                                    return <div className="search-history-item">{item}</div>;
+                                })}
+                            </div>
+                        )}
+                    </div>
                 </div>
             );
         } else {
