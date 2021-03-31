@@ -44,12 +44,17 @@ class Sender extends React.Component {
         this.props.recognition.lang = "he-IL";
         
         return (
+          <>
+          <button onClick={handleShowSearchHistory} className="search-history-button">
+            שאלות קודמות
+          </button>
             <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
                 <TextareaAutosize type="text" minRows={1} onKeyDown={this.onEnterPress} maxRows={3} onChange={this.handleChange} className="rw-new-message" name="message" placeholder={this.props.inputTextFieldHint} disabled={this.props.transcript} autoFocus autoComplete="off" value={this.props.transcript} />
                 <button type="button" className="rw-mic" onClick={this.props.listening ? this.props.stopListening : this.props.startListening}>
                     <Mic className="rw-mic-icon" listening={this.props.listening} alt="send" />
                 </button>
             </form>
+            </>
         );
       }
       else
