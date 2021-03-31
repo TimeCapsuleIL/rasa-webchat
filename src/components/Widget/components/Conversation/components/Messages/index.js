@@ -144,18 +144,14 @@ class Messages extends Component {
       <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
         {!displayTypingIndication && renderMessages() }
         {displayTypingIndication && (
-          <div className="rw-video">
-            <div className="rw-video-details">
-              <div className="rw-videoFrame">
-                <div className="loader4"></div>
-                <img src="./loader_logo.png" alt="time capsule logo" />
-              </div>
-            </div>
+          <div className="circle-loader-wrapper">
+              <div className="circle-loader"></div>
+              <img src="./loader_logo.png" alt="time capsule logo" />
           </div>
 
 
           // <div className={`rw-message rw-typing-indication ${profileAvatar && 'rw-with-avatar'}`}>
-          //    <div className="loader4"></div>
+          //    <div className="circle-loader"></div>
           //   <img src="./loader_logo.png" alt="time capsule logo" />
           // </div>
         )}

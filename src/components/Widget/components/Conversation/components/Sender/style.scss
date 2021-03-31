@@ -6,7 +6,8 @@
     display: flex;
     justify-content: space-between;
     justify-self: flex-start;
-    width: 835px;
+    margin-top: 20px;
+    width: 864px;
 }
 
 .input-form-wrapper {
@@ -22,9 +23,7 @@
     border: none;
     border-radius: 10px;
     color: #4a6287;
-    margin: 0 10px;
-    text-align-last: right;
-    width: 707px;
+    width: 678px;
     z-index: 100;
     overflow-y: auto;
     height: 150px;
@@ -64,7 +63,16 @@
     font-weight: 100;
 }
 
-.loader {
+.circle-loader-wrapper {
+    align-items: center;
+    display: flex;
+    justify-self: center;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.circle-loader {
     width: 45px;
     height: 45px;
     display: inline-block;
@@ -75,11 +83,11 @@
     border-bottom-color: rgba(255, 255, 255, 0.3);
     border-left-color: #02b7b0;
     border-right-color: rgba(255, 255, 255, 0.3);
-    -webkit-animation: loader 1s ease-in-out infinite;
-    animation: loader 1s ease-in-out infinite;
+    -webkit-animation: circle-loader 1s ease-in-out infinite;
+    animation: circle-loader 1s ease-in-out infinite;
 }
 
-@keyframes loader {
+@keyframes circle-loader {
     from {
         transform: rotate(0deg);
     }
@@ -87,7 +95,7 @@
         transform: rotate(360deg);
     }
 }
-@-webkit-keyframes loader {
+@-webkit-keyframes circle-loader {
     from {
         -webkit-transform: rotate(0deg);
     }
