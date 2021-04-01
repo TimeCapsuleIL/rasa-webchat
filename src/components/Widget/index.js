@@ -83,7 +83,7 @@ class Widget extends Component {
   }
 
   componentDidUpdate() {
-    const { isChatOpen, dispatch, embedded, initialized, reconnect } = this.props;
+    const { isChatOpen, dispatch, embedded, initialized, reconnect, socket } = this.props;
 
     if (reconnect) {
       socket.close();
