@@ -21,9 +21,11 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  margin: 0;
-  height: 100%;
-  width: 100%;
+  position: absolute;
+  height: 482px;
+  margin: 2px;
+  width: 99.5%;
+  z-index: -1;
 }
 
 .circle-loader {
