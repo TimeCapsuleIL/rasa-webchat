@@ -51,7 +51,7 @@ class Buttons extends PureComponent {
         {message.get("text") !== "null" && <Message message={message} />}
         {(isLast || persit) && (
           <div className="rw-replies">
-            <div className="reply-prompt">:אולי יעניין אותר גם על</div>
+            <div className="reply-prompt">אולי יעניין אותר גם על:</div>
             {buttons.map((reply, index) => {
               if (reply.get('type') === 'web_url') {
                 return (
