@@ -117,6 +117,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
       >
         <Widget
           ref={ref}
+          reconnect={props.reconnect}
           initPayload={props.initPayload}
           title={props.title}
           subtitle={props.subtitle}

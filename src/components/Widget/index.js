@@ -66,7 +66,6 @@ class Widget extends Component {
       return;
     }
 
-
     const localSession = getLocalSession(storage, SESSION_NAME);
     const lastUpdate = localSession ? localSession.lastUpdate : 0;
 
@@ -84,16 +83,20 @@ class Widget extends Component {
   }
 
   componentDidUpdate() {
-    const { isChatOpen, dispatch, embedded, initialized } = this.props;
-    this.initializeWidget();
-    this.trySendInitPayload();
+    const { isChatOpen, dispatch, embedded, initialized, reconnect } = this.props;
 
-    // if (isChatOpen) {
-    //   if (!initialized) {
-    //     this.initializeWidget();
-    //   }
-    //   this.trySendInitPayload();
-    // }
+    if (reconnect) {
+      socket.close();
+      this.initializeWidget();
+      this.trySendInitPayload();
+    }
+
+    if (isChatOpen) {
+      if (!initialized) {
+        this.initializeWidget();
+      }
+      this.trySendInitPayload();
+    }
 
     if (embedded && initialized) {
       dispatch(showChat());
