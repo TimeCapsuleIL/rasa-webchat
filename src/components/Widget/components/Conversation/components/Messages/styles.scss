@@ -9,11 +9,10 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-self: center;
+  justify-content: center;
 
   background-image: url("./tc_loader_bkgd.png");
-  // background-color: #FBF3E8;
-  border: 1px dashed #02b7b0;
+  border: 2px dashed #3D5A87;
   height: 100%;
   width: 864px;
 }
@@ -23,6 +22,7 @@
   display: flex;
   justify-content: center;
   margin: 0;
+  height: 100%;
   width: 100%;
 }
 
