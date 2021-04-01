@@ -145,9 +145,11 @@ class Messages extends Component {
         {!displayTypingIndication && renderMessages() }
         {displayTypingIndication && (
           <div className="circle-loader-wrapper">
-              <div className="circle-loader"></div>
+              <div className="left-element-loader">
+                <div className="circle-loader"></div>
+                <img src={require("./loader_logo.png")} alt="time capsule logo" />
+              </div>
               <div className="right-element-loader"></div>
-              <img src={require("./loader_logo.png")} alt="time capsule logo" />
           </div>
         )}
       </div>
