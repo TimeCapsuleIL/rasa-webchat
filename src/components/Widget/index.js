@@ -85,13 +85,15 @@ class Widget extends Component {
 
   componentDidUpdate() {
     const { isChatOpen, dispatch, embedded, initialized } = this.props;
+    this.initializeWidget();
+    this.trySendInitPayload();
 
-    if (isChatOpen) {
-      if (!initialized) {
-        this.initializeWidget();
-      }
-      this.trySendInitPayload();
-    }
+    // if (isChatOpen) {
+    //   if (!initialized) {
+    //     this.initializeWidget();
+    //   }
+    //   this.trySendInitPayload();
+    // }
 
     if (embedded && initialized) {
       dispatch(showChat());
@@ -359,8 +361,8 @@ class Widget extends Component {
       tooltipPayload,
       tooltipDelay
     } = this.props;
-    // if (!socket.isInitialized()) {
-      if (true) {
+    if (!socket.isInitialized()) {
+      // if (true) {
       socket.createSocket();
 
       socket.on('bot_uttered', (botUttered) => {
