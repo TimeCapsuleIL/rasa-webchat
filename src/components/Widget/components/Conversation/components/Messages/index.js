@@ -142,8 +142,9 @@ class Messages extends Component {
 
     return (
       <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
+        
         {!displayTypingIndication && renderMessages() }
-        {displayTypingIndication && (
+        {/* {displayTypingIndication && (
           <div className="circle-loader-wrapper">
               <div className="left-element-loader">
                 <div className="circle-loader"></div>
@@ -151,7 +152,14 @@ class Messages extends Component {
               </div>
               <div className="right-element-loader"></div>
           </div>
-        )}
+        )} */}
+          <div className="circle-loader-wrapper">
+              <div className="left-element-loader">
+                {displayTypingIndication && <div className="circle-loader"></div>}
+                {displayTypingIndication && <img src={require("./loader_logo.png")} alt="time capsule logo" />}
+              </div>
+              <div className="right-element-loader"></div>
+          </div>
       </div>
     );
   }
