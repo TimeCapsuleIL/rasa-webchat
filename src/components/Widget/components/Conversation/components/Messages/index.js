@@ -142,8 +142,8 @@ class Messages extends Component {
 
     return (
       <div id="rw-messages" style={{ backgroundColor: conversationBackgroundColor }} className="rw-messages-container">
-        {!displayTypingIndication && renderMessages() }
-        {displayTypingIndication && (
+        {/* {!displayTypingIndication && renderMessages() } */}
+        {!displayTypingIndication && (
           <div className="circle-loader-wrapper">
               <div className="left-element-loader">
                 <div className="circle-loader"></div>

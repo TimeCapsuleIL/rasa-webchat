@@ -10,6 +10,11 @@ class VidReply extends PureComponent {
                 <b className="rw-video-title">{this.props.message.get('title')}</b>
                 <div className="rw-video-details">
                     <div className="rw-videoFrame">
+                        <img
+                            src={require('./vid_logo.png')}
+                            alt="time capsule logo"
+                            className="video-logo"
+                        />
                         <video
                             controls
                             autoPlay="autoplay"
