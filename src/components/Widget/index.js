@@ -109,11 +109,12 @@ class Widget extends Component {
   }
 
   getSessionId() {
-    const { storage } = this.props;
+    const { storage, customSessionID } = this.props;
     // Get the local session, check if there is an existing session_id
     const localSession = getLocalSession(storage, SESSION_NAME);
     const localId = localSession ? localSession.session_id : null;
-    return localId;
+    // return localId;
+    return customSessionID;
   }
 
   sendMessage(payload, text = '', when = 'always', tooltipSelector = false) {
