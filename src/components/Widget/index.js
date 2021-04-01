@@ -359,7 +359,8 @@ class Widget extends Component {
       tooltipPayload,
       tooltipDelay
     } = this.props;
-    if (!socket.isInitialized()) {
+    // if (!socket.isInitialized()) {
+      if (true) {
       socket.createSocket();
 
       socket.on('bot_uttered', (botUttered) => {
