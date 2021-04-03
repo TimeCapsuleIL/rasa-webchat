@@ -83,15 +83,7 @@ class Widget extends Component {
   }
 
   componentDidUpdate() {
-    const { isChatOpen, dispatch, embedded, initialized, newCapsule } = this.props;
-
-    if (newCapsule) {
-      dispatch(disconnectServer())
-      if (!initialized) {
-        this.initializeWidget();
-      }
-      this.trySendInitPayload();
-    }
+    const { isChatOpen, dispatch, embedded, initialized } = this.props;
 
     if (isChatOpen) {
       if (!initialized) {
@@ -365,9 +357,8 @@ class Widget extends Component {
       connectOn,
       tooltipPayload,
       tooltipDelay,
-      newCapsule
     } = this.props;
-    console.log("newCapsule", newCapsule);
+
     if (!socket.isInitialized()) {
       socket.createSocket();
       socket.on('bot_uttered', (botUttered) => {

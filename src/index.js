@@ -82,12 +82,6 @@ const ConnectedWidget = forwardRef((props, ref) => {
     }
   }
 
-  console.log("props.newCapsule", props.newCapsule);
-  if (store && props.newCapsule){
-    store = null
-    console.log("store reset", store);
-  }
-
   const sock = new Socket(
     props.socketUrl,
     props.customData,
@@ -102,7 +96,6 @@ const ConnectedWidget = forwardRef((props, ref) => {
 
 
   if (!store || sock.marker !== store.socketRef) {
-    console.log("inside !store", store);
     store = initStore(
       props.inputTextFieldHint,
       props.connectingText,
@@ -113,7 +106,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
     );
     store.socketRef = sock.marker;
   }
-  console.log("store before return", store);
+
   return (
       <Provider store={store}>
         <ThemeContext.Provider
@@ -125,7 +118,6 @@ const ConnectedWidget = forwardRef((props, ref) => {
             assistBackgoundColor: props.assistBackgoundColor }}
         >
           <Widget
-            newCapsule={props.newCapsule}
             ref={ref}
             initPayload={props.initPayload}
             title={props.title}
@@ -163,7 +155,6 @@ const ConnectedWidget = forwardRef((props, ref) => {
 });
 
 ConnectedWidget.propTypes = {
-  newCapsule: PropTypes.bool,
   initPayload: PropTypes.string,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -214,7 +205,6 @@ ConnectedWidget.propTypes = {
 };
 
 ConnectedWidget.defaultProps = {
-  newCapsule: false,
   title: 'Welcome',
   customData: {},
   inputTextFieldHint: 'Type a message...',
