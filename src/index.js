@@ -106,50 +106,52 @@ const ConnectedWidget = forwardRef((props, ref) => {
     store.socketRef = sock.marker;
   }
   return (
-    <Provider store={store}>
-      <ThemeContext.Provider
-        value={{ mainColor: props.mainColor,
-          conversationBackgroundColor: props.conversationBackgroundColor,
-          userTextColor: props.userTextColor,
-          userBackgroundColor: props.userBackgroundColor,
-          assistTextColor: props.assistTextColor,
-          assistBackgoundColor: props.assistBackgoundColor }}
-      >
-        <Widget
-          newCapsule={props.newCapsule}
-          ref={ref}
-          initPayload={props.initPayload}
-          title={props.title}
-          subtitle={props.subtitle}
-          customData={props.customData}
-          handleNewUserMessage={props.handleNewUserMessage}
-          profileAvatar={props.profileAvatar}
-          showCloseButton={props.showCloseButton}
-          showFullScreenButton={props.showFullScreenButton}
-          hideWhenNotConnected={props.hideWhenNotConnected}
-          connectOn={props.connectOn}
-          autoClearCache={props.autoClearCache}
-          fullScreenMode={props.fullScreenMode}
-          badge={props.badge}
-          embedded={props.embedded}
-          params={props.params}
-          storage={storage}
-          openLauncherImage={props.openLauncherImage}
-          closeImage={props.closeImage}
-          customComponent={props.customComponent}
-          displayUnreadCount={props.displayUnreadCount}
-          socket={sock}
-          showMessageDate={props.showMessageDate}
-          customMessageDelay={props.customMessageDelay}
-          tooltipPayload={props.tooltipPayload}
-          tooltipDelay={props.tooltipDelay}
-          disableTooltips={props.disableTooltips}
-          defaultHighlightCss={props.defaultHighlightCss}
-          defaultHighlightAnimation={props.defaultHighlightAnimation}
-          defaultHighlightClassname={props.defaultHighlightClassname}
-        />
-      </ThemeContext.Provider>
-    </Provider>
+    <>
+      {props.newCapsule && <Provider store={store}>
+        <ThemeContext.Provider
+          value={{ mainColor: props.mainColor,
+            conversationBackgroundColor: props.conversationBackgroundColor,
+            userTextColor: props.userTextColor,
+            userBackgroundColor: props.userBackgroundColor,
+            assistTextColor: props.assistTextColor,
+            assistBackgoundColor: props.assistBackgoundColor }}
+        >
+          <Widget
+            newCapsule={props.newCapsule}
+            ref={ref}
+            initPayload={props.initPayload}
+            title={props.title}
+            subtitle={props.subtitle}
+            customData={props.customData}
+            handleNewUserMessage={props.handleNewUserMessage}
+            profileAvatar={props.profileAvatar}
+            showCloseButton={props.showCloseButton}
+            showFullScreenButton={props.showFullScreenButton}
+            hideWhenNotConnected={props.hideWhenNotConnected}
+            connectOn={props.connectOn}
+            autoClearCache={props.autoClearCache}
+            fullScreenMode={props.fullScreenMode}
+            badge={props.badge}
+            embedded={props.embedded}
+            params={props.params}
+            storage={storage}
+            openLauncherImage={props.openLauncherImage}
+            closeImage={props.closeImage}
+            customComponent={props.customComponent}
+            displayUnreadCount={props.displayUnreadCount}
+            socket={sock}
+            showMessageDate={props.showMessageDate}
+            customMessageDelay={props.customMessageDelay}
+            tooltipPayload={props.tooltipPayload}
+            tooltipDelay={props.tooltipDelay}
+            disableTooltips={props.disableTooltips}
+            defaultHighlightCss={props.defaultHighlightCss}
+            defaultHighlightAnimation={props.defaultHighlightAnimation}
+            defaultHighlightClassname={props.defaultHighlightClassname}
+          />
+        </ThemeContext.Provider>
+      </Provider>}
+    </>
   );
 });
 

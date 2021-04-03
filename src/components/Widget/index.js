@@ -85,16 +85,6 @@ class Widget extends Component {
   componentDidUpdate() {
     const { isChatOpen, dispatch, embedded, initialized, newCapsule } = this.props;
 
-    const { socket } = this.props;
-
-    if (socket && newCapsule) {
-      socket.close();
-      if (!initialized) {
-        this.initializeWidget();
-      }
-      this.trySendInitPayload();
-    }
-
     if (isChatOpen) {
       if (!initialized) {
         this.initializeWidget();
