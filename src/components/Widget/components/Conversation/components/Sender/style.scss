@@ -103,11 +103,12 @@
     }
 
     .#{$namespace}mic {
-        background: $grey-2;
+        outline: none;
+        background: none;
         border: 0;
 
         .#{$namespace}mic-icon {
-            fill: #424242;
+            fill: #6687BA;
             transition: fill 0.35s;
         }
 

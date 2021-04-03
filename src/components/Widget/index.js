@@ -359,7 +359,7 @@ class Widget extends Component {
       tooltipDelay,
       newCapsule
     } = this.props;
-    console.log(newCapsule);
+    console.log("newCapsule", newCapsule);
     if (!socket.isInitialized()) {
       socket.createSocket();
       socket.on('bot_uttered', (botUttered) => {
