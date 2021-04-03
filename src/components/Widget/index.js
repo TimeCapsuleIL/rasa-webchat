@@ -54,8 +54,7 @@ class Widget extends Component {
 
   componentDidMount() {
     const { connectOn, autoClearCache, storage, dispatch, defaultHighlightAnimation } = this.props;
-    const {newCapsule} = this.props;
-    console.log(newCapsule)
+
     // add the default highlight css to the document
     const styleNode = document.createElement('style');
     styleNode.innerHTML = defaultHighlightAnimation;
@@ -357,12 +356,12 @@ class Widget extends Component {
       initialized,
       connectOn,
       tooltipPayload,
-      tooltipDelay
+      tooltipDelay,
+      newCapsule
     } = this.props;
+    console.log(newCapsule);
     if (!socket.isInitialized()) {
-      // if (true) {
       socket.createSocket();
-
       socket.on('bot_uttered', (botUttered) => {
         // botUttered.attachment.payload.elements = [botUttered.attachment.payload.elements];
         // console.log(botUttered);

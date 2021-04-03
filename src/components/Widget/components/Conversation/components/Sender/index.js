@@ -172,6 +172,7 @@ class Sender extends React.Component {
                             </form>
                         </div>
                     </div>
+                    <div className="form-right-element"></div>
                 </div>
             );
         }
