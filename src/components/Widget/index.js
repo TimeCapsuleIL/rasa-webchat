@@ -54,7 +54,8 @@ class Widget extends Component {
 
   componentDidMount() {
     const { connectOn, autoClearCache, storage, dispatch, defaultHighlightAnimation } = this.props;
-
+    const {newCapsule} = this.props;
+    console.log(newCapsule)
     // add the default highlight css to the document
     const styleNode = document.createElement('style');
     styleNode.innerHTML = defaultHighlightAnimation;
