@@ -154,6 +154,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
 });
 
 ConnectedWidget.propTypes = {
+  newCapsule: PropTypes.bool,
   initPayload: PropTypes.string,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -204,6 +205,7 @@ ConnectedWidget.propTypes = {
 };
 
 ConnectedWidget.defaultProps = {
+  newCapsule: false,
   title: 'Welcome',
   customData: {},
   inputTextFieldHint: 'Type a message...',
