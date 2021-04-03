@@ -360,7 +360,7 @@ class Widget extends Component {
       newCapsule
     } = this.props;
     console.log("newCapsule", newCapsule);
-    if (!socket.isInitialized() || newCapsule) {
+    if (!socket.isInitialized()) {
       socket.createSocket();
       socket.on('bot_uttered', (botUttered) => {
         // botUttered.attachment.payload.elements = [botUttered.attachment.payload.elements];
