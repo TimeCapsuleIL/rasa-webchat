@@ -82,6 +82,11 @@ const ConnectedWidget = forwardRef((props, ref) => {
     }
   }
 
+
+  if (store && props.newCapsule){
+    store = null
+  }
+
   const sock = new Socket(
     props.socketUrl,
     props.customData,
@@ -91,9 +96,10 @@ const ConnectedWidget = forwardRef((props, ref) => {
     props.onSocketEvent
   );
 
-
   const storage =
     props.params.storage === 'session' ? sessionStorage : localStorage;
+
+
   if (!store || sock.marker !== store.socketRef) {
     store = initStore(
       props.inputTextFieldHint,
@@ -106,8 +112,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
     store.socketRef = sock.marker;
   }
   return (
-    <>
-      {props.newCapsule && <Provider store={store}>
+      <Provider store={store}>
         <ThemeContext.Provider
           value={{ mainColor: props.mainColor,
             conversationBackgroundColor: props.conversationBackgroundColor,
@@ -150,8 +155,7 @@ const ConnectedWidget = forwardRef((props, ref) => {
             defaultHighlightClassname={props.defaultHighlightClassname}
           />
         </ThemeContext.Provider>
-      </Provider>}
-    </>
+      </Provider>
   );
 });
 
