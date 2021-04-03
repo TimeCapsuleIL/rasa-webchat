@@ -116,8 +116,8 @@ const ConnectedWidget = forwardRef((props, ref) => {
           assistBackgoundColor: props.assistBackgoundColor }}
       >
         <Widget
+          newCapsule={props.newCapsule}
           ref={ref}
-          reconnect={props.reconnect}
           initPayload={props.initPayload}
           title={props.title}
           subtitle={props.subtitle}
