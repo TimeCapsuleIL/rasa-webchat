@@ -120,6 +120,8 @@ class Sender extends React.Component {
                                         params={this.props.params}
                                         customComponent={this.props.customComponent}
                                         showMessageDate={this.props.showMessageDate}
+                                        selectedMessage={selectedMessage}
+                                        setSelectedMessage={setSelectedMessage}
                                     />
                                     {/* {this.state.searchHistory.map(item => {
                                         return <div className="search-history-item">{item}</div>;
