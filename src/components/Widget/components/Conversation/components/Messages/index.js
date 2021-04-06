@@ -135,7 +135,7 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-            this.props.selectedMessage;
+            this.props.setSelectedMessage(lastMessage);
 
             return this.props.selectedMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>

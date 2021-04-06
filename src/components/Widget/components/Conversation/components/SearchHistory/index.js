@@ -34,6 +34,7 @@ const scrollToBottom = () => {
 class SearchHistory extends Component {
     constructor(props) {
         super(props);
+        this.state = { messagesHistory }
         // this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
     }
     componentDidMount() {
@@ -135,7 +136,7 @@ class SearchHistory extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-            this.props.setSelectedMessage(lastMessage)
+            // this.props.setSelectedMessage(lastMessage)
 
             return this.props.selectedMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
