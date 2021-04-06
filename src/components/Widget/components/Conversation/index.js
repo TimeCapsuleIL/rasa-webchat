@@ -7,7 +7,7 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props => {
-    const [selectedMessage, setSelectedMessage] = useState();
+    const [selectedMessage, setSelectedMessage] = useState([]);
     return (
         <div className="rw-conversation-container">
             <Header

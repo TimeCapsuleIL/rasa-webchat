@@ -32,6 +32,10 @@ const scrollToBottom = () => {
 };
 
 class Messages extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         // scrollToBottom();
     }
