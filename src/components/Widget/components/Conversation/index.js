@@ -8,6 +8,11 @@ import './style.scss';
 
 const Conversation = props => {
     const [messageHistory, setMessageHistory] = useState();
+
+    useEffect(() => {
+        console.log('Conversation', messageHistory);
+    }, [messageHistory]);
+
     return (
         <div className="rw-conversation-container">
             <Header
@@ -29,6 +34,7 @@ const Conversation = props => {
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
                 setMessageHistory={setMessageHistory}
+                messageHistory={messageHistory}
             />
             <Sender
                 sendMessage={props.sendMessage}

@@ -76,7 +76,7 @@ class Messages extends Component {
 
     render() {
         const { displayTypingIndication, profileAvatar, messageHistory } = this.props;
-        console.log(messageHistory);
+        console.log('Messages', messageHistory);
         const renderMessages = () => {
             const { messages, showMessageDate } = this.props;
 
@@ -130,10 +130,10 @@ class Messages extends Component {
 
             groups.push(group); // finally push last group of messages.
 
-            let lastMessage = [groups.pop()];
-
             const { setMessageHistory } = this.props;
             setMessageHistory(groups);
+
+            let lastMessage = [groups.pop()];
 
             return lastMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>

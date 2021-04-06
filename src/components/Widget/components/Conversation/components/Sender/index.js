@@ -59,7 +59,7 @@ class Sender extends React.Component {
 
     render() {
         const { messageHistory } = this.props;
-        console.log(messageHistory);
+        console.log('Sender', messageHistory);
         if (
             (this.props.browserSupportsSpeechRecognition &&
                 !this.state.inputValue &&
