@@ -35,11 +35,15 @@ class Sender extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
-        this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
+        this.setMessage = this.setMessage.bind(this);
     }
 
     handleChange(e) {
         this.setState({ inputValue: e.target.value });
+    }
+
+    setMessage() {
+        this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
     }
 
     handleSubmit(e) {
@@ -122,7 +126,7 @@ class Sender extends React.Component {
                                         customComponent={this.props.customComponent}
                                         showMessageDate={this.props.showMessageDate}
                                         selectedMessage={this.props.selectedMessage}
-                                        setSelectedMessage={this.props.setSelectedMessage}
+                                        setSelectedMessage={this.props.setMessage}
                                     />
                                     {/* {this.state.searchHistory.map(item => {
                                         return <div className="search-history-item">{item}</div>;
