@@ -112,12 +112,11 @@ class Sender extends React.Component {
 
             groups.push(group); // finally push last group of messages.
 
-            return groups.map(
-                (g, index) => console.log('sender', g.messages)
-                // <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                //     {g.messages}
-                // </div>
-            );
+            return groups.map((g, index) => (
+                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                    {g.messages}
+                </div>
+            ));
         };
 
         if (
