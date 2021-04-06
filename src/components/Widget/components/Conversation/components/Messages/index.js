@@ -79,71 +79,73 @@ class Messages extends Component {
         return <ComponentToRender id={index} params={params} message={message} isLast={isLast} />;
     };
 
-    render() {
-        const { displayTypingIndication, profileAvatar } = this.props;
+    const { displayTypingIndication, profileAvatar } = this.props;
 
-        const renderMessages = () => {
-            const { messages, showMessageDate } = this.props;
+    const renderMessages = () => {
+        const { messages, showMessageDate } = this.props;
 
-            if (messages.isEmpty()) return null;
+        if (messages.isEmpty()) return null;
 
-            const groups = [];
-            let group = null;
+        const groups = [];
+        let group = null;
 
-            const dateRenderer =
-                typeof showMessageDate === 'function'
-                    ? showMessageDate
-                    : showMessageDate === true
-                    ? formatDate
-                    : null;
+        const dateRenderer =
+            typeof showMessageDate === 'function'
+                ? showMessageDate
+                : showMessageDate === true
+                ? formatDate
+                : null;
 
-            const renderMessageDate = message => {
-                const timestamp = message.get('timestamp');
+        const renderMessageDate = message => {
+            const timestamp = message.get('timestamp');
 
-                if (!dateRenderer || !timestamp) return null;
-                const dateToRender = dateRenderer(message.get('timestamp', message));
-                return dateToRender ? (
-                    <span className="rw-message-date">
-                        {dateRenderer(message.get('timestamp'), message)}
-                    </span>
-                ) : null;
-            };
-
-            const renderMessage = (message, index) => (
-                <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
-                    {profileAvatar && message.get('showAvatar') && (
-                        <img src={profileAvatar} className="rw-avatar" alt="profile" />
-                    )}
-                    {this.getComponentToRender(message, index, index === messages.size - 1)}
-                    {renderMessageDate(message)}
-                </div>
-            );
-
-            messages.forEach((msg, index) => {
-                if (msg.get('hidden')) return;
-                if (group === null || group.from !== msg.get('sender')) {
-                    if (group !== null) groups.push(group);
-
-                    group = {
-                        from: msg.get('sender'),
-                        messages: [],
-                    };
-                }
-
-                group.messages.push(renderMessage(msg, index));
-            });
-
-            groups.push(group); // finally push last group of messages.
-
-            let lastMessage = [groups.pop()];
-            this.props.setSelectedMessage(lastMessage);
-
-            // return this.props.selectedMessage.map((g, index) => (
-            //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-            //         {g.messages}
-            //     </div>
-            // ));
+            if (!dateRenderer || !timestamp) return null;
+            const dateToRender = dateRenderer(message.get('timestamp', message));
+            return dateToRender ? (
+                <span className="rw-message-date">
+                    {dateRenderer(message.get('timestamp'), message)}
+                </span>
+            ) : null;
         };
+
+        const renderMessage = (message, index) => (
+            <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+                {profileAvatar && message.get('showAvatar') && (
+                    <img src={profileAvatar} className="rw-avatar" alt="profile" />
+                )}
+                {this.getComponentToRender(message, index, index === messages.size - 1)}
+                {renderMessageDate(message)}
+            </div>
+        );
+
+        messages.forEach((msg, index) => {
+            if (msg.get('hidden')) return;
+            if (group === null || group.from !== msg.get('sender')) {
+                if (group !== null) groups.push(group);
+
+                group = {
+                    from: msg.get('sender'),
+                    messages: [],
+                };
+            }
+
+            group.messages.push(renderMessage(msg, index));
+        });
+
+        groups.push(group); // finally push last group of messages.
+
+        let lastMessage = [groups.pop()];
+        this.props.setSelectedMessage(lastMessage);
+
+        // return this.props.selectedMessage.map((g, index) => (
+        //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+        //         {g.messages}
+        //     </div>
+        // ));
+    };
+
+    render() {
+       
 
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
