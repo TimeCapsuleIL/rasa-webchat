@@ -38,6 +38,7 @@ class Messages extends Component {
 
     componentDidMount() {
         // scrollToBottom();
+        renderMessages();
     }
 
     componentDidUpdate() {
@@ -137,11 +138,11 @@ class Messages extends Component {
             let lastMessage = [groups.pop()];
             this.props.setSelectedMessage(lastMessage);
 
-            return this.props.selectedMessage.map((g, index) => (
-                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                    {g.messages}
-                </div>
-            ));
+            // return this.props.selectedMessage.map((g, index) => (
+            //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+            //         {g.messages}
+            //     </div>
+            // ));
         };
 
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
@@ -152,7 +153,15 @@ class Messages extends Component {
                 style={{ backgroundColor: conversationBackgroundColor }}
                 className="rw-messages-container"
             >
-                {!displayTypingIndication && renderMessages()}
+                {!displayTypingIndication &&
+                    this.props.selectedMessage.map((g, index) => (
+                        <div
+                            className={`rw-group-message rw-from-${g && g.from}`}
+                            key={`group_${index}`}
+                        >
+                            {g.messages}
+                        </div>
+                    ))}
                 <div className="circle-loader-wrapper">
                     <div className="left-element-loader">
                         {displayTypingIndication && <div className="circle-loader"></div>}
