@@ -34,6 +34,7 @@ const scrollToBottom = () => {
 class Messages extends Component {
     constructor(props) {
         super(props);
+        this.renderMessages = this.renderMessages.bind(this);
     }
 
     componentDidMount() {
