@@ -34,7 +34,7 @@ const scrollToBottom = () => {
 class SearchHistory extends Component {
     constructor(props) {
         super(props);
-        this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
+        // this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
     }
     componentDidMount() {
         // scrollToBottom();
