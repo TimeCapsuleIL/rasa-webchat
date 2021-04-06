@@ -12,8 +12,6 @@ import './style.scss';
 import { MESSAGES_TYPES } from 'constants';
 import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
 
-import './styles.scss';
-
 const isToday = date => {
     const today = new Date();
     return (
