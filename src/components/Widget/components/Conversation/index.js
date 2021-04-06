@@ -28,6 +28,7 @@ const Conversation = props => {
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
             />
+
             <Sender
                 sendMessage={props.sendMessage}
                 disabledInput={props.disabledInput}
