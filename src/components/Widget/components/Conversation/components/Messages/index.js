@@ -33,11 +33,11 @@ const scrollToBottom = () => {
 
 class Messages extends Component {
     componentDidMount() {
-        scrollToBottom();
+        // scrollToBottom();
     }
 
     componentDidUpdate() {
-        scrollToBottom();
+        // scrollToBottom();
     }
 
     getComponentToRender = (message, index, isLast) => {
@@ -75,8 +75,8 @@ class Messages extends Component {
     };
 
     render() {
-        const { displayTypingIndication, profileAvatar, messageHistory } = this.props;
-        console.log('Messages', messageHistory);
+        const { displayTypingIndication, profileAvatar } = this.props;
+
         const renderMessages = () => {
             const { messages, showMessageDate } = this.props;
 
@@ -129,9 +129,6 @@ class Messages extends Component {
             });
 
             groups.push(group); // finally push last group of messages.
-
-            const { setMessageHistory } = this.props;
-            setMessageHistory(groups);
 
             let lastMessage = [groups.pop()];
 

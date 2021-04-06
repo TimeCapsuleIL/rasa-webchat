@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from './components/Header';
@@ -7,12 +7,6 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props => {
-    const [messageHistory, setMessageHistory] = useState();
-
-    useEffect(() => {
-        console.log('Conversation', messageHistory);
-    }, [messageHistory]);
-
     return (
         <div className="rw-conversation-container">
             <Header
@@ -33,14 +27,8 @@ const Conversation = props => {
                 params={props.params}
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
-                setMessageHistory={setMessageHistory}
-                messageHistory={messageHistory}
             />
-            <Sender
-                sendMessage={props.sendMessage}
-                disabledInput={props.disabledInput}
-                messageHistory={messageHistory}
-            />
+            <Sender sendMessage={props.sendMessage} disabledInput={props.disabledInput} />
         </div>
     );
 };

@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
@@ -58,8 +59,67 @@ class Sender extends React.Component {
     }
 
     render() {
-        const { messageHistory } = this.props;
-        console.log('Sender', messageHistory);
+        const renderMessages = () => {
+            const { messages, showMessageDate } = this.props;
+
+            if (messages.isEmpty()) return null;
+
+            const groups = [];
+            let group = null;
+
+            const dateRenderer =
+                typeof showMessageDate === 'function'
+                    ? showMessageDate
+                    : showMessageDate === true
+                    ? formatDate
+                    : null;
+
+            const renderMessageDate = message => {
+                const timestamp = message.get('timestamp');
+
+                if (!dateRenderer || !timestamp) return null;
+                const dateToRender = dateRenderer(message.get('timestamp', message));
+                return dateToRender ? (
+                    <span className="rw-message-date">
+                        {dateRenderer(message.get('timestamp'), message)}
+                    </span>
+                ) : null;
+            };
+
+            const renderMessage = (message, index) => (
+                <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+                    {profileAvatar && message.get('showAvatar') && (
+                        <img src={profileAvatar} className="rw-avatar" alt="profile" />
+                    )}
+                    {this.getComponentToRender(message, index, index === messages.size - 1)}
+                    {renderMessageDate(message)}
+                </div>
+            );
+
+            messages.forEach((msg, index) => {
+                if (msg.get('hidden')) return;
+                if (group === null || group.from !== msg.get('sender')) {
+                    if (group !== null) groups.push(group);
+
+                    group = {
+                        from: msg.get('sender'),
+                        messages: [],
+                    };
+                }
+
+                group.messages.push(renderMessage(msg, index));
+            });
+
+            groups.push(group); // finally push last group of messages.
+
+            return groups.map(
+                (g, index) => console.log('sender', g.messages)
+                // <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                //     {g.messages}
+                // </div>
+            );
+        };
+
         if (
             (this.props.browserSupportsSpeechRecognition &&
                 !this.state.inputValue &&
@@ -115,9 +175,10 @@ class Sender extends React.Component {
                             </form>
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.state.searchHistory.map(item => {
+                                    {/* {this.state.searchHistory.map(item => {
                                         return <div className="search-history-item">{item}</div>;
-                                    })}
+                                    })} */}
+                                    {renderMessages()}
                                 </div>
                             )}
                         </div>
@@ -212,7 +273,17 @@ Sender.propTypes = {
     startListening: PropTypes.func,
     stopListening: PropTypes.func,
     resetTranscript: PropTypes.func,
+
+    messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
+    profileAvatar: PropTypes.string,
+    customComponent: PropTypes.func,
+    showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    displayTypingIndication: PropTypes.bool,
 };
+
+export default connect(store => ({
+    messages: store.messages,
+}))(Sender);
 
 const options = {
     autoStart: false,
