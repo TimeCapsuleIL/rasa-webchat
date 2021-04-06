@@ -38,7 +38,7 @@ class Messages extends Component {
 
     componentDidMount() {
         // scrollToBottom();
-        renderMessages();
+        this.renderMessages();
     }
 
     componentDidUpdate() {
@@ -79,9 +79,8 @@ class Messages extends Component {
         return <ComponentToRender id={index} params={params} message={message} isLast={isLast} />;
     };
 
-    const { displayTypingIndication, profileAvatar } = this.props;
-
-    const renderMessages = () => {
+    renderMessages = () => {
+        const { displayTypingIndication, profileAvatar } = this.props;
         const { messages, showMessageDate } = this.props;
 
         if (messages.isEmpty()) return null;
@@ -145,8 +144,6 @@ class Messages extends Component {
     };
 
     render() {
-       
-
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
         return (
