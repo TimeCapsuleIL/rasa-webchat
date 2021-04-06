@@ -137,7 +137,7 @@ class SearchHistory extends Component {
             let lastMessage = [groups.pop()];
             this.props.setSelectedMessage(lastMessage)
 
-            return this.props.seletectedMessage.map((g, index) => (
+            return this.props.selectedMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
