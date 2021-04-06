@@ -31,7 +31,11 @@ const scrollToBottom = () => {
     }
 };
 
-class Messages extends Component {
+class SearchHistory extends Component {
+    constructor(props) {
+        super(props);
+        this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
+    }
     componentDidMount() {
         // scrollToBottom();
     }
@@ -162,8 +166,8 @@ class Messages extends Component {
         );
     }
 }
-Messages.contextType = ThemeContext;
-Messages.propTypes = {
+SearchHistory.contextType = ThemeContext;
+SearchHistory.propTypes = {
     messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
     profileAvatar: PropTypes.string,
     customComponent: PropTypes.func,
@@ -178,4 +182,4 @@ Message.defaultTypes = {
 export default connect(store => ({
     messages: store.messages,
     displayTypingIndication: store.behavior.get('messageDelayed'),
-}))(Messages);
+}))(SearchHistory);
