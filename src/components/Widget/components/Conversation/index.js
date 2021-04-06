@@ -29,6 +29,7 @@ const Conversation = props => {
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
                 selectedMessage={selectedMessage}
+                setSelectedMessage={setSelectedMessage}
             />
 
             <Sender
@@ -39,7 +40,6 @@ const Conversation = props => {
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
                 selectedMessage={selectedMessage}
-                setSelectedMessage={setSelectedMessage}
             />
         </div>
     );
