@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Header from './components/Header';
@@ -7,6 +7,7 @@ import Sender from './components/Sender';
 import './style.scss';
 
 const Conversation = props => {
+    const [selectedMessage, setSelectedMessage] = useState();
     return (
         <div className="rw-conversation-container">
             <Header
@@ -27,6 +28,7 @@ const Conversation = props => {
                 params={props.params}
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
+                selectedMessage={selectedMessage}
             />
 
             <Sender
@@ -36,6 +38,8 @@ const Conversation = props => {
                 params={props.params}
                 customComponent={props.customComponent}
                 showMessageDate={props.showMessageDate}
+                selectedMessage={selectedMessage}
+                setSelectedMessage={setSelectedMessage}
             />
         </div>
     );

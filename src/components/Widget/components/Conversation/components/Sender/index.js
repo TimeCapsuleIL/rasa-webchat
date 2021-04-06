@@ -6,7 +6,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
-import Messages from '../Messages';
+import SearchHistory from '../SearchHistory';
 import './style.scss';
 
 class Sender extends React.Component {
@@ -115,7 +115,7 @@ class Sender extends React.Component {
                             </form>
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    <Messages
+                                    <SearchHistory
                                         profileAvatar={this.props.profileAvatar}
                                         params={this.props.params}
                                         customComponent={this.props.customComponent}
