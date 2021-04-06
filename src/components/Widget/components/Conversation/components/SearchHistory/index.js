@@ -36,6 +36,7 @@ class SearchHistory extends Component {
         super(props);
         // this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
     }
+    
     componentDidMount() {
         // scrollToBottom();
     }

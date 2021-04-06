@@ -44,6 +44,7 @@ class Messages extends Component {
 
     componentDidUpdate() {
         // scrollToBottom();
+        this.renderMessages();
     }
 
     getComponentToRender = (message, index, isLast) => {
