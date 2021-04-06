@@ -81,7 +81,7 @@ class Messages extends Component {
     };
 
     renderMessages = () => {
-        const { displayTypingIndication, profileAvatar } = this.props;
+        const { profileAvatar } = this.props;
         const { messages, showMessageDate } = this.props;
 
         if (messages.isEmpty()) return null;
@@ -146,6 +146,7 @@ class Messages extends Component {
 
     render() {
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
+        const { displayTypingIndication } = this.props;
 
         return (
             <div
