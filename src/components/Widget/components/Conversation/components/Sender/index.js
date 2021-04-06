@@ -256,11 +256,10 @@ class Sender extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
-    userInput: state.metadata.get('userInput'),
-    messages: store.messages,
-});
+// const mapStateToProps = state => ({
+//     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
+//     userInput: state.metadata.get('userInput'),
+// });
 
 Sender.propTypes = {
     sendMessage: PropTypes.func,
@@ -293,10 +292,13 @@ const options = {
 
 // export default SpeechRecognition(options)(connect(mapStateToProps)(Sender));
 export default SpeechRecognition(options)(
-    connect(store => {
-        mapStateToProps(),
-            {
-                messages: store.messages,
-            };
-    })(Sender)
+    connect(
+        state => ({
+            inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
+            userInput: state.metadata.get('userInput'),
+        }),
+        store => ({
+            messages: store.messages,
+        })
+    )(Sender)
 );
