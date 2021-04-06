@@ -42,8 +42,8 @@ class Sender extends React.Component {
         this.setState({ inputValue: e.target.value });
     }
 
-    setMessage() {
-        this.props.setSelectedMessage = this.setSelectedMessage.bind(this);
+    setMessage(theMessage) {
+        this.props.setSelectedMessage(theMessage);
     }
 
     handleSubmit(e) {
