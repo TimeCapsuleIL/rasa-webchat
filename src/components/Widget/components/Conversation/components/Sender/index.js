@@ -58,6 +58,8 @@ class Sender extends React.Component {
     }
 
     render() {
+        const { messageHistory } = this.props;
+        console.log(messageHistory);
         if (
             (this.props.browserSupportsSpeechRecognition &&
                 !this.state.inputValue &&
@@ -143,7 +145,11 @@ class Sender extends React.Component {
                             שאלות קודמות
                         </button>
                         <div className="input-form-wrapper">
-                            <form ref={this.formRef} className="rw-sender" onSubmit={this.handleSubmit}>
+                            <form
+                                ref={this.formRef}
+                                className="rw-sender"
+                                onSubmit={this.handleSubmit}
+                            >
                                 <TextareaAutosize
                                     type="text"
                                     minRows={1}
@@ -154,18 +160,28 @@ class Sender extends React.Component {
                                     name="message"
                                     value={this.state.inputValue}
                                     placeholder={this.props.inputTextFieldHint}
-                                    disabled={this.props.disabledInput || this.props.userInput === 'disable'}
+                                    disabled={
+                                        this.props.disabledInput ||
+                                        this.props.userInput === 'disable'
+                                    }
                                     autoFocus
                                     autoComplete="off"
                                 />
                                 <button
                                     type="submit"
                                     className="rw-send"
-                                    disabled={!(this.state.inputValue && this.state.inputValue.length > 0)}
+                                    disabled={
+                                        !(this.state.inputValue && this.state.inputValue.length > 0)
+                                    }
                                 >
                                     <Send
                                         className="rw-send-icon"
-                                        ready={!!(this.state.inputValue && this.state.inputValue.length > 0)}
+                                        ready={
+                                            !!(
+                                                this.state.inputValue &&
+                                                this.state.inputValue.length > 0
+                                            )
+                                        }
                                         alt="send"
                                     />
                                 </button>
