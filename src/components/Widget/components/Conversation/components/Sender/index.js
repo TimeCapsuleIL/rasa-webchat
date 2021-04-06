@@ -2,11 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
+import { MESSAGES_TYPES } from 'constants';
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
 import './style.scss';
+
+import { MESSAGES_TYPES } from 'constants';
+import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
+
+import './styles.scss';
+import ThemeContext from '../../../../ThemeContext';
+
+const isToday = date => {
+    const today = new Date();
+    return (
+        date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear()
+    );
+};
+
+const formatDate = date => {
+    const dateToFormat = new Date(date);
+    const showDate = isToday(dateToFormat) ? '' : `${dateToFormat.toLocaleDateString()} `;
+    return `${showDate}${dateToFormat.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
+};
 
 class Sender extends React.Component {
     constructor(props) {
@@ -57,6 +79,40 @@ class Sender extends React.Component {
     handleShowSearchHistory() {
         this.setState({ showSearchHistory: !this.state.showSearchHistory });
     }
+
+    getComponentToRender = (message, index, isLast) => {
+        const { params } = this.props;
+        const ComponentToRender = (() => {
+            switch (message.get('type')) {
+                case MESSAGES_TYPES.TEXT: {
+                    return Message;
+                }
+                case MESSAGES_TYPES.CAROUSEL: {
+                    return Carousel;
+                }
+                case MESSAGES_TYPES.VIDREPLY.VIDEO: {
+                    return Video;
+                }
+                case MESSAGES_TYPES.IMGREPLY.IMAGE: {
+                    return Image;
+                }
+                case MESSAGES_TYPES.BUTTONS: {
+                    return Buttons;
+                }
+                case MESSAGES_TYPES.CUSTOM_COMPONENT:
+                    return connect(
+                        store => ({ store }),
+                        dispatch => ({ dispatch })
+                    )(this.props.customComponent);
+                default:
+                    return null;
+            }
+        })();
+        if (message.get('type') === 'component') {
+            return <ComponentToRender id={index} {...message.get('props')} isLast={isLast} />;
+        }
+        return <ComponentToRender id={index} params={params} message={message} isLast={isLast} />;
+    };
 
     render() {
         const renderMessages = () => {
