@@ -6,7 +6,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
-import Messages from './Messages';
+import Messages from '../Messages';
 import './style.scss';
 
 class Sender extends React.Component {
