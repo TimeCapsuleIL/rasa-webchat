@@ -36,7 +36,7 @@ class Sender extends React.Component {
         this.onEnterPress = this.onEnterPress.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
         this.setMessage = this.setMessage.bind(this);
-        this.props.setSelectedMessage = this.setselectedMessage.bind(this);
+        // this.props.setSelectedMessage = this.setselectedMessage.bind(this);
         console.log(this.props);
     }
 

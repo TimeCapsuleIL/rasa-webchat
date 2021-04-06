@@ -45,7 +45,7 @@ class Buttons extends PureComponent {
     const { isLast, linkTarget
     } = this.props;
     const { mainColor } = this.context;
-    console.log(message)
+
     return (
       <div>
         {message.get("text") !== "null" && <Message message={message} />}
