@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { MESSAGES_TYPES } from 'constants';
+
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
@@ -13,7 +13,6 @@ import { MESSAGES_TYPES } from 'constants';
 import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
 
 import './styles.scss';
-import ThemeContext from '../../../../ThemeContext';
 
 const isToday = date => {
     const today = new Date();
