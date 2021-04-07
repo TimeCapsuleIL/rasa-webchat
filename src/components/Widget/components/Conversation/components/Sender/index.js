@@ -74,18 +74,30 @@ class Sender extends React.Component {
         this.setState({ showSearchHistory: !this.state.showSearchHistory });
     }
 
-    handleClick(message) {
+    handleClick(e) {
         let selectedIndex = this.props.messages.find((item) => {
-            item.get('video') === message.get('video');
+            console.log('item', item);
+            console.log('message', e.target.key.get('video'));
+            item.get('video') === e.target.key.get('video');
         });
         console.log('selectedIndex', selectedIndex);
+
+        // let selectedMap = this.props.messages.map((item) => {
+        //     console.log('itemmap', item);
+        //     console.log('messagemap', message);
+        //     if (item.get('video') === message.get('video')) {
+        //         return message;
+        //     }
+        //     // item.get('video') === message.get('video');
+        // });
+        // console.log('selectedMap', selectedMap);
         let selectedItem = this.props.messages.splice(selectedIndex);
         console.log('selectedItem', selectedItem);
         this.props.messages.unshift(selectedItem[0]);
-        // selectedItem.forEach((item) => {
-        //     this.props.messages.unshift(item);
-        // });
-        console.log('this.props.messages', this.props.messages);
+        // // selectedItem.forEach((item) => {
+        // //     this.props.messages.unshift(item);
+        // // });
+        // console.log('this.props.messages', this.props.messages);
     }
 
     render() {
@@ -174,8 +186,9 @@ class Sender extends React.Component {
 
                                                 return (
                                                     <div
+                                                        key={message}
                                                         className="search-history-item"
-                                                        onClick={() => this.handleClick(message)}
+                                                        onClick={this.handleClick}
                                                     >
                                                         {title}
                                                     </div>
