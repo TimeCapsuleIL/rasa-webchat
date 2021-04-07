@@ -57,18 +57,16 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
-        // this.props.messages.map((message) => {
-        //     console.log(message.get('video'));
-        // });
-        this.setState({ searchHistory: this.props.messages });
+        this.props.messages.map((message) => {
+            console.log(message.get('video'));
+        });
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        // this.props.messages.map((message) => {
-        //     console.log(message.get('video'));
-        // });
-        this.setState({ searchHistory: this.props.messages });
+        this.props.messages.map((message) => {
+            console.log(message.get('video'));
+        });
     }
 
     handleShowSearchHistory() {
@@ -145,9 +143,13 @@ class Sender extends React.Component {
                                 //     })
 
                                 <div className="search-history-wrapper">
-                                    {this.state.searchHistory.map((item) => {
-                                        console.log(item);
-                                        return <div className="search-history-item">{item}</div>;
+                                    {this.props.messages.map((message) => {
+                                        console.log(message);
+                                        return (
+                                            <div className="search-history-item">
+                                                {message.get('video')}
+                                            </div>
+                                        );
                                     })}
                                 </div>
                             }
