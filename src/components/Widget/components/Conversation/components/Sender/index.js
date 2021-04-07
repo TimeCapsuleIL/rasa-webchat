@@ -35,9 +35,6 @@ class Sender extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
-        // this.setMessage = this.setMessage.bind(this);
-        // this.props.setSelectedMessage = this.setselectedMessage.bind(this);
-        console.log(this.props);
     }
 
     handleChange(e) {
@@ -122,18 +119,18 @@ class Sender extends React.Component {
                             </form>
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    <SearchHistory
-                                        profileAvatar={this.props.profileAvatar}
-                                        params={this.props.params}
-                                        customComponent={this.props.customComponent}
-                                        showMessageDate={this.props.showMessageDate}
-                                        selectedMessage={this.props.selectedMessage}
-                                        // setSelectedMessage={this.setMessage}
-                                        setSelectedMessage={this.props.setSelectedMessage}
-                                    />
-                                    {/* {this.state.searchHistory.map(item => {
+                                    {/* //     <SearchHistory
+                                //         profileAvatar={this.props.profileAvatar}
+                                //         params={this.props.params}
+                                //         customComponent={this.props.customComponent}
+                                //         showMessageDate={this.props.showMessageDate}
+                                //         selectedMessage={this.props.selectedMessage}
+                                //         // setSelectedMessage={this.setMessage}
+                                //         setSelectedMessage={this.props.setSelectedMessage}
+                                //     /> */}
+                                    {this.state.searchHistory.map(item => {
                                         return <div className="search-history-item">{item}</div>;
-                                    })} */}
+                                    })}
                                 </div>
                             )}
                         </div>
