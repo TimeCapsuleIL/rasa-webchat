@@ -82,10 +82,10 @@ class Sender extends React.Component {
                 return item;
             }
         });
-        console.log('selectedIndex', selectedIndex);
+        console.log('selectedIndex', selectedIndex[0]);
 
         // let selectedItem = this.props.messages.splice(selectedIndex);
-        // this.props.messages.unshift(selectedItem[0]);
+        // this.props.messages.unshift(selectedIndex[0]);
     }
 
     render() {
