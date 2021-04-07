@@ -146,11 +146,8 @@ class Sender extends React.Component {
 
                                 <div className="search-history-wrapper">
                                     {this.state.searchHistory.map((item) => {
-                                        return (
-                                            <div className="search-history-item">
-                                                {item.get('video')}
-                                            </div>
-                                        );
+                                        console.log(item);
+                                        return <div className="search-history-item">{item}</div>;
                                     })}
                                 </div>
                             }
