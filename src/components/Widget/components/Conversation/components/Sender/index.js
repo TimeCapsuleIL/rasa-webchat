@@ -76,9 +76,8 @@ class Sender extends React.Component {
 
     handleClick(e) {
         e.stopPropagation();
-        let selectedIndex = this.props.messages.map((item) => {
+        let selectedIndex = this.props.messages.filter((item) => {
             console.log('item', item.get('video'));
-            item.get('video') === e.target.id;
             if (item.get('video') === e.target.id) {
                 return item;
             }
