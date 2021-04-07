@@ -75,17 +75,13 @@ class Sender extends React.Component {
     }
 
     handleClick(message) {
-        let selectedItem = this.props.messages.map((item) => {
-            console.log('item', item.get('video'));
-            console.log('message', message.get('video'));
-            if (item.get('video') === message.get('video')) {
-                return message;
-            }
+        let selectedItem = this.props.messages.find((item) => {
+            item.get('video') === message.get('video');
         });
+        console.log('selectedIndex', selectedIndex);
+        let selectedItem = this.props.messages.splice(selectedIndex);
         console.log('selectedItem', selectedItem);
-        // let selectedItem = this.props.messages.splice(selectedIndex);
-        // console.log('selectedItem', selectedItem);
-        this.props.messages.unshift(selectedItem);
+        this.props.messages.unshift(selectedItem[0]);
         // selectedItem.forEach((item) => {
         //     this.props.messages.unshift(item);
         // });
@@ -179,9 +175,7 @@ class Sender extends React.Component {
                                                 return (
                                                     <div
                                                         className="search-history-item"
-                                                        onClick={(message) =>
-                                                            this.handleClick(message)
-                                                        }
+                                                        onClick={() => this.handleClick(message)}
                                                     >
                                                         {title}
                                                     </div>
