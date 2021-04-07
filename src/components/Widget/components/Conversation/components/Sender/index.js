@@ -55,6 +55,13 @@ class Sender extends React.Component {
         }
     }
 
+    componentDidMount() {
+        // scrollToBottom();
+        this.props.messages.map((message) => {
+            console.log(message);
+        });
+    }
+
     handleShowSearchHistory() {
         this.setState({ showSearchHistory: !this.state.showSearchHistory });
     }

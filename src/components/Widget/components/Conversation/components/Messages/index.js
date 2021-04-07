@@ -11,7 +11,7 @@ import ThemeContext from '../../../../ThemeContext';
 
 import Sender from '../Sender';
 
-const isToday = date => {
+const isToday = (date) => {
     const today = new Date();
     return (
         date.getDate() === today.getDate() &&
@@ -20,7 +20,7 @@ const isToday = date => {
     );
 };
 
-const formatDate = date => {
+const formatDate = (date) => {
     const dateToFormat = new Date(date);
     const showDate = isToday(dateToFormat) ? '' : `${dateToFormat.toLocaleDateString()} `;
     return `${showDate}${dateToFormat.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
@@ -69,8 +69,8 @@ class Messages extends Component {
                 }
                 case MESSAGES_TYPES.CUSTOM_COMPONENT:
                     return connect(
-                        store => ({ store }),
-                        dispatch => ({ dispatch })
+                        (store) => ({ store }),
+                        (dispatch) => ({ dispatch })
                     )(this.props.customComponent);
                 default:
                     return null;
@@ -100,7 +100,7 @@ class Messages extends Component {
                     ? formatDate
                     : null;
 
-            const renderMessageDate = message => {
+            const renderMessageDate = (message) => {
                 const timestamp = message.get('timestamp');
 
                 if (!dateRenderer || !timestamp) return null;
@@ -190,7 +190,7 @@ Message.defaultTypes = {
     displayTypingIndication: false,
 };
 
-export default connect(store => ({
+export default connect((store) => ({
     messages: store.messages,
     displayTypingIndication: store.behavior.get('messageDelayed'),
 }))(Messages);
