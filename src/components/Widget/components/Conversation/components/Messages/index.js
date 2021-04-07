@@ -136,8 +136,8 @@ class Messages extends Component {
 
         groups.push(group); // finally push last group of messages.
 
-        let lastMessage = [groups.pop()];
-        this.setState({ lastMessage: lastMessage });
+        // let lastMessage = [groups.pop()];
+        this.setState({ lastMessage: [groups.pop()] });
         // this.props.setSelectedMessage(lastMessage);
 
         // return lastMessage.map((g, index) => (
