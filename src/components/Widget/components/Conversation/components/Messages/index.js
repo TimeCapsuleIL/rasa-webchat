@@ -147,13 +147,15 @@ class Messages extends Component {
             let lastMessage = [groups.pop()];
             let lastIndex = this.showMessageIndex ? this.showMessageIndex : groups.length - 1;
             return (
-                <div
-                    className={`rw-group-message rw-from-${groups[lastIndex] &&
-                        groups[lastIndex].from}`}
-                    key={`group_${lastIndex}`}
-                >
-                    {groups[lastIndex].messages}
-                </div>
+                groups && (
+                    <div
+                        className={`rw-group-message rw-from-${groups[lastIndex] &&
+                            groups[lastIndex].from}`}
+                        key={`group_${lastIndex}`}
+                    >
+                        {groups[lastIndex].messages}
+                    </div>
+                )
             );
             // return groups.map((g, index) => (
             //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
