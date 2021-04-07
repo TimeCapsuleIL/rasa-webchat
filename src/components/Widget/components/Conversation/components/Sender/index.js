@@ -75,7 +75,7 @@ class Sender extends React.Component {
     }
 
     handleClick(message) {
-        let selectedItem = this.props.messages.find((item) => {
+        let selectedIndex = this.props.messages.find((item) => {
             item.get('video') === message.get('video');
         });
         console.log('selectedIndex', selectedIndex);
