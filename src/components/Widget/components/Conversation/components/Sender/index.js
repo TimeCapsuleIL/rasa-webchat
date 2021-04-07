@@ -15,20 +15,7 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: '' };
-        this.state = {
-            searchHistory: [
-                'יציק קליין',
-                'צבי גרוס',
-                'יציק קליין',
-                'צבי גרוס',
-                'יציק קליין',
-                'צבי גרוס',
-                'יציק קליין',
-                'צבי גרוס',
-                'יציק קליין',
-                'צבי גרוס',
-            ],
-        };
+
         this.formRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
@@ -82,9 +69,12 @@ class Sender extends React.Component {
             }
         });
         console.log('selectedIndex', selectedIndex);
-
+        this.props.addVideoSnippet({
+            title: selectedIndex.get('title'),
+            video: selectedIndex.get('video'),
+        });
         // let selectedItem = this.props.messages.splice(selectedIndex);
-        this.props.messages.unshift(selectedIndex);
+        // this.props.messages.unshift(selectedIndex);
     }
 
     render() {
@@ -267,6 +257,7 @@ const mapStateToProps = (state) => ({
 });
 
 Sender.propTypes = {
+    addVideoSnippet: PropTypes.func,
     sendMessage: PropTypes.func,
     inputTextFieldHint: PropTypes.string,
     disabledInput: PropTypes.bool,
