@@ -142,16 +142,27 @@ class Sender extends React.Component {
                                 //         </div>;
                                 //     })
 
-                                <div className="search-history-wrapper">
-                                    {this.props.messages.map((message) => {
-                                        console.log(message);
-                                        return (
-                                            <div className="search-history-item">
-                                                {message.get('video')}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
+                                this.state.showSearchHistory && (
+                                    <div className="search-history-wrapper">
+                                        {this.props.messages.map((message) => {
+                                            if (message.get('video')) {
+                                                let lastSlash = message
+                                                    .get('video')
+                                                    .lastIndexOf('/');
+                                                let title = message
+                                                    .get('video')
+                                                    .slice(lastSlash)
+                                                    .replace('.mp4', '');
+
+                                                return (
+                                                    <div className="search-history-item">
+                                                        {title}
+                                                    </div>
+                                                );
+                                            }
+                                        })}
+                                    </div>
+                                )
                             }
                         </div>
                     </div>
