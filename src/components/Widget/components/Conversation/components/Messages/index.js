@@ -34,6 +34,7 @@ const scrollToBottom = () => {
 class Messages extends Component {
     constructor(props) {
         super(props);
+        this.state = { lastMessage: [] };
         this.renderMessages = this.renderMessages.bind(this);
     }
 
@@ -136,6 +137,7 @@ class Messages extends Component {
         groups.push(group); // finally push last group of messages.
 
         let lastMessage = [groups.pop()];
+        this.setState({ lastMessage: lastMessage });
         // this.props.setSelectedMessage(lastMessage);
 
         // return lastMessage.map((g, index) => (
@@ -156,7 +158,7 @@ class Messages extends Component {
                 className="rw-messages-container"
             >
                 {!displayTypingIndication &&
-                    lastMessage.map((g, index) => (
+                    this.state.lastMessage.map((g, index) => (
                         <div
                             className={`rw-group-message rw-from-${g && g.from}`}
                             key={`group_${index}`}
