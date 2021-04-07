@@ -75,7 +75,9 @@ class Sender extends React.Component {
     }
 
     handleClick(message) {
-        let selectedIndex = this.props.messages.find(item === message);
+        let selectedIndex = this.props.messages.find((item) => {
+            item === message;
+        });
         let selectedItem = this.props.messages.splice(selectedIndex);
         selectedItem.forEach((item) => {
             this.props.messages.unshift(item);
