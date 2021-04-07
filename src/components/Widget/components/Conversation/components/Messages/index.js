@@ -38,7 +38,7 @@ class Messages extends Component {
         super(props);
 
         this.state = { showMessageIndex: [] };
-        this.showMessageIndex = this.showMessageIndex.bind(this);
+        this.setShowMessageIndex = this.setShowMessageIndex.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +47,7 @@ class Messages extends Component {
 
     componentDidUpdate() {
         // scrollToBottom();
+        console.log('Messages', this.state.showMessageIndex);
     }
 
     setShowMessageIndex(value) {
@@ -186,6 +187,7 @@ class Messages extends Component {
                     sendMessage={this.props.sendMessage}
                     disabledInput={this.props.disabledInput}
                     messages={this.props.messages}
+                    setShowMessageIndex={this.setShowMessageIndex}
                 />
             </>
         );
