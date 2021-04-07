@@ -151,7 +151,7 @@ class Sender extends React.Component {
                                                     .lastIndexOf('/');
                                                 let title = message
                                                     .get('video')
-                                                    .slice(lastSlash + 1)
+                                                    .slice(lastSlash)
                                                     .replace(/.mp4/g, '')
                                                     .replace(/_/g, ' ')
                                                     .replace(/./g, ': ');
