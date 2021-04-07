@@ -138,10 +138,10 @@ class Messages extends Component {
         let lastMessage = [groups.pop()];
         // this.props.setSelectedMessage(lastMessage);
 
-        return lastMessage.map((g, index) => (
-            <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                {g.messages}
-            </div>
+        // return lastMessage.map((g, index) => (
+        //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+        //         {g.messages}
+        //     </div>
         ));
     };
 
@@ -156,7 +156,7 @@ class Messages extends Component {
                 className="rw-messages-container"
             >
                 {!displayTypingIndication &&
-                    this.props.selectedMessage.map((g, index) => (
+                    lastMessage.map((g, index) => (
                         <div
                             className={`rw-group-message rw-from-${g && g.from}`}
                             key={`group_${index}`}
