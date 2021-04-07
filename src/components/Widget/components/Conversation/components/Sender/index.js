@@ -35,6 +35,7 @@ class Sender extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(e) {
@@ -71,6 +72,14 @@ class Sender extends React.Component {
 
     handleShowSearchHistory() {
         this.setState({ showSearchHistory: !this.state.showSearchHistory });
+    }
+
+    handleClick(message) {
+        let selectedIndex = this.props.messages.find(item === message);
+        let selectedItem = this.props.messages.splice(selectedIndex);
+        selectedItem.forEach((item) => {
+            this.props.messages.unshift(item);
+        });
     }
 
     render() {
@@ -158,7 +167,12 @@ class Sender extends React.Component {
                                                     .replace('.', ': ');
 
                                                 return (
-                                                    <div className="search-history-item">
+                                                    <div
+                                                        className="search-history-item"
+                                                        onClick={(message) =>
+                                                            this.handleClick(message)
+                                                        }
+                                                    >
                                                         {title}
                                                     </div>
                                                 );
