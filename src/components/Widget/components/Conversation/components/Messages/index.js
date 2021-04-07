@@ -142,7 +142,7 @@ class Messages extends Component {
         //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
         //         {g.messages}
         //     </div>
-        ));
+        // ));
     };
 
     render() {
