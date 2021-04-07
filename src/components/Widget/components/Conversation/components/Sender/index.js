@@ -153,8 +153,9 @@ class Sender extends React.Component {
                                                     .get('video')
                                                     .slice(lastSlash)
                                                     .replace('.mp4', '')
-                                                    .replace(/_/g, ' ');
-                                                // .replace(/./g, ': ');
+                                                    .replace(/_/g, ' ')
+                                                    .replace('/', '')
+                                                    .replace('.', ': ');
 
                                                 return (
                                                     <div className="search-history-item">
