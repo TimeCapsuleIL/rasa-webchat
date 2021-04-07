@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from './components/Header';
@@ -6,45 +6,30 @@ import Messages from './components/Messages';
 import Sender from './components/Sender';
 import './style.scss';
 
-const Conversation = props => {
-    const [selectedMessage, setSelectedMessage] = useState([]);
-
-    return (
-        <div className="rw-conversation-container">
-            <Header
-                title={props.title}
-                subtitle={props.subtitle}
-                toggleChat={props.toggleChat}
-                toggleFullScreen={props.toggleFullScreen}
-                fullScreenMode={props.fullScreenMode}
-                showCloseButton={props.showCloseButton}
-                showFullScreenButton={props.showFullScreenButton}
-                connected={props.connected}
-                connectingText={props.connectingText}
-                closeImage={props.closeImage}
-                profileAvatar={props.profileAvatar}
-            />
-            <Messages
-                profileAvatar={props.profileAvatar}
-                params={props.params}
-                customComponent={props.customComponent}
-                showMessageDate={props.showMessageDate}
-                selectedMessage={selectedMessage}
-                setSelectedMessage={setSelectedMessage}
-            />
-
-            <Sender
-                sendMessage={props.sendMessage}
-                disabledInput={props.disabledInput}
-                profileAvatar={props.profileAvatar}
-                params={props.params}
-                customComponent={props.customComponent}
-                showMessageDate={props.showMessageDate}
-                selectedMessage={selectedMessage}
-            />
-        </div>
-    );
-};
+const Conversation = props => (
+    <div className="rw-conversation-container">
+        <Header
+            title={props.title}
+            subtitle={props.subtitle}
+            toggleChat={props.toggleChat}
+            toggleFullScreen={props.toggleFullScreen}
+            fullScreenMode={props.fullScreenMode}
+            showCloseButton={props.showCloseButton}
+            showFullScreenButton={props.showFullScreenButton}
+            connected={props.connected}
+            connectingText={props.connectingText}
+            closeImage={props.closeImage}
+            profileAvatar={props.profileAvatar}
+        />
+        <Messages
+            profileAvatar={props.profileAvatar}
+            params={props.params}
+            customComponent={props.customComponent}
+            showMessageDate={props.showMessageDate}
+        />
+        <Sender sendMessage={props.sendMessage} disabledInput={props.disabledInput} />
+    </div>
+);
 
 Conversation.propTypes = {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),

@@ -32,20 +32,12 @@ const scrollToBottom = () => {
 };
 
 class Messages extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { lastMessage: [] };
-        this.renderMessages = this.renderMessages.bind(this);
-    }
-
     componentDidMount() {
         // scrollToBottom();
-        this.renderMessages();
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        // this.renderMessages();
     }
 
     getComponentToRender = (message, index, isLast) => {
@@ -82,74 +74,72 @@ class Messages extends Component {
         return <ComponentToRender id={index} params={params} message={message} isLast={isLast} />;
     };
 
-    renderMessages = () => {
-        const { profileAvatar } = this.props;
-        const { messages, showMessageDate } = this.props;
+    render() {
+        const { displayTypingIndication, profileAvatar } = this.props;
 
-        if (messages.isEmpty()) return null;
+        const renderMessages = () => {
+            const { messages, showMessageDate } = this.props;
 
-        const groups = [];
-        let group = null;
+            if (messages.isEmpty()) return null;
 
-        const dateRenderer =
-            typeof showMessageDate === 'function'
-                ? showMessageDate
-                : showMessageDate === true
-                ? formatDate
-                : null;
+            const groups = [];
+            let group = null;
 
-        const renderMessageDate = message => {
-            const timestamp = message.get('timestamp');
+            const dateRenderer =
+                typeof showMessageDate === 'function'
+                    ? showMessageDate
+                    : showMessageDate === true
+                    ? formatDate
+                    : null;
 
-            if (!dateRenderer || !timestamp) return null;
-            const dateToRender = dateRenderer(message.get('timestamp', message));
-            return dateToRender ? (
-                <span className="rw-message-date">
-                    {dateRenderer(message.get('timestamp'), message)}
-                </span>
-            ) : null;
+            const renderMessageDate = message => {
+                const timestamp = message.get('timestamp');
+
+                if (!dateRenderer || !timestamp) return null;
+                const dateToRender = dateRenderer(message.get('timestamp', message));
+                return dateToRender ? (
+                    <span className="rw-message-date">
+                        {dateRenderer(message.get('timestamp'), message)}
+                    </span>
+                ) : null;
+            };
+
+            const renderMessage = (message, index) => (
+                <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+                    {profileAvatar && message.get('showAvatar') && (
+                        <img src={profileAvatar} className="rw-avatar" alt="profile" />
+                    )}
+                    {this.getComponentToRender(message, index, index === messages.size - 1)}
+                    {renderMessageDate(message)}
+                </div>
+            );
+
+            messages.forEach((msg, index) => {
+                if (msg.get('hidden')) return;
+                if (group === null || group.from !== msg.get('sender')) {
+                    if (group !== null) groups.push(group);
+
+                    group = {
+                        from: msg.get('sender'),
+                        messages: [],
+                    };
+                }
+
+                group.messages.push(renderMessage(msg, index));
+            });
+
+            groups.push(group); // finally push last group of messages.
+
+            let lastMessage = [groups.pop()];
+
+            return lastMessage.map((g, index) => (
+                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                    {g.messages}
+                </div>
+            ));
         };
 
-        const renderMessage = (message, index) => (
-            <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
-                {profileAvatar && message.get('showAvatar') && (
-                    <img src={profileAvatar} className="rw-avatar" alt="profile" />
-                )}
-                {this.getComponentToRender(message, index, index === messages.size - 1)}
-                {renderMessageDate(message)}
-            </div>
-        );
-
-        messages.forEach((msg, index) => {
-            if (msg.get('hidden')) return;
-            if (group === null || group.from !== msg.get('sender')) {
-                if (group !== null) groups.push(group);
-
-                group = {
-                    from: msg.get('sender'),
-                    messages: [],
-                };
-            }
-
-            group.messages.push(renderMessage(msg, index));
-        });
-
-        groups.push(group); // finally push last group of messages.
-
-        // let lastMessage = [groups.pop()];
-        this.setState({ lastMessage: [groups.pop()] });
-        // this.props.setSelectedMessage(lastMessage);
-
-        // return lastMessage.map((g, index) => (
-        //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-        //         {g.messages}
-        //     </div>
-        // ));
-    };
-
-    render() {
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
-        const { displayTypingIndication } = this.props;
 
         return (
             <div
@@ -157,15 +147,16 @@ class Messages extends Component {
                 style={{ backgroundColor: conversationBackgroundColor }}
                 className="rw-messages-container"
             >
-                {!displayTypingIndication &&
-                    this.state.lastMessage.map((g, index) => (
-                        <div
-                            className={`rw-group-message rw-from-${g && g.from}`}
-                            key={`group_${index}`}
-                        >
-                            {g.messages}
-                        </div>
-                    ))}
+                {!displayTypingIndication && renderMessages()}
+                {/* {displayTypingIndication && (
+          <div className="circle-loader-wrapper">
+              <div className="left-element-loader">
+                <div className="circle-loader"></div>
+                <img src={require("./loader_logo.png")} alt="time capsule logo" />
+              </div>
+              <div className="right-element-loader"></div>
+          </div>
+        )} */}
                 <div className="circle-loader-wrapper">
                     <div className="left-element-loader">
                         {displayTypingIndication && <div className="circle-loader"></div>}

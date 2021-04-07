@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
 import Send from 'assets/send_button';
 import Mic from 'assets/mic_button';
-import SearchHistory from '../SearchHistory';
 import './style.scss';
 
 class Sender extends React.Component {
@@ -40,10 +38,6 @@ class Sender extends React.Component {
     handleChange(e) {
         this.setState({ inputValue: e.target.value });
     }
-
-    // setMessage(theMessage) {
-    //     this.props.setSelectedMessage(theMessage);
-    // }
 
     handleSubmit(e) {
         this.props.sendMessage(e);
@@ -119,15 +113,6 @@ class Sender extends React.Component {
                             </form>
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {/* //     <SearchHistory
-                                //         profileAvatar={this.props.profileAvatar}
-                                //         params={this.props.params}
-                                //         customComponent={this.props.customComponent}
-                                //         showMessageDate={this.props.showMessageDate}
-                                //         selectedMessage={this.props.selectedMessage}
-                                //         // setSelectedMessage={this.setMessage}
-                                //         setSelectedMessage={this.props.setSelectedMessage}
-                                //     /> */}
                                     {this.state.searchHistory.map(item => {
                                         return <div className="search-history-item">{item}</div>;
                                     })}
