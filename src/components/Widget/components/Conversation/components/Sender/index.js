@@ -77,7 +77,7 @@ class Sender extends React.Component {
     handleClick(e) {
         let selectedIndex = this.props.messages.find((item) => {
             console.log('item', item);
-            console.log('message', e.target.key.get('video'));
+            console.log('message', e.target.key);
             item.get('video') === e.target.key.get('video');
         });
         console.log('selectedIndex', selectedIndex);
@@ -188,7 +188,7 @@ class Sender extends React.Component {
                                                     <div
                                                         key={message}
                                                         className="search-history-item"
-                                                        onClick={this.handleClick}
+                                                        onClick={(e) => this.handleClick(e)}
                                                     >
                                                         {title}
                                                     </div>
