@@ -29,7 +29,7 @@ const Conversation = props => (
             sendMessage={props.sendMessage}
             disabledInput={props.disabledInput}
         />
-        {/* <Sender sendMessage={props.sendMessage} disabledInput={props.disabledInput} /> */}
+        <Sender sendMessage={props.sendMessage} disabledInput={props.disabledInput} />
     </div>
 );
 

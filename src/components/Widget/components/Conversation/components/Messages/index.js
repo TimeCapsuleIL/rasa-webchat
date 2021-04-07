@@ -37,8 +37,7 @@ class Messages extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { showMessageIndex: [] };
-        this.setShowMessageIndex = this.setShowMessageIndex.bind(this);
+        this.state = { lastMessage: [] };
     }
 
     componentDidMount() {
@@ -47,11 +46,6 @@ class Messages extends Component {
 
     componentDidUpdate() {
         // scrollToBottom();
-        console.log('Messages', this.state.showMessageIndex);
-    }
-
-    setShowMessageIndex(value) {
-        this.setState({ showMessageIndex: value });
     }
 
     getComponentToRender = (message, index, isLast) => {
@@ -145,23 +139,12 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-            let lastIndex = this.showMessageIndex ? this.showMessageIndex : groups.length - 1;
-            return (
-                groups && (
-                    <div
-                        className={`rw-group-message rw-from-${groups[lastIndex] &&
-                            groups[lastIndex].from}`}
-                        key={`group_${lastIndex}`}
-                    >
-                        {groups[lastIndex].messages}
-                    </div>
-                )
-            );
-            // return groups.map((g, index) => (
-            //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-            //         {g.messages}
-            //     </div>
-            // ));
+
+            return lastMessage.map((g, index) => (
+                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                    {g.messages}
+                </div>
+            ));
         };
 
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
@@ -185,12 +168,11 @@ class Messages extends Component {
                         <div className="right-element-loader"></div>
                     </div>
                 </div>
-                <Sender
+                {/* <Sender
                     sendMessage={this.props.sendMessage}
                     disabledInput={this.props.disabledInput}
                     messages={this.props.messages}
-                    setShowMessageIndex={this.setShowMessageIndex}
-                />
+                /> */}
             </>
         );
     }

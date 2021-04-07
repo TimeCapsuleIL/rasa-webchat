@@ -14,7 +14,18 @@ class Sender extends React.Component {
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: '' };
         this.state = {
-            searchHistory: this.props.messages,
+            searchHistory: [
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+                'יציק קליין',
+                'צבי גרוס',
+            ],
         };
         this.formRef = React.createRef();
 
