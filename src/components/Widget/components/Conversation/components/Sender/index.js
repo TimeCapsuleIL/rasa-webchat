@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { connect } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import SpeechRecognition from 'react-speech-recognition';
@@ -33,6 +35,14 @@ class Sender extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
+    }
+
+    componentDidMount() {
+        console.log('mount', this.props.messages);
+    }
+
+    componentDidUpdate() {
+        console.log('update', this.props.messages);
     }
 
     handleChange(e) {
@@ -199,6 +209,7 @@ const mapStateToProps = state => ({
 });
 
 Sender.propTypes = {
+    messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
     sendMessage: PropTypes.func,
     inputTextFieldHint: PropTypes.string,
     disabledInput: PropTypes.bool,
