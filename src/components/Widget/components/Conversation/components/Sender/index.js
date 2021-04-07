@@ -79,7 +79,7 @@ class Sender extends React.Component {
             console.log('item', item.get('video'));
             console.log('message', message.get('video'));
             if (item.get('video') === message.get('video')) {
-                return message.get('video');
+                return message;
             }
         });
         console.log('selectedItem', selectedItem);
