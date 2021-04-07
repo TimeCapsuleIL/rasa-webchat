@@ -75,18 +75,20 @@ class Sender extends React.Component {
     }
 
     handleClick(message) {
-        let selectedIndex = this.props.messages.find((item) => {
-            // item.get('video') === message.get('video');
-            console.log('item', item);
-            console.log('message', message);
+        let selectedItem = this.props.messages.map((item) => {
+            console.log('item', item.get('video'));
+            console.log('message', message.get('video'));
+            if (item.get('video') === message.get('video')) {
+                return message.get('video');
+            }
         });
-        console.log('selectedIndex', selectedIndex);
-        let selectedItem = this.props.messages.splice(selectedIndex);
         console.log('selectedItem', selectedItem);
-
-        selectedItem.forEach((item) => {
-            this.props.messages.unshift(item);
-        });
+        // let selectedItem = this.props.messages.splice(selectedIndex);
+        // console.log('selectedItem', selectedItem);
+        this.props.messages.unshift(selectedItem);
+        // selectedItem.forEach((item) => {
+        //     this.props.messages.unshift(item);
+        // });
         console.log('this.props.messages', this.props.messages);
     }
 
