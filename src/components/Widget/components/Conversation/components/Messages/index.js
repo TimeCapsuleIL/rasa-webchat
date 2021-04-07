@@ -9,6 +9,8 @@ import { Video, Image, Message, Carousel, Buttons } from 'messagesComponents';
 import './styles.scss';
 import ThemeContext from '../../../../ThemeContext';
 
+import Sender from '../Sender';
+
 const isToday = date => {
     const today = new Date();
     return (
@@ -142,13 +144,14 @@ class Messages extends Component {
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
 
         return (
-            <div
-                id="rw-messages"
-                style={{ backgroundColor: conversationBackgroundColor }}
-                className="rw-messages-container"
-            >
-                {!displayTypingIndication && renderMessages()}
-                {/* {displayTypingIndication && (
+            <>
+                <div
+                    id="rw-messages"
+                    style={{ backgroundColor: conversationBackgroundColor }}
+                    className="rw-messages-container"
+                >
+                    {!displayTypingIndication && renderMessages()}
+                    {/* {displayTypingIndication && (
           <div className="circle-loader-wrapper">
               <div className="left-element-loader">
                 <div className="circle-loader"></div>
@@ -157,16 +160,21 @@ class Messages extends Component {
               <div className="right-element-loader"></div>
           </div>
         )} */}
-                <div className="circle-loader-wrapper">
-                    <div className="left-element-loader">
-                        {displayTypingIndication && <div className="circle-loader"></div>}
-                        {displayTypingIndication && (
-                            <img src={require('./loader_logo.png')} alt="time capsule logo" />
-                        )}
+                    <div className="circle-loader-wrapper">
+                        <div className="left-element-loader">
+                            {displayTypingIndication && <div className="circle-loader"></div>}
+                            {displayTypingIndication && (
+                                <img src={require('./loader_logo.png')} alt="time capsule logo" />
+                            )}
+                        </div>
+                        <div className="right-element-loader"></div>
                     </div>
-                    <div className="right-element-loader"></div>
                 </div>
-            </div>
+                <Sender
+                    sendMessage={this.props.sendMessage}
+                    disabledInput={this.props.disabledInput}
+                />
+            </>
         );
     }
 }
