@@ -37,14 +37,6 @@ class Sender extends React.Component {
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
     }
 
-    componentDidMount() {
-        console.log('mount', this.props.messages);
-    }
-
-    componentDidUpdate() {
-        console.log('update', this.props.messages);
-    }
-
     handleChange(e) {
         this.setState({ inputValue: e.target.value });
     }
@@ -123,7 +115,7 @@ class Sender extends React.Component {
                             </form>
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.state.searchHistory.map(item => {
+                                    {this.state.searchHistory.map((item) => {
                                         return <div className="search-history-item">{item}</div>;
                                     })}
                                 </div>
@@ -203,13 +195,12 @@ class Sender extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
     userInput: state.metadata.get('userInput'),
 });
 
 Sender.propTypes = {
-    messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
     sendMessage: PropTypes.func,
     inputTextFieldHint: PropTypes.string,
     disabledInput: PropTypes.bool,
