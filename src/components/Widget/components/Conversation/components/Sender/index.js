@@ -63,16 +63,13 @@ class Sender extends React.Component {
 
     handleClick(e) {
         e.stopPropagation();
-        let selectedIndex = this.props.messages.filter((item) => {
+        let selectedMessage = this.props.messages.filter((item) => {
             if (item.get('video') === e.target.id) {
                 return item;
             }
         });
-        console.log('selectedIndex', selectedIndex);
-        this.props.addVideoSnippet({
-            title: selectedIndex.get('title'),
-            video: selectedIndex.get('video'),
-        });
+        console.log('selectedMessage', selectedMessage);
+
         // let selectedItem = this.props.messages.splice(selectedIndex);
         // this.props.messages.unshift(selectedIndex);
     }
@@ -257,7 +254,6 @@ const mapStateToProps = (state) => ({
 });
 
 Sender.propTypes = {
-    addVideoSnippet: PropTypes.func,
     sendMessage: PropTypes.func,
     inputTextFieldHint: PropTypes.string,
     disabledInput: PropTypes.bool,
