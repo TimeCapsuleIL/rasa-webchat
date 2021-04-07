@@ -79,7 +79,7 @@ class Sender extends React.Component {
         let selectedIndex = this.props.messages.find((item) => {
             console.log('item', item);
             console.log('e', e);
-            console.log('key', e.target.key);
+            console.log('key', e.target.id);
             // item.get('video') === e.target.key.get('video');
         });
         console.log('selectedIndex', selectedIndex);
@@ -188,7 +188,7 @@ class Sender extends React.Component {
 
                                                 return (
                                                     <div
-                                                        key={message.get('video')}
+                                                        id={message.get('video')}
                                                         className="search-history-item"
                                                         onClick={(e) => this.handleClick(e)}
                                                     >
