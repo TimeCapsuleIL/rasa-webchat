@@ -37,7 +37,8 @@ class Messages extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { lastMessage: [] };
+        this.state = { showMessageIndex: [] };
+        this.showMessageIndex = this.showMessageIndex.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,10 @@ class Messages extends Component {
 
     componentDidUpdate() {
         // scrollToBottom();
+    }
+
+    setShowMessageIndex(value) {
+        this.setState({ showMessageIndex: value });
     }
 
     getComponentToRender = (message, index, isLast) => {
@@ -139,12 +144,21 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-
-            return lastMessage.map((g, index) => (
-                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                    {g.messages}
+            let lastIndex = this.showMessageIndex ? this.showMessageIndex : groups.length - 1;
+            return (
+                <div
+                    className={`rw-group-message rw-from-${groups[lastIndex] &&
+                        groups[lastIndex].from}`}
+                    key={`group_${lastIndex}`}
+                >
+                    {groups[lastIndex].messages}
                 </div>
-            ));
+            );
+            // return groups.map((g, index) => (
+            //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+            //         {g.messages}
+            //     </div>
+            // ));
         };
 
         const { conversationBackgroundColor, assistBackgoundColor } = this.context;
