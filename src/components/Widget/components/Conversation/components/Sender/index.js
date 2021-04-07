@@ -12,7 +12,7 @@ import './style.scss';
 class Sender extends React.Component {
     constructor(props) {
         super(props);
-
+        console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: '' };
         this.state = {
