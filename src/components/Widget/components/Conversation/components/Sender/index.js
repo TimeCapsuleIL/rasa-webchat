@@ -128,22 +128,26 @@ class Sender extends React.Component {
                                 </button>
                             </form>
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
-                            {this.state.showSearchHistory && (
-                                <div className="rw-video">
-                                    <div className="rw-video-details">
-                                        <div className="rw-videoFrame">
-                                            <div className="video-element">
-                                                <div>{this.props.message.get('video')}</div>
+                            {
+                                this.state.showSearchHistory &&
+                                    this.props.messages.map((message) => {
+                                        <div className="rw-video">
+                                            <div className="rw-video-details">
+                                                <div className="rw-videoFrame">
+                                                    <div className="video-element">
+                                                        <div>{message.get('video')}</div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div>;
+                                    })
+
                                 // <div className="search-history-wrapper">
                                 //     {this.state.searchHistory.map((item) => {
                                 //         return <div className="search-history-item">{item}</div>;
                                 //     })}
                                 // </div>
-                            )}
+                            }
                         </div>
                     </div>
                     <div className="form-right-element"></div>
