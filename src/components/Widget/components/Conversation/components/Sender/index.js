@@ -239,6 +239,7 @@ class Sender extends React.Component {
 
 const mapStateToProps = state => ({
     messages: state.messages,
+    displayMsgIndex: state.displayMsgIndex,
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
     userInput: state.metadata.get('userInput'),
 });
@@ -256,6 +257,7 @@ Sender.propTypes = {
     stopListening: PropTypes.func,
     resetTranscript: PropTypes.func,
     changeDisplayMsgIndex: PropTypes.func,
+    displayMsgIndex: PropTypes.string,
 };
 
 const options = {
