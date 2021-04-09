@@ -152,28 +152,14 @@ class Messages extends Component {
                             showThisMessage = [item];
                         }
                     });
-                    // console.log('item.key', item.key);
                 });
-            if (!showThisMessage) {
+
+            if (!this.props.displayMsgIndex.videoUrl) {
                 showThisMessage = [groups.pop()];
             }
             console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
-            // let displayMessage = this.props.displayMsgIndex
-            //     ? messages.filter(item => item.key === this.props.displayMsgIndex)
-            //     : [groups.pop()];
 
-            // return groups.map((g, index) => (
-            //     <>
-            //         {index === groups.length - 1 && (
-            //             <div
-            //                 className={`rw-group-message rw-from-${g && g.from}`}
-            //                 key={`group_${index}`}
-            //             >
-            //                 {g.messages}
-            //             </div>
-            //         )}
-            //     </>
             return showThisMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
