@@ -151,7 +151,7 @@ class Messages extends Component {
                 groups.forEach((item, index) => {
                     item.messages.forEach(message => {
                         if (message.key === this.props.displayMsgIndex.videoUrl) {
-                            showThisMessage = groups[index];
+                            showThisMessage = [groups[index]];
                         }
                     });
                 });
