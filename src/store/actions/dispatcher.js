@@ -116,6 +116,6 @@ export function send(playload, text = '', customStore) {
   if (text !== '') store.dispatch(actions.addUserMessage(text));
 }
 
-export function updateDisplayMsgIndex(text) {
+export function changeDisplayMsgIndex(text) {
   store.dispatch(actions.changeDisplayMsgIndex(text))
 }

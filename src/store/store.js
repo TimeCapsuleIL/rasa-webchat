@@ -113,7 +113,6 @@ function initStore(
         // emitMessage(action.text);
         store.dispatch({
           type: actionTypes.CHANGE_DISPLAY_MSG_INDEX,
-          text
         });
         break;
       }
