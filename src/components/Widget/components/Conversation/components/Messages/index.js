@@ -144,7 +144,7 @@ class Messages extends Component {
 
             let lastMessage = [groups.pop()];
             let showThisMessage = [];
-            groups.forEach(item, index => {
+            groups.forEach(item => {
                 console.log('item', item);
                 item.messages.forEach(message => {
                     console.log('message key', message.key);
@@ -153,12 +153,12 @@ class Messages extends Component {
                         this.props.displayMsgIndex.videoUrl &&
                         message.key === this.props.displayMsgIndex.videoUrl
                     ) {
-                        showThisMessage = [item];
+                        showThisMessage.push(item);
                     } else if (
                         !this.props.displayMsgIndex.videoUrl &&
                         index === groups.length - 1
                     ) {
-                        showThisMessage = [item];
+                        showThisMessage.push(item);
                     }
                 });
                 // console.log('item.key', item.key);
