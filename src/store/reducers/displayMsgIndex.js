@@ -14,7 +14,7 @@ import {
 
 import * as actionTypes from '../actions/actionTypes';
 
-export default function(storage) {
+export default function() {
     //   const initialState = List([]);
 
     const initialState = {

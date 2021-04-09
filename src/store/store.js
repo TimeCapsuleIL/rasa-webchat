@@ -120,7 +120,7 @@ function initStore(
     behavior: behavior(hintText, connectingText, storage, docViewer, onWidgetEvent),
     messages: messages(storage),
     metadata: metadata(storage),
-    displayMsgIndex: displayMsgIndex(storage)
+    displayMsgIndex: displayMsgIndex()
   });
 
 
