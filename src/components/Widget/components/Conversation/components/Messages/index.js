@@ -157,7 +157,7 @@ class Messages extends Component {
                 });
             }
 
-            console.log('lastMessage', lastMessage);
+            // console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
 
             return showThisMessage.map((g, index) => (
