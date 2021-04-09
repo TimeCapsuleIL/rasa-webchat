@@ -118,6 +118,7 @@ class Messages extends Component {
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
                     )}
+                    {this.props.changeDisplayMsgIndex(message.get('video'))}
                     {this.getComponentToRender(message, index, index === messages.size - 1)}
                     {renderMessageDate(message)}
                 </div>
@@ -145,6 +146,10 @@ class Messages extends Component {
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
+                // return lastMessage.map((g, index) => (
+                //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                //         {g.messages}
+                //     </div>
             ));
         };
 
@@ -186,6 +191,7 @@ Messages.propTypes = {
     customComponent: PropTypes.func,
     showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     displayTypingIndication: PropTypes.bool,
+    changeDisplayMsgIndex: PropTypes.func,
 };
 
 Message.defaultTypes = {

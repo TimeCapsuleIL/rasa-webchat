@@ -28,6 +28,7 @@ const Conversation = props => (
             showMessageDate={props.showMessageDate}
             sendMessage={props.sendMessage}
             disabledInput={props.disabledInput}
+            changeDisplayMsgIndex={props.changeDisplayMsgIndex}
         />
         <Sender
             sendMessage={props.sendMessage}
