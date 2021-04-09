@@ -32,7 +32,7 @@ import {
   setDomHighlight,
   evalUrl,
   setCustomCss, 
-  updateDisplayMsgIndex
+  changeDisplayMsgIndex
 } from 'actions';
 
 import { SESSION_NAME, NEXT_MESSAGE } from 'constants';
@@ -350,7 +350,7 @@ class Widget extends Component {
 
   changeDisplayMsgIndex(text) {
     const { dispatch } = this.props;
-    dispatch(updateDisplayMsgIndex(text));
+    dispatch(changeDisplayMsgIndex(text));
   }
 
   initializeWidget(sendInitPayload = true) {
