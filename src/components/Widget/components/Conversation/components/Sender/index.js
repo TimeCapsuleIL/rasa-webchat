@@ -15,6 +15,7 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: false };
+        this.state = { searchHistory: [] };
 
         this.formRef = React.createRef();
 
@@ -45,6 +46,7 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
+        this.setState({ searchHistory: this.props.messages });
     }
 
     componentDidUpdate() {
@@ -118,11 +120,12 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.props.messages.map(message => {
+                                    {this.state.searchHistory.map(message => {
                                         if (message.get('video')) {
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
-                                                message.get('video') === this.props.displayMsgIndex
+                                                message.get('video') ===
+                                                this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
                                             let title = message
