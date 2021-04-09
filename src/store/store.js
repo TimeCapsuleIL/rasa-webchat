@@ -111,9 +111,7 @@ function initStore(
       }
       case actionTypes.CHANGE_DISPLAY_MSG_INDEX: {
         // emitMessage(action.text);
-        store.dispatch({
-          type: actionTypes.CHANGE_DISPLAY_MSG_INDEX,
-        });
+        return store.getState();
         break;
       }
       default: {
