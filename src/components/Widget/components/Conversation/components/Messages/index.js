@@ -137,6 +137,7 @@ class Messages extends Component {
                         }
 
                         group.messages.push(renderMessage(msg, index));
+                        groups.push(group); // finally push last group of messages.
                     }
                 } else {
                     if (index === messages.length - 1) {
@@ -151,11 +152,10 @@ class Messages extends Component {
                         }
 
                         group.messages.push(renderMessage(msg, index));
+                        groups.push(group); // finally push last group of messages.
                     }
                 }
             });
-
-            groups.push(group); // finally push last group of messages.
 
             // let lastMessage = [groups.pop()];
             // messages.forEach(item => {
