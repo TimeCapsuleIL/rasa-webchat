@@ -143,7 +143,7 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-            let showThisMessage = [];
+            let showThisMessage = [groups.pop()];
 
             this.props.displayMsgIndex.videoUrl &&
                 groups.forEach(item => {
@@ -160,7 +160,7 @@ class Messages extends Component {
             console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
 
-            return lastMessage.map((g, index) => (
+            return showThisMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
