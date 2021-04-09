@@ -161,7 +161,7 @@ class Messages extends Component {
 
             return groups.map((g, index) => (
                 <>
-                    {!this.props.displayMsgIndex && index === groups.length - 1 && (
+                    {index === groups.length - 1 && (
                         <div
                             className={`rw-group-message rw-from-${g && g.from}`}
                             key={`group_${index}`}
