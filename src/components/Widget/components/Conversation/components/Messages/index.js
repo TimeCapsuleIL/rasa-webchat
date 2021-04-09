@@ -148,8 +148,11 @@ class Messages extends Component {
                 console.log('item', item);
                 item.messages.forEach(message => {
                     console.log('message key', message.key);
-                    console.log('dmi', this.props.displayMsgIndex);
-                    if (this.props.displayMsgIndex && message.key === this.props.displayMsgIndex) {
+                    console.log('dmi', this.props.displayMsgIndex.videoUrl);
+                    if (
+                        this.props.displayMsgIndex.videoUrl &&
+                        message.key === this.props.displayMsgIndex.videoUrl
+                    ) {
                         showThisMessage.push(item);
                     }
                 });
