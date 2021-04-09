@@ -78,9 +78,24 @@ class Messages extends Component {
             }
         })();
         if (message.get('type') === 'component') {
-            return <ComponentToRender id={index} {...message.get('props')} isLast={isLast} />;
+            return (
+                <ComponentToRender
+                    id={index}
+                    {...message.get('props')}
+                    isLast={isLast}
+                    changeDisplayMsgIndex={this.props.changeDisplayMsgIndex}
+                />
+            );
         }
-        return <ComponentToRender id={index} params={params} message={message} isLast={isLast} />;
+        return (
+            <ComponentToRender
+                id={index}
+                params={params}
+                message={message}
+                isLast={isLast}
+                changeDisplayMsgIndex={this.props.changeDisplayMsgIndex}
+            />
+        );
     };
 
     render() {
