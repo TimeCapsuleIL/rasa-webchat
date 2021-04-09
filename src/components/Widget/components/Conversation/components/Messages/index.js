@@ -158,7 +158,6 @@ class Messages extends Component {
                     item.messages.forEach(message => {
                         if (message.id === this.props.displayMsgIndex.videoUrl) {
                             showThisMessage = [item];
-                            break;
                         }
                     });
                 });
