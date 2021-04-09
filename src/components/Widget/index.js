@@ -663,7 +663,7 @@ Widget.propTypes = {
   defaultHighlightCss: PropTypes.string,
   defaultHighlightClassname: PropTypes.string,
   messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
-  changeDisplayMsgIndex: PropTypes.func
+  // changeDisplayMsgIndex: PropTypes.func
 };
 
 Widget.defaultProps = {
