@@ -38,6 +38,7 @@ class Buttons extends PureComponent {
     const payload = reply.get('payload');
     const title = reply.get('title');
     chooseReply(payload, title, id);
+    this.props.changeDisplayMsgIndex('');
     // this.props.changeInputFieldHint('Type a message...');
   }
 
@@ -134,7 +135,8 @@ Buttons.propTypes = {
   id: PropTypes.number,
   isLast: PropTypes.bool,
   message: PROP_TYPES.BUTTONS,
-  linkTarget: PropTypes.string
+  linkTarget: PropTypes.string,
+  changeDisplayMsgIndex: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Buttons);
