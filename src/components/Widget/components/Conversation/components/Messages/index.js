@@ -160,7 +160,7 @@ class Messages extends Component {
             console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
 
-            return showThisMessage.map((g, index) => (
+            return lastMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
