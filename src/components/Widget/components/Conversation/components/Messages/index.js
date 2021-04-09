@@ -124,30 +124,48 @@ class Messages extends Component {
             );
 
             messages.forEach((msg, index) => {
-                if (msg.get('hidden')) return;
-                if (group === null || group.from !== msg.get('sender')) {
-                    if (group !== null) groups.push(group);
+                if (displayMessage) {
+                    if (msg.get('video') === displayMessage) {
+                        if (msg.get('hidden')) return;
+                        if (group === null || group.from !== msg.get('sender')) {
+                            if (group !== null) groups.push(group);
 
-                    group = {
-                        from: msg.get('sender'),
-                        messages: [],
-                    };
+                            group = {
+                                from: msg.get('sender'),
+                                messages: [],
+                            };
+                        }
+
+                        group.messages.push(renderMessage(msg, index));
+                    }
+                } else {
+                    if (index === messages.length - 1) {
+                        if (msg.get('hidden')) return;
+                        if (group === null || group.from !== msg.get('sender')) {
+                            if (group !== null) groups.push(group);
+
+                            group = {
+                                from: msg.get('sender'),
+                                messages: [],
+                            };
+                        }
+
+                        group.messages.push(renderMessage(msg, index));
+                    }
                 }
-
-                group.messages.push(renderMessage(msg, index));
             });
 
             groups.push(group); // finally push last group of messages.
 
-            let lastMessage = [groups.pop()];
-            messages.forEach(item => {
-                console.log('item', item.get('video'));
-            });
-            let displayMessage = displayMsgIndex
-                ? messages.filter(item => item.get('video') === displayMsgIndex)
-                : [groups.pop()];
+            // let lastMessage = [groups.pop()];
+            // messages.forEach(item => {
+            //     console.log('item', item.get('video'));
+            // });
+            // let displayMessage = displayMsgIndex
+            //     ? messages.filter(item => item.get('video') === displayMsgIndex)
+            //     : [groups.pop()];
 
-            return displayMessage.map((g, index) => (
+            return groups.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
