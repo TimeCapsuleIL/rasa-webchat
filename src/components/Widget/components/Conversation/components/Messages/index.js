@@ -143,13 +143,14 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let lastMessage = [groups.pop()];
-            let showThisMessage = groups.filter(item => {
+            let showThisMessage = [];
+            groups.forEach(item => {
                 console.log('item', item);
-                return item.messages.map(message => {
+                item.messages.forEach(message => {
                     console.log('message key', message.key);
                     console.log('dmi', this.props.displayMsgIndex);
                     if (this.props.displayMsgIndex && message.key === this.props.displayMsgIndex) {
-                        return item;
+                        showThisMessage.push(item);
                     }
                 });
                 // console.log('item.key', item.key);
