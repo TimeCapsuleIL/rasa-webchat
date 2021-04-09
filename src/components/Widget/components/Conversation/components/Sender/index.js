@@ -66,10 +66,10 @@ class Sender extends React.Component {
 
         let selectedMessage = this.props.messages.filter(item => {
             if (item.get('video') === e.target.id) {
-                return item;
+                return e.target.id;
             }
         });
-        console.log('selectedMessage', selectedMessage.get('video'));
+        console.log('selectedMessage', selectedMessage);
         this.props.changeDisplayMsgIndex(selectedMessage);
 
         // let selectedItem = this.props.messages.splice(selectedIndex);
