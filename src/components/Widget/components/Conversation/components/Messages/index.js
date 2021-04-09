@@ -117,7 +117,7 @@ class Messages extends Component {
                 <div
                     className={`rw-message ${profileAvatar && 'rw-with-avatar'}`}
                     key={index}
-                    id={message.get('video')}
+                    id={message.get('video') ? message.get('video') : index}
                 >
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
@@ -158,6 +158,7 @@ class Messages extends Component {
                     item.messages.forEach(message => {
                         if (message.id === this.props.displayMsgIndex.videoUrl) {
                             showThisMessage = [item];
+                            break;
                         }
                     });
                 });
