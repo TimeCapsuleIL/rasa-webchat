@@ -144,7 +144,7 @@ class Messages extends Component {
 
             let lastMessage = [groups.pop()];
             let showThisMessage = [];
-            groups.forEach(item => {
+            groups.forEach(item, index => {
                 console.log('item', item);
                 item.messages.forEach(message => {
                     console.log('message key', message.key);
