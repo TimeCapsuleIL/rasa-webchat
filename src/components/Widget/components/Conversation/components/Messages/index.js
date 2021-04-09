@@ -114,7 +114,10 @@ class Messages extends Component {
             };
 
             const renderMessage = (message, index) => (
-                <div className={`rw-message ${profileAvatar && 'rw-with-avatar'}`} key={index}>
+                <div
+                    className={`rw-message ${profileAvatar && 'rw-with-avatar'}`}
+                    key={message.get('video') ? message.get('video') : index}
+                >
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
                     )}
@@ -124,48 +127,31 @@ class Messages extends Component {
             );
 
             messages.forEach((msg, index) => {
-                if (this.props.displayMsgIndex) {
-                    if (msg.get('video') === this.props.displayMsgIndex) {
-                        if (msg.get('hidden')) return;
-                        if (group === null || group.from !== msg.get('sender')) {
-                            if (group !== null) groups.push(group);
+                if (msg.get('hidden')) return;
+                if (group === null || group.from !== msg.get('sender')) {
+                    if (group !== null) groups.push(group);
 
-                            group = {
-                                from: msg.get('sender'),
-                                messages: [],
-                            };
-                        }
-
-                        group.messages.push(renderMessage(msg, index));
-                        groups.push(group); // finally push last group of messages.
-                    }
-                } else {
-                    if (index === messages.length - 1) {
-                        if (msg.get('hidden')) return;
-                        if (group === null || group.from !== msg.get('sender')) {
-                            if (group !== null) groups.push(group);
-
-                            group = {
-                                from: msg.get('sender'),
-                                messages: [],
-                            };
-                        }
-
-                        group.messages.push(renderMessage(msg, index));
-                        groups.push(group); // finally push last group of messages.
-                    }
+                    group = {
+                        from: msg.get('sender'),
+                        messages: [],
+                    };
                 }
+
+                group.messages.push(renderMessage(msg, index));
             });
 
-            // let lastMessage = [groups.pop()];
-            // messages.forEach(item => {
-            //     console.log('item', item.get('video'));
-            // });
+            groups.push(group); // finally push last group of messages.
+
+            let lastMessage = [groups.pop()];
+            groups.forEach(item => {
+                console.log('item', item);
+                console.log('item.key', item.key);
+            });
             // let displayMessage = displayMsgIndex
             //     ? messages.filter(item => item.get('video') === displayMsgIndex)
             //     : [groups.pop()];
 
-            return groups.map((g, index) => (
+            return lastMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
