@@ -154,6 +154,8 @@ class Messages extends Component {
                         message.key === this.props.displayMsgIndex.videoUrl
                     ) {
                         showThisMessage.push(item);
+                    } else {
+                        showThisMessage.push(groups.pop());
                     }
                 });
                 // console.log('item.key', item.key);
@@ -175,7 +177,7 @@ class Messages extends Component {
             //             </div>
             //         )}
             //     </>
-            return lastMessage.map((g, index) => (
+            return showThisMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
