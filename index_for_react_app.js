@@ -17,7 +17,8 @@ import {
   toggleFullScreen,
   toggleInputDisabled,
   dropMessages,
-  send
+  send, 
+  changeDisplayMsgIndex
 } from './src/store/actions/dispatcher';
 
 export {
@@ -39,5 +40,6 @@ export {
   toggleFullScreen,
   toggleInputDisabled,
   dropMessages,
-  send
+  send, 
+  changeDisplayMsgIndex
 };

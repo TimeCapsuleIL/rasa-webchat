@@ -109,11 +109,10 @@ function initStore(
         }
         break;
       }
-      case actionTypes.CHANGE_DISPLAY_MSG_INDEX: {
-        // emitMessage(action.text);
-        return store.getState();
-        break;
-      }
+      // case actionTypes.CHANGE_DISPLAY_MSG_INDEX: {
+      //   // emitMessage(action.text);
+      //   return store.getState();
+      // }
       default: {
         break;
       }
