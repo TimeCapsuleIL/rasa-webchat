@@ -29,7 +29,7 @@ class Buttons extends PureComponent {
     }
   }
 
-  handleClick(reply) {
+  handleClick(reply, message) {
     const {
       chooseReply,
       id
@@ -38,7 +38,7 @@ class Buttons extends PureComponent {
     const payload = reply.get('payload');
     const title = reply.get('title');
     chooseReply(payload, title, id);
-    this.props.changeDisplayMsgIndex('');
+    this.props.changeDisplayMsgIndex(message.get("video"));
     // this.props.changeInputFieldHint('Type a message...');
   }
 
@@ -74,7 +74,7 @@ class Buttons extends PureComponent {
                 <div
                   key={index}
                   className={'rw-reply'}
-                  onClick={(e) => { e.stopPropagation(); this.handleClick(reply); }}
+                  onClick={(e) => { e.stopPropagation(); this.handleClick(reply, message); }}
                   style={{ borderColor: mainColor, color: mainColor }}
                   onMouseUp={e => e.stopPropagation()}
                 >
