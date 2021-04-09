@@ -116,7 +116,8 @@ class Messages extends Component {
             const renderMessage = (message, index) => (
                 <div
                     className={`rw-message ${profileAvatar && 'rw-with-avatar'}`}
-                    key={message.get('video') ? message.get('video') : index}
+                    key={index}
+                    id={message.get('video')}
                 >
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
@@ -155,7 +156,7 @@ class Messages extends Component {
             } else {
                 groups.forEach(item => {
                     item.messages.forEach(message => {
-                        if (message.key === this.props.displayMsgIndex.videoUrl) {
+                        if (message.id === this.props.displayMsgIndex.videoUrl) {
                             showThisMessage = [item];
                         }
                     });
