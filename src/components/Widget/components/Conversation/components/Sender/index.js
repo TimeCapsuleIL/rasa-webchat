@@ -45,6 +45,7 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
+
         this.props.messages.map(message => {
             console.log(message.get('video'));
         });

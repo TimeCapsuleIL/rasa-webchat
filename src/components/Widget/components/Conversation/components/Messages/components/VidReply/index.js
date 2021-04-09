@@ -5,7 +5,6 @@ import './styles.scss';
 
 class VidReply extends PureComponent {
     render() {
-        console.log("vidReply", this.props.message)
         return (
             <div className="rw-video">
                 <b className="rw-video-title">{this.props.message.get('title')}</b>

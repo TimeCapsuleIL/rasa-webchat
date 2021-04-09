@@ -25,7 +25,6 @@ export default function() {
         switch (action.type) {
             // Each change to the redux store's message list gets recorded to storage
             case actionTypes.CHANGE_DISPLAY_MSG_INDEX: {
-                console.log('from displayMessageIndex', state);
                 return {
                     videoUrl: action.text,
                 };

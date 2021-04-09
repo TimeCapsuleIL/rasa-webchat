@@ -118,7 +118,6 @@ class Messages extends Component {
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
                     )}
-                    {this.props.changeDisplayMsgIndex(message.get('video'))}
                     {this.getComponentToRender(message, index, index === messages.size - 1)}
                     {renderMessageDate(message)}
                 </div>
@@ -140,9 +139,14 @@ class Messages extends Component {
 
             groups.push(group); // finally push last group of messages.
 
-            let lastMessage = [groups.pop()];
+            // let lastMessage = [groups.pop()];
+            let displayMessage = displayMsgIndex
+                ? groups.filter(item =>
+                      item.messages.filter(message => message.get('video' === displayMsgIndex))
+                  )
+                : [groups.pop()];
 
-            return lastMessage.map((g, index) => (
+            return displayMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
