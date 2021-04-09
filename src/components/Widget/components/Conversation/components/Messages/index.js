@@ -116,8 +116,7 @@ class Messages extends Component {
             const renderMessage = (message, index) => (
                 <div
                     className={`rw-message ${profileAvatar && 'rw-with-avatar'}`}
-                    key={index}
-                    id={message.get('video') ? message.get('video') : index}
+                    key={message.get('video') ? message.get('video') : index}
                 >
                     {profileAvatar && message.get('showAvatar') && (
                         <img src={profileAvatar} className="rw-avatar" alt="profile" />
@@ -147,23 +146,17 @@ class Messages extends Component {
             let showThisMessage = [];
 
             if (!this.props.displayMsgIndex.videoUrl) {
-                // showThisMessage = [groups.pop()];
-                groups.forEach((item, index) => {
-                    if (index === groups.length - 1) {
-                        showThisMessage = [item];
-                    }
-                });
+                showThisMessage = [groups[groups.length - 1]];
             } else {
-                groups.forEach(item => {
+                groups.forEach((item, index) => {
                     item.messages.forEach(message => {
-                        if (message.id === this.props.displayMsgIndex.videoUrl) {
-                            showThisMessage = [item];
+                        if (message.key === this.props.displayMsgIndex.videoUrl) {
+                            showThisMessage = groups[index];
                         }
                     });
                 });
             }
 
-            // console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
 
             return showThisMessage.map((g, index) => (
