@@ -148,13 +148,15 @@ class Messages extends Component {
             if (!this.props.displayMsgIndex.videoUrl) {
                 showThisMessage = [groups[groups.length - 1]];
             } else {
+                let selectedIndex;
                 groups.forEach((item, index) => {
                     item.messages.forEach(message => {
                         if (message.key === this.props.displayMsgIndex.videoUrl) {
-                            showThisMessage = [groups[index]];
+                            selectedIndex = index;
                         }
                     });
                 });
+                showThisMessage = [groups[selectedIndex]];
             }
 
             console.log('showThisMessage', showThisMessage);
