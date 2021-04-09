@@ -139,20 +139,26 @@ class Messages extends Component {
 
             groups.push(group); // finally push last group of messages.
 
-            // let lastMessage = [groups.pop()];
-            let displayMessage = displayMsgIndex
-                ? groups.filter(
-                      (item => console.log('item', item),
-                      item.messages.filter(
-                          message => (
-                              console.log('message', message),
-                              message.get('video') && message.get('video' === displayMsgIndex)
-                          )
-                      ))
-                  )
-                : [groups.pop()];
+            let lastMessage = [groups.pop()];
+            groups.forEach(item => {
+                console.log('item', item);
+                item.messages.forEach(message => {
+                    console.log('message', message);
+                });
+            });
+            // let displayMessage = displayMsgIndex
+            //     ? groups.filter(
+            //           (item => console.log('item', item),
+            //           item.messages.filter(
+            //               message => (
+            //                   console.log('message', message),
+            //                   message.get('video') && message.get('video' === displayMsgIndex)
+            //               )
+            //           ))
+            //       )
+            //     : [groups.pop()];
 
-            return displayMessage.map((g, index) => (
+            return lastMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
