@@ -142,7 +142,6 @@ class Messages extends Component {
 
             groups.push(group); // finally push last group of messages.
 
-            // let lastMessage = [groups.pop()];
             let showThisMessage = [];
 
             if (!this.props.displayMsgIndex.videoUrl) {
@@ -189,11 +188,6 @@ class Messages extends Component {
                         <div className="right-element-loader"></div>
                     </div>
                 </div>
-                {/* <Sender
-                    sendMessage={this.props.sendMessage}
-                    disabledInput={this.props.disabledInput}
-                    messages={this.props.messages}
-                /> */}
             </>
         );
     }
