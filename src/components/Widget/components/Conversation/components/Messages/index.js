@@ -159,10 +159,17 @@ class Messages extends Component {
             //     ? messages.filter(item => item.key === this.props.displayMsgIndex)
             //     : [groups.pop()];
 
-            return showThisMessage.map((g, index) => (
-                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                    {g.messages}
-                </div>
+            return groups.map((g, index) => (
+                <>
+                    {!this.props.displayMsgIndex && index === groups.length - 1 && (
+                        <div
+                            className={`rw-group-message rw-from-${g && g.from}`}
+                            key={`group_${index}`}
+                        >
+                            {g.messages}
+                        </div>
+                    )}
+                </>
                 // return lastMessage.map((g, index) => (
                 //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                 //         {g.messages}
