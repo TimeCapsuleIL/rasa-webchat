@@ -33,12 +33,21 @@
 }
 
 .search-history-item {
-    background-color: #fffefc;
     border: 1px solid #e0d0c3;
     border-radius: 10px;
-    color: #4a6287;
     direction: rtl;
     padding: 7px;
+}
+
+.search-history-item-true {
+    background-color: #fffefc;
+    color: #4a6287;
+}
+
+.search-history-item-false {
+    color: #fffefc;
+    background-color: #4a6287;
+    
 }
 
 .search-history-item:hover {

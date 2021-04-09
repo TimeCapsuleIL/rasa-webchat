@@ -14,7 +14,7 @@ class Sender extends React.Component {
         super(props);
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
-        this.state = { showSearchHistory: '' };
+        this.state = { showSearchHistory: false };
 
         this.formRef = React.createRef();
 
@@ -121,6 +121,10 @@ class Sender extends React.Component {
                                     {this.props.messages.map(message => {
                                         if (message.get('video')) {
                                             let lastSlash = message.get('video').lastIndexOf('/');
+                                            let selected =
+                                                message.get('video') === this.props.displayMsgIndex
+                                                    ? true
+                                                    : false;
                                             let title = message
                                                 .get('video')
                                                 .slice(lastSlash)
@@ -133,7 +137,7 @@ class Sender extends React.Component {
                                                 <div
                                                     key={message.get('video')}
                                                     id={message.get('video')}
-                                                    className="search-history-item"
+                                                    className={`search-history-item search-history-item-${selected}`}
                                                     onClick={e => this.handleClick(e)}
                                                 >
                                                     {title}
