@@ -349,7 +349,8 @@ class Widget extends Component {
   }
 
   changeDisplayMsgIndex(text) {
-    this.props.dispatch(updateDisplayMsgIndex(text));
+    const { dispatch } = this.props;
+    dispatch(updateDisplayMsgIndex(text));
   }
 
   initializeWidget(sendInitPayload = true) {
