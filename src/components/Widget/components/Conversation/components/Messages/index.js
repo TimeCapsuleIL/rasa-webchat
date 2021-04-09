@@ -141,8 +141,14 @@ class Messages extends Component {
 
             // let lastMessage = [groups.pop()];
             let displayMessage = displayMsgIndex
-                ? groups.filter(item =>
-                      item.messages.filter(message => message.get('video' === displayMsgIndex))
+                ? groups.filter(
+                      (item => console.log('item', item),
+                      item.messages.filter(
+                          message => (
+                              console.log('message', message),
+                              message.get('video') && message.get('video' === displayMsgIndex)
+                          )
+                      ))
                   )
                 : [groups.pop()];
 
