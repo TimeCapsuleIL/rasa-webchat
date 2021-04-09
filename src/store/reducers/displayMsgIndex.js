@@ -18,7 +18,7 @@ export default function() {
     //   const initialState = List([]);
 
     const initialState = {
-        count: 0,
+        videoUrl: '',
     };
 
     return function reducer(state = initialState, action) {
@@ -26,7 +26,9 @@ export default function() {
             // Each change to the redux store's message list gets recorded to storage
             case actionTypes.CHANGE_DISPLAY_MSG_INDEX: {
                 console.log('from displayMessageIndex', state);
-                return state;
+                return {
+                    videoUrl: action.text,
+                };
             }
             //   case actionTypes.ADD_NEW_RESPONSE_MESSAGE: {
             //     return storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.RESPONSE)));

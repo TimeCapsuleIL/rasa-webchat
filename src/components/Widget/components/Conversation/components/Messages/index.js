@@ -10,8 +10,9 @@ import './styles.scss';
 import ThemeContext from '../../../../ThemeContext';
 
 import Sender from '../Sender';
+import displayMsgIndex from '../../../../../../store/reducers/displayMsgIndex';
 
-const isToday = (date) => {
+const isToday = date => {
     const today = new Date();
     return (
         date.getDate() === today.getDate() &&
@@ -20,7 +21,7 @@ const isToday = (date) => {
     );
 };
 
-const formatDate = (date) => {
+const formatDate = date => {
     const dateToFormat = new Date(date);
     const showDate = isToday(dateToFormat) ? '' : `${dateToFormat.toLocaleDateString()} `;
     return `${showDate}${dateToFormat.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
@@ -40,10 +41,12 @@ class Messages extends Component {
 
     componentDidMount() {
         // scrollToBottom();
+        console.log('messages component didMount', this.props.displayMsgIndex);
     }
 
     componentDidUpdate() {
         // scrollToBottom();
+        console.log('messages component didUpdate', this.props.displayMsgIndex);
     }
 
     getComponentToRender = (message, index, isLast) => {
@@ -67,8 +70,8 @@ class Messages extends Component {
                 }
                 case MESSAGES_TYPES.CUSTOM_COMPONENT:
                     return connect(
-                        (store) => ({ store }),
-                        (dispatch) => ({ dispatch })
+                        store => ({ store }),
+                        dispatch => ({ dispatch })
                     )(this.props.customComponent);
                 default:
                     return null;
@@ -98,7 +101,7 @@ class Messages extends Component {
                     ? formatDate
                     : null;
 
-            const renderMessageDate = (message) => {
+            const renderMessageDate = message => {
                 const timestamp = message.get('timestamp');
 
                 if (!dateRenderer || !timestamp) return null;
@@ -178,6 +181,7 @@ class Messages extends Component {
 Messages.contextType = ThemeContext;
 Messages.propTypes = {
     messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
+    displayMsgIndex: PropTypes.string,
     profileAvatar: PropTypes.string,
     customComponent: PropTypes.func,
     showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
@@ -188,7 +192,8 @@ Message.defaultTypes = {
     displayTypingIndication: false,
 };
 
-export default connect((store) => ({
+export default connect(store => ({
     messages: store.messages,
+    displayMsgIndex: store.displayMsgIndex,
     displayTypingIndication: store.behavior.get('messageDelayed'),
 }))(Messages);
