@@ -146,7 +146,12 @@ class Messages extends Component {
             let showThisMessage = [];
 
             if (!this.props.displayMsgIndex.videoUrl) {
-                showThisMessage = [groups.pop()];
+                // showThisMessage = [groups.pop()];
+                groups.forEach((item, index) => {
+                    if (index === groups.length - 1) {
+                        showThisMessage = [item];
+                    }
+                });
             } else {
                 groups.forEach(item => {
                     item.messages.forEach(message => {
