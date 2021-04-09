@@ -64,13 +64,13 @@ class Sender extends React.Component {
     handleClick(e) {
         e.stopPropagation();
 
-        let selectedMessage = this.props.messages.filter(item => {
-            if (item.get('video') === e.target.id) {
-                return e.target.id;
-            }
-        });
-        console.log('selectedMessage', selectedMessage);
-        this.props.changeDisplayMsgIndex(selectedMessage);
+        // let selectedMessage = this.props.messages.filter(item => {
+        //     if (item.get('video') === e.target.id) {
+        //         return e.target.id;
+        //     }
+        // });
+        // console.log('selectedMessage', selectedMessage);
+        this.props.changeDisplayMsgIndex(e.target.id);
 
         // let selectedItem = this.props.messages.splice(selectedIndex);
         // this.props.messages.unshift(selectedIndex);
@@ -159,6 +159,7 @@ class Sender extends React.Component {
 
                                             return (
                                                 <div
+                                                    key={message.get('video')}
                                                     id={message.get('video')}
                                                     className="search-history-item"
                                                     onClick={e => this.handleClick(e)}
