@@ -155,25 +155,26 @@ class Messages extends Component {
                 });
                 // console.log('item.key', item.key);
             });
+            console.log('showthismessage', showThisMessage);
             // let displayMessage = this.props.displayMsgIndex
             //     ? messages.filter(item => item.key === this.props.displayMsgIndex)
             //     : [groups.pop()];
 
-            return groups.map((g, index) => (
-                <>
-                    {index === groups.length - 1 && (
-                        <div
-                            className={`rw-group-message rw-from-${g && g.from}`}
-                            key={`group_${index}`}
-                        >
-                            {g.messages}
-                        </div>
-                    )}
-                </>
-                // return lastMessage.map((g, index) => (
-                //     <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
-                //         {g.messages}
-                //     </div>
+            // return groups.map((g, index) => (
+            //     <>
+            //         {index === groups.length - 1 && (
+            //             <div
+            //                 className={`rw-group-message rw-from-${g && g.from}`}
+            //                 key={`group_${index}`}
+            //             >
+            //                 {g.messages}
+            //             </div>
+            //         )}
+            //     </>
+            return lastMessage.map((g, index) => (
+                <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
+                    {g.messages}
+                </div>
             ));
         };
 
