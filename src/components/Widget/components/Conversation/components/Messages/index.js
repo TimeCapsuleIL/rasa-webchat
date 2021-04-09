@@ -144,25 +144,19 @@ class Messages extends Component {
 
             let lastMessage = [groups.pop()];
             let showThisMessage = [];
-            groups.forEach((item, index) => {
-                console.log('item', item);
-                item.messages.forEach(message => {
-                    console.log('message key', message.key);
-                    console.log('dmi', this.props.displayMsgIndex.videoUrl);
-                    if (
-                        this.props.displayMsgIndex.videoUrl &&
-                        message.key === this.props.displayMsgIndex.videoUrl
-                    ) {
-                        showThisMessage.push(item);
-                    } else if (
-                        !this.props.displayMsgIndex.videoUrl &&
-                        index === groups.length - 1
-                    ) {
-                        showThisMessage.push(item);
-                    }
+
+            this.props.displayMsgIndex.videoUrl &&
+                groups.forEach(item => {
+                    item.messages.forEach(message => {
+                        if (message.key === this.props.displayMsgIndex.videoUrl) {
+                            showThisMessage = [item];
+                        }
+                    });
+                    // console.log('item.key', item.key);
                 });
-                // console.log('item.key', item.key);
-            });
+            if (!showThisMessage) {
+                showThisMessage = [groups.pop()];
+            }
             console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
             // let displayMessage = this.props.displayMsgIndex
