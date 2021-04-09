@@ -154,9 +154,6 @@ class Messages extends Component {
                     });
                 });
 
-            if (!this.props.displayMsgIndex.videoUrl) {
-                showThisMessage = [groups.pop()];
-            }
             console.log('lastMessage', lastMessage);
             console.log('showThisMessage', showThisMessage);
 
