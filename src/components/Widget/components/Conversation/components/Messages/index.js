@@ -144,18 +144,10 @@ class Messages extends Component {
                 console.log('item', item.get('video'));
             });
             let displayMessage = displayMsgIndex
-                ? messages.filter(
-                      (item => console.log('item', item),
-                      item.messages.filter(
-                          message => (
-                              console.log('message', message),
-                              message.get('video') && message.get('video' === displayMsgIndex)
-                          )
-                      ))
-                  )
+                ? messages.filter(item => item.get('video') === displayMsgIndex)
                 : [groups.pop()];
 
-            return lastMessage.map((g, index) => (
+            return displayMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
                 </div>
