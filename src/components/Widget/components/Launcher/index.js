@@ -109,7 +109,7 @@ const Launcher = ({
           return null;
       }
     })();
-    if (ComponentToRender) { return <ComponentToRender id={-1} params={{}} message={message} />; }
+    if (ComponentToRender) { return <ComponentToRender id={-1} params={{}} message={message} isLast />; }
     toggle(); // open the chat if the tooltip do not know how to display the compoment
   };
 
