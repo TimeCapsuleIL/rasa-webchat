@@ -5,6 +5,7 @@ import { SESSION_NAME } from 'constants';
 import behavior from './reducers/behaviorReducer';
 import messages from './reducers/messagesReducer';
 import metadata from './reducers/metadataReducer';
+import displayMsgIndex from './reducers/displayMsgIndex';
 
 import { getLocalSession } from './reducers/helper';
 import * as actionTypes from './actions/actionTypes';
@@ -118,7 +119,8 @@ function initStore(
   const reducer = combineReducers({
     behavior: behavior(hintText, connectingText, storage, docViewer, onWidgetEvent),
     messages: messages(storage),
-    metadata: metadata(storage)
+    metadata: metadata(storage),
+    displayMsgIndex: displayMsgIndex(storage)
   });
 
 

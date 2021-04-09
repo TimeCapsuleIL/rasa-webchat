@@ -6,7 +6,7 @@ import Messages from './components/Messages';
 import Sender from './components/Sender';
 import './style.scss';
 
-const Conversation = (props) => (
+const Conversation = props => (
     <div className="rw-conversation-container">
         <Header
             title={props.title}
@@ -29,7 +29,11 @@ const Conversation = (props) => (
             sendMessage={props.sendMessage}
             disabledInput={props.disabledInput}
         />
-        <Sender sendMessage={props.sendMessage} disabledInput={props.disabledInput} />
+        <Sender
+            sendMessage={props.sendMessage}
+            disabledInput={props.disabledInput}
+            changeDisplayMsgIndex={props.changeDisplayMsgIndex}
+        />
     </div>
 );
 
@@ -50,6 +54,7 @@ Conversation.propTypes = {
     closeImage: PropTypes.string,
     customComponent: PropTypes.func,
     showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+    changeDisplayMsgIndex: PropTypes.func,
 };
 
 export default Conversation;

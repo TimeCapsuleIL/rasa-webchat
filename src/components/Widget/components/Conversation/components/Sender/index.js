@@ -45,14 +45,14 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
-        this.props.messages.map((message) => {
+        this.props.messages.map(message => {
             console.log(message.get('video'));
         });
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        this.props.messages.map((message) => {
+        this.props.messages.map(message => {
             console.log(message.get('video'));
         });
     }
@@ -63,7 +63,7 @@ class Sender extends React.Component {
 
     handleClick(e) {
         e.stopPropagation();
-        let selectedMessage = this.props.messages.filter((item) => {
+        let selectedMessage = this.props.messages.filter(item => {
             if (item.get('video') === e.target.id) {
                 return item;
             }
@@ -129,49 +129,45 @@ class Sender extends React.Component {
                                 </button>
                             </form>
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
-                            {
-                                // this.state.showSearchHistory &&
-                                //     this.props.messages.map((message) => {
-                                //         <div className="rw-video">
-                                //             <div className="rw-video-details">
-                                //                 <div className="rw-videoFrame">
-                                //                     <div className="video-element">
-                                //                         <div>{message.get('video')}</div>
-                                //                     </div>
-                                //                 </div>
-                                //             </div>
-                                //         </div>;
-                                //     })
+                            {// this.state.showSearchHistory &&
+                            //     this.props.messages.map((message) => {
+                            //         <div className="rw-video">
+                            //             <div className="rw-video-details">
+                            //                 <div className="rw-videoFrame">
+                            //                     <div className="video-element">
+                            //                         <div>{message.get('video')}</div>
+                            //                     </div>
+                            //                 </div>
+                            //             </div>
+                            //         </div>;
+                            //     })
 
-                                this.state.showSearchHistory && (
-                                    <div className="search-history-wrapper">
-                                        {this.props.messages.map((message) => {
-                                            if (message.get('video')) {
-                                                let lastSlash = message
-                                                    .get('video')
-                                                    .lastIndexOf('/');
-                                                let title = message
-                                                    .get('video')
-                                                    .slice(lastSlash)
-                                                    .replace('.mp4', '')
-                                                    .replace(/_/g, ' ')
-                                                    .replace('/', '')
-                                                    .replace('.', ': ');
+                            this.state.showSearchHistory && (
+                                <div className="search-history-wrapper">
+                                    {this.props.messages.map(message => {
+                                        if (message.get('video')) {
+                                            let lastSlash = message.get('video').lastIndexOf('/');
+                                            let title = message
+                                                .get('video')
+                                                .slice(lastSlash)
+                                                .replace('.mp4', '')
+                                                .replace(/_/g, ' ')
+                                                .replace('/', '')
+                                                .replace('.', ': ');
 
-                                                return (
-                                                    <div
-                                                        id={message.get('video')}
-                                                        className="search-history-item"
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {title}
-                                                    </div>
-                                                );
-                                            }
-                                        })}
-                                    </div>
-                                )
-                            }
+                                            return (
+                                                <div
+                                                    id={message.get('video')}
+                                                    className="search-history-item"
+                                                    onClick={e => this.handleClick(e)}
+                                                >
+                                                    {title}
+                                                </div>
+                                            );
+                                        }
+                                    })}
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="form-right-element"></div>
@@ -247,7 +243,7 @@ class Sender extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     messages: state.messages,
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
     userInput: state.metadata.get('userInput'),
@@ -265,6 +261,7 @@ Sender.propTypes = {
     startListening: PropTypes.func,
     stopListening: PropTypes.func,
     resetTranscript: PropTypes.func,
+    changeDisplayMsgIndex: PropTypes.func,
 };
 
 const options = {

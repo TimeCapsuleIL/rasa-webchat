@@ -38,6 +38,7 @@ export function addCarousel(carousel) {
 }
 
 export function addVideoSnippet(video) {
+  console.log("from dispatcher add video snippet", video)
   store.dispatch(actions.addVideoSnippet(video));
 }
 
@@ -113,4 +114,8 @@ export function send(playload, text = '', customStore) {
   }
   store.dispatch(actions.emitUserMessage(playload));
   if (text !== '') store.dispatch(actions.addUserMessage(text));
+}
+
+export function updateDisplayMsgIndex(text) {
+  store.dispatch(actions.changeDisplayMsgIndex(text))
 }

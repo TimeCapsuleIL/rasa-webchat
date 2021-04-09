@@ -31,7 +31,8 @@ import {
   changeOldUrl,
   setDomHighlight,
   evalUrl,
-  setCustomCss
+  setCustomCss, 
+  updateDisplayMsgIndex
 } from 'actions';
 
 import { SESSION_NAME, NEXT_MESSAGE } from 'constants';
@@ -347,6 +348,10 @@ class Widget extends Component {
     }
   }
 
+  changeDisplayMsgIndex(text) {
+    this.props.dispatch(updateDisplayMsgIndex(text));
+  }
+
   initializeWidget(sendInitPayload = true) {
     const {
       storage,
@@ -603,6 +608,7 @@ class Widget extends Component {
         displayUnreadCount={this.props.displayUnreadCount}
         showMessageDate={this.props.showMessageDate}
         tooltipPayload={this.props.tooltipPayload}
+        changeDisplayMsgIndex={this.changeDisplayMsgIndex}
       />
     );
   }
@@ -656,7 +662,8 @@ Widget.propTypes = {
   defaultHighlightAnimation: PropTypes.string,
   defaultHighlightCss: PropTypes.string,
   defaultHighlightClassname: PropTypes.string,
-  messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map)
+  messages: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
+  changeDisplayMsgIndex: PropTypes.func
 };
 
 Widget.defaultProps = {

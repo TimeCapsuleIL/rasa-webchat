@@ -260,3 +260,9 @@ export function setCustomCss(customCss) {
   };
 }
 
+export function changeDisplayMsgIndex(text) {
+  return {
+    type: actions.CHANGE_DISPLAY_MSG_INDEX,
+    text
+  };
+}
