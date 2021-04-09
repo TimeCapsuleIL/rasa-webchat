@@ -145,7 +145,9 @@ class Messages extends Component {
             let lastMessage = [groups.pop()];
             let showThisMessage = groups.filter(item => {
                 console.log('item', item);
-                item.messages.forEach(message => {
+                return item.messages.map(message => {
+                    console.log('message key', message.key);
+                    console.log('dmi', this.props.displayMsgIndex);
                     if (this.props.displayMsgIndex && message.key === this.props.displayMsgIndex) {
                         return item;
                     }
