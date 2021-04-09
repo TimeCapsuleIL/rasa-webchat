@@ -56,6 +56,7 @@ class Sender extends React.Component {
         this.props.messages.map(message => {
             console.log(message.get('video'));
         });
+        this.setState({ showSearchHistory: false });
     }
 
     handleShowSearchHistory() {
@@ -122,20 +123,7 @@ class Sender extends React.Component {
                                 </button>
                             </form>
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
-                            {// this.state.showSearchHistory &&
-                            //     this.props.messages.map((message) => {
-                            //         <div className="rw-video">
-                            //             <div className="rw-video-details">
-                            //                 <div className="rw-videoFrame">
-                            //                     <div className="video-element">
-                            //                         <div>{message.get('video')}</div>
-                            //                     </div>
-                            //                 </div>
-                            //             </div>
-                            //         </div>;
-                            //     })
-
-                            this.state.showSearchHistory && (
+                            {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {this.props.messages.map(message => {
                                         if (message.get('video')) {

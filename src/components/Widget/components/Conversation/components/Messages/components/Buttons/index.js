@@ -49,7 +49,7 @@ class Buttons extends PureComponent {
     return (
       <div>
         {message.get("text") !== "null" && <Message message={message} />}
-        {(
+        {(isLast || persit) && (
           <div className="rw-replies">
             <div className="reply-prompt">אולי יעניין אותר גם על:</div>
             {buttons.map((reply, index) => {
@@ -100,7 +100,7 @@ class Buttons extends PureComponent {
       if (chosenReply) {
         return (message.get("text") !== "null" ? <Message message={message} /> : null);
       }
-      return this.renderButtons(message, buttons, false);
+      return this.renderButtons(message, buttons, true);
     } else if (message.get('buttons') !== undefined) {
       const buttons = message.get('buttons');
       return this.renderButtons(message, buttons, true);

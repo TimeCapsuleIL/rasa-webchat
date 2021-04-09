@@ -158,8 +158,6 @@ class Messages extends Component {
                 showThisMessage = [groups[selectedIndex]];
             }
 
-            console.log('showThisMessage', showThisMessage);
-
             return showThisMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
                     {g.messages}
