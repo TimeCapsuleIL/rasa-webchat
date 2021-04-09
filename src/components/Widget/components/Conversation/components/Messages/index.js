@@ -152,6 +152,7 @@ class Messages extends Component {
                     item.messages.forEach(message => {
                         if (message.key === this.props.displayMsgIndex.videoUrl) {
                             selectedIndex = index;
+                            return;
                         }
                     });
                 });
