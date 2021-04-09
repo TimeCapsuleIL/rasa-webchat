@@ -15,7 +15,7 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: '' };
-        this.state = { searchHistory: [] };
+        this.state = { searchHistory: this.props.messages };
 
         this.formRef = React.createRef();
 
@@ -46,12 +46,10 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
-        this.setState({ searchHistory: this.props.messages });
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        this.setState({ searchHistory: this.props.messages });
     }
 
     handleShowSearchHistory() {
