@@ -47,13 +47,14 @@ class Sender extends React.Component {
         console.log('sender mount messages', this.props.messages);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, prevState) {
         // scrollToBottom();
         console.log('sender update messages', this.props.messages);
         console.log('sender update history', prevProps.messages);
+        console.log('sender prevProp messages', prevProps.messages);
+        console.log('sender prevState showsearchhistory', prevState.showSearchHistory);
         if (
-            !this.props.displayMsgIndex.videoUrl &&
-            this.state.showSearchHistory &&
+            prevState.showSearchHistory &&
             this.props.messages.length != prevProps.messages.length
         ) {
             this.setState({ showSearchHistory: false });
