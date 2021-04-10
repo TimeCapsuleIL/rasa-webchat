@@ -159,20 +159,35 @@ class Messages extends Component {
 
             let showThisMessage = [];
 
-            if (!this.props.displayMsgIndex.videoUrl) {
-                showThisMessage = [groups[groups.length - 1]];
-            } else {
-                let selectedIndex;
-                groups.forEach((item, index) => {
-                    item.messages.forEach(message => {
-                        if (!selectedIndex && message.key === this.props.displayMsgIndex.videoUrl) {
-                            selectedIndex = index;
-                        }
-                    });
+            let selectedIndex;
+            groups.forEach((item, index) => {
+                item.messages.forEach(message => {
+                    if (!selectedIndex && message.key === this.props.displayMsgIndex.videoUrl) {
+                        selectedIndex = index;
+                    }
                 });
+            });
 
+            if (selectedIndex) {
                 showThisMessage = [groups[selectedIndex]];
+            } else {
+                showThisMessage = [groups[groups.length - 1]];
             }
+
+            // if (!this.props.displayMsgIndex.videoUrl) {
+            //     showThisMessage = [groups[groups.length - 1]];
+            // } else {
+            //     let selectedIndex;
+            //     groups.forEach((item, index) => {
+            //         item.messages.forEach(message => {
+            //             if (!selectedIndex && message.key === this.props.displayMsgIndex.videoUrl) {
+            //                 selectedIndex = index;
+            //             }
+            //         });
+            //     });
+
+            //     showThisMessage = [groups[selectedIndex]];
+            // }
 
             return showThisMessage.map((g, index) => (
                 <div className={`rw-group-message rw-from-${g && g.from}`} key={`group_${index}`}>
