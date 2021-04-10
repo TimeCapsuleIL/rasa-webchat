@@ -15,7 +15,6 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: false };
-        this.state = { searchHistory: this.props.messages };
         this.formRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
@@ -46,20 +45,18 @@ class Sender extends React.Component {
     componentDidMount() {
         // scrollToBottom();
         console.log('sender mount messages', this.props.messages);
-        console.log('sender mount history', this.state.searchHistory);
-
-        if (this.props.messages.length !== this.state.searchHistory.length) {
-            this.setState({ searchHistory: this.props.messages });
-            this.setState({ showSearchHistory: false });
-        }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         // scrollToBottom();
         console.log('sender update messages', this.props.messages);
-        console.log('sender update history', this.state.searchHistory);
-        if (this.props.messages.length !== this.state.searchHistory.length) {
-            this.setState({ searchHistory: this.props.messages });
+        console.log('sender update history', prevProps.messages);
+        if (
+            !this.props.displayMsgIndex.videoUrl &&
+            this.state.showSearchHistory &&
+            this.props.messages.length != prevProps.messages.length
+        ) {
+            this.setState({ showSearchHistory: false });
         }
     }
 
@@ -129,7 +126,7 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.state.searchHistory.reverse().map(message => {
+                                    {this.props.messages.reverse().map(message => {
                                         if (message.get('video')) {
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
