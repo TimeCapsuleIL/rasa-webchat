@@ -45,19 +45,21 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
+        console.log('sender mount messages', this.props.messages);
+        console.log('sender mount history', this.state.searchHistory);
+
         if (this.props.messages.length !== this.state.searchHistory.length) {
             this.setState({ searchHistory: this.props.messages });
+            this.setState({ showSearchHistory: false });
         }
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        if (
-            this.state.showSearchHistory &&
-            this.props.messages.length !== this.state.searchHistory.length
-        ) {
+        console.log('sender update messages', this.props.messages);
+        console.log('sender update history', this.state.searchHistory);
+        if (this.props.messages.length !== this.state.searchHistory.length) {
             this.setState({ searchHistory: this.props.messages });
-            this.setState({ showSearchHistory: false });
         }
     }
 
