@@ -163,14 +163,18 @@ class Messages extends Component {
                 showThisMessage = [groups[groups.length - 1]];
             } else {
                 let selectedIndex;
-                groups.forEach((item, index) => {
-                    item.messages.forEach(message => {
-                        if (message.key === this.props.displayMsgIndex.videoUrl) {
-                            selectedIndex = index;
-                            return;
-                        }
+                let looking = true;
+                while (looking) {
+                    groups.forEach((item, index) => {
+                        item.messages.forEach(message => {
+                            if (message.key === this.props.displayMsgIndex.videoUrl) {
+                                selectedIndex = index;
+                                looking = false;
+                            }
+                        });
                     });
-                });
+                }
+
                 showThisMessage = [groups[selectedIndex]];
             }
 
