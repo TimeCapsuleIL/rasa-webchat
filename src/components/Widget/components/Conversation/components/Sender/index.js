@@ -52,6 +52,9 @@ class Sender extends React.Component {
 
     componentDidUpdate() {
         // scrollToBottom();
+        if (this.props.messages.length !== this.state.searchHistory.length) {
+            this.setState({ searchHistory: this.props.messages });
+        }
     }
 
     handleShowSearchHistory() {
