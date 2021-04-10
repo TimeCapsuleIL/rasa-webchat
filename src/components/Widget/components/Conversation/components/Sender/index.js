@@ -44,13 +44,13 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
-        if (!this.props.displayMsgIndex) {
-            this.setState({ showSearchHistory: false });
-        }
     }
 
     componentDidUpdate() {
         // scrollToBottom();
+        if (this.props.message.length !== prevProps.messages.length) {
+            this.setState({ showSearchHistory: false });
+        }
     }
 
     handleShowSearchHistory() {
@@ -71,8 +71,6 @@ class Sender extends React.Component {
             this.props.listening
         ) {
             this.props.recognition.lang = 'he-IL';
-            let searchHistory;
-            searchHistory = this.props.messages.reverse();
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -121,7 +119,7 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {searchHistory.map(message => {
+                                    {this.props.messages.reverse().map(message => {
                                         if (message.get('video')) {
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
