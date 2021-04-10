@@ -68,7 +68,8 @@ class Sender extends React.Component {
             this.props.listening
         ) {
             this.props.recognition.lang = 'he-IL';
-
+            let searchHistory;
+            searchHistory = this.props.messages.reverse();
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -117,7 +118,7 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.props.messages.reverse().map(message => {
+                                    {searchHistory.map(message => {
                                         if (message.get('video')) {
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
