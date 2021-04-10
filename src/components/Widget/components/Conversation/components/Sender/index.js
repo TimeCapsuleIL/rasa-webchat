@@ -44,13 +44,13 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
+        if (this.props.messages.length !== prevProps.messages.length) {
+            this.setState({ showSearchHistory: false });
+        }
     }
 
     componentDidUpdate(prevProps) {
         // scrollToBottom();
-        if (this.props.messages.length !== prevProps.messages.length) {
-            this.setState({ showSearchHistory: false });
-        }
     }
 
     handleShowSearchHistory() {
