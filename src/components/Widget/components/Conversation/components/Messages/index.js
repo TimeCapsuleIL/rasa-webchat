@@ -157,8 +157,7 @@ class Messages extends Component {
 
             groups.push(group); // finally push last group of messages.
 
-            let showThisMessage = [];
-
+            let showThisMessage = [groups[groups.length - 1]];
             let selectedIndex;
             groups.forEach((item, index) => {
                 item.messages.forEach(message => {
@@ -170,10 +169,7 @@ class Messages extends Component {
 
             if (selectedIndex) {
                 showThisMessage = [groups[selectedIndex]];
-            } else {
-                showThisMessage = [groups[groups.length - 1]];
             }
-
             // if (!this.props.displayMsgIndex.videoUrl) {
             //     showThisMessage = [groups[groups.length - 1]];
             // } else {
