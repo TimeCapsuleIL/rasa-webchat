@@ -170,7 +170,7 @@ class Messages extends Component {
             if (selectedIndex) {
                 showThisMessage = [groups[selectedIndex]];
             } else {
-                showThisMessage = [groups[groups.length - 1]];
+                showThisMessage = [groups[0]];
             }
             // if (!this.props.displayMsgIndex.videoUrl) {
             //     showThisMessage = [groups[groups.length - 1]];
