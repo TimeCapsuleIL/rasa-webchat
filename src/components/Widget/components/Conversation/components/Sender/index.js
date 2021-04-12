@@ -123,9 +123,14 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.props.messages.reverse().map((message) => {
+                                    {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            console.log('history message', message);
+                                            if (
+                                                messages[index + 1] &&
+                                                messages[index + 1].get('chosenReply')
+                                            ) {
+                                                console.log('history message', message);
+                                            }
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
                                                 message.get('video') ===
