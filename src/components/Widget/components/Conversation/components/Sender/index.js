@@ -130,13 +130,10 @@ class Sender extends React.Component {
                                             //     'history message reply',
                                             //     getChosenReply(index + 1)
                                             // );
-                                            console.log(
-                                                'history message + 1',
-                                                this.props.messages[index + 1]
-                                            );
+
                                             console.log('hm index', index);
-                                            console.lo('hm item', message);
-                                            console.lo('hm homerun', getChosenReply(index));
+                                            console.log('hm item', message);
+                                            console.log('hm homerun', getChosenReply(index));
                                             // if (
                                             //     this.props.messages[index + 1] &&
                                             //     getChosenReply(index + 1)
