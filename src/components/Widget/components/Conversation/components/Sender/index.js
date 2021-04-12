@@ -126,8 +126,8 @@ class Sender extends React.Component {
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
                                             if (
-                                                messages[index + 1] &&
-                                                messages[index + 1].get('chosenReply')
+                                                this.props.messages[index + 1] &&
+                                                this.props.messages[index + 1].get('chosenReply')
                                             ) {
                                                 console.log('history message', message);
                                             }
