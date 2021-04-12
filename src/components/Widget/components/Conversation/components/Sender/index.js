@@ -124,16 +124,13 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
+                                    {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
+                                        if (message.get('chosenReply')) {
+                                            console.log(message.get('chosenReply'));
+                                        }
                                         if (message.get('video')) {
-                                            // console.log(
-                                            //     'history message reply',
-                                            //     getChosenReply(index + 1)
-                                            // );
-
-                                            console.log('hm index', index);
                                             console.log('hm item', message);
-                                            console.log('hm homerun', getChosenReply(index));
                                             // if (
                                             //     this.props.messages[index + 1] &&
                                             //     getChosenReply(index + 1)
