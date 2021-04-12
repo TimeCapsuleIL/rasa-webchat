@@ -75,6 +75,7 @@ class Sender extends React.Component {
             this.props.listening
         ) {
             this.props.recognition.lang = 'he-IL';
+            const { getChosenReply } = this.props;
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -127,9 +128,12 @@ class Sender extends React.Component {
                                         if (message.get('video')) {
                                             if (
                                                 this.props.messages[index + 1] &&
-                                                this.props.messages[index + 1].get('chosenReply')
+                                                getChosenReply(index + 1)
                                             ) {
-                                                console.log('history message', message);
+                                                console.log(
+                                                    'history message',
+                                                    getChosenReply(index + 1)
+                                                );
                                             }
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
@@ -255,6 +259,7 @@ Sender.propTypes = {
     resetTranscript: PropTypes.func,
     changeDisplayMsgIndex: PropTypes.func,
     displayMsgIndex: PropTypes.string,
+    getChosenReply: PropTypes.func,
 };
 
 const options = {
