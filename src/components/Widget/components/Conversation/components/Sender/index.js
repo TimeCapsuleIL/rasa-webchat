@@ -128,9 +128,11 @@ class Sender extends React.Component {
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('chosenReply')) {
                                             console.log(message.get('chosenReply'));
+                                            console.log('chosenReply index', index);
                                         }
                                         if (message.get('video')) {
                                             console.log('hm item', message);
+                                            console.log('video index', index);
                                             // if (
                                             //     this.props.messages[index + 1] &&
                                             //     getChosenReply(index + 1)
