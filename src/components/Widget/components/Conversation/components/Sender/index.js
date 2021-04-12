@@ -126,20 +126,26 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
+                                            // console.log(
+                                            //     'history message reply',
+                                            //     getChosenReply(index + 1)
+                                            // );
                                             console.log(
-                                                'history message reply',
-                                                getChosenReply(index + 1)
+                                                'history message + 1',
+                                                this.props.messages[index + 1]
                                             );
-                                            console.log('history message', index + 1);
-                                            if (
-                                                this.props.messages[index + 1] &&
-                                                getChosenReply(index + 1)
-                                            ) {
-                                                console.log(
-                                                    'history message',
-                                                    getChosenReply(index + 1)
-                                                );
-                                            }
+                                            console.log('hm index', index);
+                                            console.lo('hm item', message);
+                                            console.lo('hm homerun', getChosenReply(index));
+                                            // if (
+                                            //     this.props.messages[index + 1] &&
+                                            //     getChosenReply(index + 1)
+                                            // ) {
+                                            //     console.log(
+                                            //         'history message',
+                                            //         getChosenReply(index + 1)
+                                            //     );
+                                            // }
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
                                                 message.get('video') ===
@@ -244,6 +250,7 @@ class Sender extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    getChosenReply: (id) => state.messages.get(id).get('chosenReply'),
     messages: state.messages,
     displayMsgIndex: state.displayMsgIndex,
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
