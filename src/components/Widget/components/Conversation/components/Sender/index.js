@@ -126,6 +126,11 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
+                                            console.log(
+                                                'history message reply',
+                                                getChosenReply(index + 1)
+                                            );
+                                            console.log('history message', index + 1);
                                             if (
                                                 this.props.messages[index + 1] &&
                                                 getChosenReply(index + 1)
