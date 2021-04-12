@@ -127,13 +127,12 @@ class Sender extends React.Component {
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('chosenReply')) {
-                                            let vidoUrl = this.props.messages[index + 1].get(
-                                                'video'
-                                            );
+                                            let reversed = this.props.messages.reverse();
+                                            let videoUrl = reversed[index + 1].get('video');
                                             return (
                                                 <div
-                                                    key={vidoUrl}
-                                                    id={vidoUrl}
+                                                    key={videoUrl}
+                                                    id={videoUrl}
                                                     className={`search-history-item search-history-item-${selected}`}
                                                     onClick={(e) => this.handleClick(e)}
                                                 >
