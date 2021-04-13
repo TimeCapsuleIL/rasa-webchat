@@ -134,30 +134,37 @@ class Sender extends React.Component {
                                         if (message.get('video')) {
                                             foundVideo = message;
                                             foundVideoIndex = index;
+                                            this.props.messages
+                                                .reverse()
+                                                .map((messageTwo, indexTwo) => {
+                                                    if (
+                                                        foundVideo &&
+                                                        indexTwo > foundVideoIndex &&
+                                                        !foundReply &&
+                                                        message.get('chosenReply')
+                                                    ) {
+                                                        foundReply = messageTwo;
+                                                    }
+                                                    let selected =
+                                                        foundVideo.get('video') ===
+                                                        this.props.displayMsgIndex.videoUrl
+                                                            ? true
+                                                            : false;
+                                                    return (
+                                                        foundVideo &&
+                                                        foundReply && (
+                                                            <div
+                                                                key={foundVideo.get('video')}
+                                                                id={foundVideo.get('video')}
+                                                                className={`search-history-item search-history-item-${selected}`}
+                                                                onClick={(e) => this.handleClick(e)}
+                                                            >
+                                                                {foundReply.get('chosenReply')}
+                                                            </div>
+                                                        )
+                                                    );
+                                                });
                                         }
-                                        if (
-                                            foundVideo &&
-                                            index > foundVideoIndex &&
-                                            !foundReply &&
-                                            message.get('chosenReply')
-                                        ) {
-                                            foundReply = message;
-                                        }
-                                        let selected =
-                                            foundVideo.get('video') ===
-                                            this.props.displayMsgIndex.videoUrl
-                                                ? true
-                                                : false;
-                                        return (
-                                            <div
-                                                key={foundVideo.get('video')}
-                                                id={foundVideo.get('video')}
-                                                className={`search-history-item search-history-item-${selected}`}
-                                                onClick={(e) => this.handleClick(e)}
-                                            >
-                                                {foundReply.get('chosenReply')}
-                                            </div>
-                                        );
 
                                         // this.props.messages['_tail']['array']
                                         //     .reverse()
