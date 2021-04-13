@@ -133,7 +133,7 @@ class Sender extends React.Component {
                                                     index !==
                                                         this.props.messages['_tail']['array']
                                                             .length -
-                                                            2
+                                                            1
                                                 ) {
                                                     let selected =
                                                         message.get('video') ===
@@ -142,14 +142,14 @@ class Sender extends React.Component {
                                                             : false;
                                                     let chosenReply = this.props.messages['_tail'][
                                                         'array'
-                                                    ][index - 1].get('chosenReply');
+                                                    ][index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
                                                         this.props.messages['_tail']['array'],
                                                         chosenReply,
                                                         this.props.messages['_tail']['array'][
-                                                            index - 1
-                                                        ]
+                                                            index + 3
+                                                        ].get('chosenReply')
                                                     );
                                                     return (
                                                         <div
@@ -164,7 +164,7 @@ class Sender extends React.Component {
                                                     );
                                                 }
                                             })}
-                                    <div
+                                    {/* <div
                                         key={this.props.messages['_tail']['array'][
                                             this.props.messages['_tail']['array'].length - 2
                                         ].get('video')}
@@ -175,7 +175,7 @@ class Sender extends React.Component {
                                         onClick={(e) => this.handleClick(e)}
                                     >
                                         {'להתחיל'}
-                                    </div>
+                                    </div> */}
                                 </div>
                             )}
                         </div>
