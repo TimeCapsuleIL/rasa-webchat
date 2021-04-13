@@ -140,18 +140,7 @@ class Sender extends React.Component {
                                                 chosenReply,
                                                 this.props.messages
                                             );
-                                            if (index === 1) {
-                                                return (
-                                                    <div
-                                                        key={message.get('video')}
-                                                        id={message.get('video')}
-                                                        className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {'להתחיל'}
-                                                    </div>
-                                                );
-                                            } else if (chosenReply) {
+                                            if (index !== 1) {
                                                 return (
                                                     <div
                                                         key={message.get('video')}
@@ -166,6 +155,14 @@ class Sender extends React.Component {
                                             }
                                         }
                                     })}
+                                    <div
+                                        key={this.props.messages.reverse()[1].message.get('video')}
+                                        id={this.props.messages.reverse()[1].message.get('video')}
+                                        className={`search-history-item search-history-item-${selected}`}
+                                        onClick={(e) => this.handleClick(e)}
+                                    >
+                                        {'להתחיל'}
+                                    </div>
                                 </div>
                             )}
                         </div>
