@@ -129,7 +129,6 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
-
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
                                             this.state.videoUrlArray.push(message);
@@ -178,9 +177,9 @@ class Sender extends React.Component {
                                         // );
                                         // }
                                     })}
-                                    {this.state.videoUrlArray.map((video, index)=>{
-                                         let selected =
-                                           video.get('video') ===
+                                    {this.state.videoUrlArray.map((video, index) => {
+                                        let selected =
+                                            video.get('video') ===
                                             this.props.displayMsgIndex.videoUrl
                                                 ? true
                                                 : false;
@@ -199,13 +198,10 @@ class Sender extends React.Component {
                                                 className={`search-history-item search-history-item-${selected}`}
                                                 onClick={(e) => this.handleClick(e)}
                                             >
-                                                {
-                                                   chosenReplyArray[index].get("chosenReply")
-                                                }
+                                                {chosenReplyArray[index].get('chosenReply')}
                                             </div>
                                         );
-                                        }
-                                    }}
+                                    })}
                                 </div>
                             )}
                         </div>
