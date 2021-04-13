@@ -126,47 +126,67 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
                                         console.log(this.props.messages.reverse());
-                                        console.log(
-                                            this.props.messages.reverse()['_tail']['array'][
-                                                index - 1
-                                            ]
-                                        );
+
                                         if (message.get('video')) {
-                                            let foundVideo;
-                                            let foundVideoIndex;
-                                            let foundReply;
-                                            foundVideo = message;
-                                            foundVideoIndex = index;
-                                            this.props.messages
-                                                .reverse()
-                                                .map((messageTwo, indexTwo) => {
-                                                    if (
-                                                        foundVideo &&
-                                                        indexTwo > foundVideoIndex &&
-                                                        !foundReply &&
-                                                        messageTwo.get('chosenReply')
-                                                    ) {
-                                                        foundReply = messageTwo;
-                                                    }
-                                                });
+                                            console.log(
+                                                this.props.messages.reverse()['_tail']['array'][
+                                                    index - 1
+                                                ]
+                                            );
                                             let selected =
-                                                foundVideo.get('video') ===
+                                                message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
+                                            let chosenReply = this.props.messages.reverse()[
+                                                '_tail'
+                                            ]['array'][index - 1];
                                             return (
-                                                foundVideo &&
-                                                foundReply && (
-                                                    <div
-                                                        key={foundVideo.get('video')}
-                                                        id={foundVideo.get('video')}
-                                                        className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {foundReply.get('chosenReply')}
-                                                    </div>
-                                                )
+                                                <div
+                                                    key={message.get('video')}
+                                                    id={message.get('video')}
+                                                    className={`search-history-item search-history-item-${selected}`}
+                                                    onClick={(e) => this.handleClick(e)}
+                                                >
+                                                    {chosenReply && chosenReply}
+                                                    {!chosenReply && להתחיל}
+                                                </div>
                                             );
+                                            // let foundVideo;
+                                            // let foundVideoIndex;
+                                            // let foundReply;
+                                            // foundVideo = message;
+                                            // foundVideoIndex = index;
+                                            // this.props.messages
+                                            //     .reverse()
+                                            //     .map((messageTwo, indexTwo) => {
+                                            //         if (
+                                            //             foundVideo &&
+                                            //             indexTwo > foundVideoIndex &&
+                                            //             !foundReply &&
+                                            //             messageTwo.get('chosenReply')
+                                            //         ) {
+                                            //             foundReply = messageTwo;
+                                            //         }
+                                            //     });
+                                            // let selected =
+                                            //     foundVideo.get('video') ===
+                                            //     this.props.displayMsgIndex.videoUrl
+                                            //         ? true
+                                            //         : false;
+                                            // return (
+                                            //     foundVideo &&
+                                            //     foundReply && (
+                                            //         <div
+                                            //             key={foundVideo.get('video')}
+                                            //             id={foundVideo.get('video')}
+                                            //             className={`search-history-item search-history-item-${selected}`}
+                                            //             onClick={(e) => this.handleClick(e)}
+                                            //         >
+                                            //             {foundReply.get('chosenReply')}
+                                            //         </div>
+                                            //     )
+                                            // );
                                         }
                                     })}
                                 </div>
