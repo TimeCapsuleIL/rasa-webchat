@@ -149,7 +149,7 @@ class Sender extends React.Component {
                                                     onClick={(e) => this.handleClick(e)}
                                                 >
                                                     {chosenReply && chosenReply}
-                                                    {!chosenReply && להתחיל}
+                                                    {!chosenReply && 'להתחיל'}
                                                 </div>
                                             );
                                             // let foundVideo;
