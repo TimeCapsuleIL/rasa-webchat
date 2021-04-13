@@ -133,7 +133,8 @@ class Sender extends React.Component {
                                                     index !==
                                                         this.props.messages['_tail']['array']
                                                             .length -
-                                                            1
+                                                            1 &&
+                                                    index !== 0
                                                 ) {
                                                     let selected =
                                                         message.get('video') ===
@@ -142,13 +143,13 @@ class Sender extends React.Component {
                                                             : false;
                                                     let chosenReply = this.props.messages['_tail'][
                                                         'array'
-                                                    ][index + 4].get('chosenReply');
+                                                    ][index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
                                                         this.props.messages['_tail']['array'],
                                                         chosenReply,
                                                         this.props.messages['_tail']['array'][
-                                                            index + 4
+                                                            index + 3
                                                         ].get('chosenReply')
                                                     );
                                                     return (
