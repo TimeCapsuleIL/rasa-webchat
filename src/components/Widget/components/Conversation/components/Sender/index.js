@@ -128,54 +128,47 @@ class Sender extends React.Component {
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('chosenReply')) {
                                             console.log('chosenReply', index, message);
+                                        }
+                                        if (message.get('video')) {
+                                            console.log('hm item', message);
+                                            console.log('video index', index);
+                                            console.log(
+                                                'video plus one',
+                                                this.props.messages.reversed()[index + 1]
+                                            );
+                                            if (
+                                                this.props.messages[index + 1] &&
+                                                getChosenReply(index + 1)
+                                            ) {
+                                                console.log(
+                                                    'history message',
+                                                    getChosenReply(index + 1)
+                                                );
+                                            }
+                                            let lastSlash = message.get('video').lastIndexOf('/');
+                                            let selected =
+                                                message.get('video') ===
+                                                this.props.displayMsgIndex.videoUrl
+                                                    ? true
+                                                    : false;
+                                            let title = message
+                                                .get('video')
+                                                .slice(lastSlash)
+                                                .replace('.mp4', '')
+                                                .replace(/_/g, ' ')
+                                                .replace('/', '')
+                                                .replace('.', ': ');
 
                                             return (
                                                 <div
-                                                    key={videoUrl}
-                                                    id={videoUrl}
+                                                    key={message.get('video')}
+                                                    id={message.get('video')}
                                                     className={`search-history-item search-history-item-${selected}`}
                                                     onClick={(e) => this.handleClick(e)}
                                                 >
                                                     {title}
                                                 </div>
                                             );
-                                        }
-                                        if (message.get('video')) {
-                                            console.log('hm item', message);
-                                            console.log('video index', index);
-                                            // if (
-                                            //     this.props.messages[index + 1] &&
-                                            //     getChosenReply(index + 1)
-                                            // ) {
-                                            //     console.log(
-                                            //         'history message',
-                                            //         getChosenReply(index + 1)
-                                            //     );
-                                            // }
-                                            // let lastSlash = message.get('video').lastIndexOf('/');
-                                            // let selected =
-                                            //     message.get('video') ===
-                                            //     this.props.displayMsgIndex.videoUrl
-                                            //         ? true
-                                            //         : false;
-                                            // let title = message
-                                            //     .get('video')
-                                            //     .slice(lastSlash)
-                                            //     .replace('.mp4', '')
-                                            //     .replace(/_/g, ' ')
-                                            //     .replace('/', '')
-                                            //     .replace('.', ': ');
-
-                                            // return (
-                                            //     <div
-                                            //         key={message.get('video')}
-                                            //         id={message.get('video')}
-                                            //         className={`search-history-item search-history-item-${selected}`}
-                                            //         onClick={(e) => this.handleClick(e)}
-                                            //     >
-                                            //         {title}
-                                            //     </div>
-                                            // );
                                         }
                                     })}
                                 </div>
