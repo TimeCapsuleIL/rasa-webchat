@@ -127,62 +127,42 @@ class Sender extends React.Component {
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            console.log(
-                                                'video plus one',
-                                                this.props.messages['_tail']['array'][index][
-                                                    '_root'
-                                                ]['nodes'][4]['entry']
-                                            );
-                                            // this.props.messages['_tail']['array'][index]['_root'][
-                                            //     'nodes'
-                                            // ].map((item) => {
-                                            //     if (item['entry'][1]) {
-                                            //         let selected =
-                                            //             message.get('video') ===
-                                            //             this.props.displayMsgIndex.videoUrl
-                                            //                 ? true
-                                            //                 : false;
-                                            //         return (
-                                            //             <div
-                                            //                 key={message.get('video')}
-                                            //                 id={message.get('video')}
-                                            //                 className={`search-history-item search-history-item-${selected}`}
-                                            //                 onClick={(e) => this.handleClick(e)}
-                                            //             >
-                                            //                 {item['entry'][1]}
-                                            //             </div>
-                                            //         );
-                                            //     }
-                                            // });
+                                            this.props.messages['_tail']['array'][index]['_root'][
+                                                'nodes'
+                                            ].map((item) => {
+                                                if (item['entry']) {
+                                                    console.log(item['entry'][1]);
+                                                }
+                                            });
 
                                             // let lastSlash = message.get('video').lastIndexOf('/');
-                                            let selected =
-                                                message.get('video') ===
-                                                this.props.displayMsgIndex.videoUrl
-                                                    ? true
-                                                    : false;
-                                            // let title = message
-                                            //     .get('video')
-                                            //     .slice(lastSlash)
-                                            //     .replace('.mp4', '')
-                                            //     .replace(/_/g, ' ')
-                                            //     .replace('/', '')
-                                            //     .replace('.', ': ');
+                                            // let selected =
+                                            //     message.get('video') ===
+                                            //     this.props.displayMsgIndex.videoUrl
+                                            //         ? true
+                                            //         : false;
+                                            // // let title = message
+                                            // //     .get('video')
+                                            // //     .slice(lastSlash)
+                                            // //     .replace('.mp4', '')
+                                            // //     .replace(/_/g, ' ')
+                                            // //     .replace('/', '')
+                                            // //     .replace('.', ': ');
 
-                                            return (
-                                                <div
-                                                    key={message.get('video')}
-                                                    id={message.get('video')}
-                                                    className={`search-history-item search-history-item-${selected}`}
-                                                    onClick={(e) => this.handleClick(e)}
-                                                >
-                                                    {
-                                                        this.props.messages['_tail']['array'][
-                                                            index
-                                                        ]['_root']['nodes'][4]['entry'][1]
-                                                    }
-                                                </div>
-                                            );
+                                            // return (
+                                            //     <div
+                                            //         key={message.get('video')}
+                                            //         id={message.get('video')}
+                                            //         className={`search-history-item search-history-item-${selected}`}
+                                            //         onClick={(e) => this.handleClick(e)}
+                                            //     >
+                                            //         {
+                                            //             this.props.messages['_tail']['array'][
+                                            //                 index
+                                            //             ]['_root']['nodes'][4]['entry'][1]
+                                            //         }
+                                            //     </div>
+                                            // );
                                         }
                                     })}
                                 </div>
