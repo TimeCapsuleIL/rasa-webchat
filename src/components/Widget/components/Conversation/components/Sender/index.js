@@ -158,7 +158,7 @@ class Sender extends React.Component {
                                     <div
                                         key={this.props.messages.reverse()[1].message.get('video')}
                                         id={this.props.messages.reverse()[1].message.get('video')}
-                                        className={`search-history-item search-history-item-${selected}`}
+                                        className={`search-history-item search-history-item-false`}
                                         onClick={(e) => this.handleClick(e)}
                                     >
                                         {'להתחיל'}
