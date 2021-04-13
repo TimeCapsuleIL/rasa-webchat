@@ -138,7 +138,7 @@ class Sender extends React.Component {
                                                 index,
                                                 this.props.messages.size,
                                                 chosenReply,
-                                                this.props.messages.reversed()
+                                                this.props.messages.reverse()
                                             );
                                             return (
                                                 chosenReply && (
