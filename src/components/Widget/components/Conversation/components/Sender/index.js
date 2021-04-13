@@ -75,7 +75,7 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-
+            let reversedArray = this.props.messages.reverse();
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -124,22 +124,22 @@ class Sender extends React.Component {
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {this.props.messages.reverse().map((message, index) => {
+                                    {reversedArray.map((message, index) => {
                                         if (message.get('video')) {
                                             let selected =
                                                 message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = this.props.messages
-                                                .reverse()
-                                                ['_tail']['array'][index - 1].get('chosenReply');
-                                            console.log(
-                                                index,
-                                                this.props.messages.size,
-                                                chosenReply,
-                                                this.props.messages
-                                            );
+                                            let chosenReply = reversedArray['_tail']['array'][
+                                                index - 1
+                                            ].get('chosenReply');
+                                            // console.log(
+                                            //     index,
+                                            //     this.props.messages.size,
+                                            //     chosenReply,
+                                            //     this.props.messages
+                                            // );
                                             if (index !== 1) {
                                                 return (
                                                     <div
@@ -156,12 +156,8 @@ class Sender extends React.Component {
                                         }
                                     })}
                                     <div
-                                        key={this.props.messages
-                                            .reverse()
-                                            ['_tail']['array'][1].get('video')}
-                                        id={this.props.messages
-                                            .reverse()
-                                            ['_tail']['array'][1].get('video')}
+                                        key={reversedArray['_tail']['array'][1].get('video')}
+                                        id={reversedArray['_tail']['array'][1].get('video')}
                                         className={`search-history-item search-history-item-false`}
                                         onClick={(e) => this.handleClick(e)}
                                     >
