@@ -127,21 +127,18 @@ class Sender extends React.Component {
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('chosenReply')) {
-                                            let reversed = this.props.messages.reverse();
-                                            let videoUrl = reversed[index + 1].get('video');
-                                            console.log(reversed[index + 1]);
-                                            if (videoUrl) {
-                                                return (
-                                                    <div
-                                                        key={videoUrl}
-                                                        id={videoUrl}
-                                                        className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {title}
-                                                    </div>
-                                                );
-                                            }
+                                            console.log('chosenReply', index, message);
+
+                                            return (
+                                                <div
+                                                    key={videoUrl}
+                                                    id={videoUrl}
+                                                    className={`search-history-item search-history-item-${selected}`}
+                                                    onClick={(e) => this.handleClick(e)}
+                                                >
+                                                    {title}
+                                                </div>
+                                            );
                                         }
                                         if (message.get('video')) {
                                             console.log('hm item', message);
