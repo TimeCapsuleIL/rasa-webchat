@@ -132,16 +132,21 @@ class Sender extends React.Component {
                                                 'nodes'
                                             ]
                                         ) {
-                                            this.props.messages['_tail']['array'][index]['_root'][
-                                                'nodes'
-                                            ].map((item) => {
-                                                if (
-                                                    item['entry'] &&
-                                                    item['entry'][0] === 'chosenReply'
-                                                ) {
-                                                    console.log(item['entry'][1]);
+                                            this.props.messages['_tail']['array'].map((item) => {
+                                                if (item.get('video')) {
+                                                    console.log(item.get('video'));
                                                 }
                                             });
+                                            // this.props.messages['_tail']['array'][index]['_root'][
+                                            //     'nodes'
+                                            // ].map((item) => {
+                                            //     if (
+                                            //         item['entry'] &&
+                                            //         item['entry'][0] === 'chosenReply'
+                                            //     ) {
+                                            //         console.log(item['entry'][1]);
+                                            //     }
+                                            // });
 
                                             // let lastSlash = message.get('video').lastIndexOf('/');
                                             // let selected =
