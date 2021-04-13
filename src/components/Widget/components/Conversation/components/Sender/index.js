@@ -140,7 +140,7 @@ class Sender extends React.Component {
                                                         foundVideo &&
                                                         indexTwo > foundVideoIndex &&
                                                         !foundReply &&
-                                                        message.get('chosenReply')
+                                                        messageTwo.get('chosenReply')
                                                     ) {
                                                         foundReply = messageTwo;
                                                     }
