@@ -127,15 +127,15 @@ class Sender extends React.Component {
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            this.props.messages['_tail']['array'].map(
-                                                (item, indexTwo) => {
+                                            this.props.messages['_tail']['array']
+                                                .reverse()
+                                                .map((item, indexTwo) => {
                                                     if (item.get('chosenReply')) {
                                                         console.log(index, indexTwo);
 
                                                         console.log(item.get('chosenReply'));
                                                     }
-                                                }
-                                            );
+                                                });
 
                                             // let lastSlash = message.get('video').lastIndexOf('/');
                                             // let selected =
