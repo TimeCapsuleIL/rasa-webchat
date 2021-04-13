@@ -125,14 +125,7 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
-                                        console.log(this.props.messages.reverse());
-
                                         if (message.get('video')) {
-                                            console.log(
-                                                this.props.messages.reverse()['_tail']['array'][
-                                                    index - 1
-                                                ]
-                                            );
                                             let selected =
                                                 message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
@@ -148,45 +141,10 @@ class Sender extends React.Component {
                                                     className={`search-history-item search-history-item-${selected}`}
                                                     onClick={(e) => this.handleClick(e)}
                                                 >
-                                                    {chosenReply && chosenReply}
                                                     {!chosenReply && 'להתחיל'}
+                                                    {chosenReply && chosenReply}
                                                 </div>
                                             );
-                                            // let foundVideo;
-                                            // let foundVideoIndex;
-                                            // let foundReply;
-                                            // foundVideo = message;
-                                            // foundVideoIndex = index;
-                                            // this.props.messages
-                                            //     .reverse()
-                                            //     .map((messageTwo, indexTwo) => {
-                                            //         if (
-                                            //             foundVideo &&
-                                            //             indexTwo > foundVideoIndex &&
-                                            //             !foundReply &&
-                                            //             messageTwo.get('chosenReply')
-                                            //         ) {
-                                            //             foundReply = messageTwo;
-                                            //         }
-                                            //     });
-                                            // let selected =
-                                            //     foundVideo.get('video') ===
-                                            //     this.props.displayMsgIndex.videoUrl
-                                            //         ? true
-                                            //         : false;
-                                            // return (
-                                            //     foundVideo &&
-                                            //     foundReply && (
-                                            //         <div
-                                            //             key={foundVideo.get('video')}
-                                            //             id={foundVideo.get('video')}
-                                            //             className={`search-history-item search-history-item-${selected}`}
-                                            //             onClick={(e) => this.handleClick(e)}
-                                            //         >
-                                            //             {foundReply.get('chosenReply')}
-                                            //         </div>
-                                            //     )
-                                            // );
                                         }
                                     })}
                                 </div>

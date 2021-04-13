@@ -18,6 +18,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    overflow: visible;
+    height:fit-content
 }
 
 .search-history-wrapper {
@@ -30,6 +32,7 @@
     z-index: 100;
     height: 150px;
     direction: rtl;
+    overflow: scroll;
 }
 
 .search-history-item {
@@ -58,6 +61,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    align-self: center;
 
     /* design */
     width: 140px;
