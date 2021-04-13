@@ -144,25 +144,25 @@ class Sender extends React.Component {
                                                     ) {
                                                         foundReply = messageTwo;
                                                     }
-                                                    let selected =
-                                                        foundVideo.get('video') ===
-                                                        this.props.displayMsgIndex.videoUrl
-                                                            ? true
-                                                            : false;
-                                                    return (
-                                                        foundVideo &&
-                                                        foundReply && (
-                                                            <div
-                                                                key={foundVideo.get('video')}
-                                                                id={foundVideo.get('video')}
-                                                                className={`search-history-item search-history-item-${selected}`}
-                                                                onClick={(e) => this.handleClick(e)}
-                                                            >
-                                                                {foundReply.get('chosenReply')}
-                                                            </div>
-                                                        )
-                                                    );
                                                 });
+                                            let selected =
+                                                foundVideo.get('video') ===
+                                                this.props.displayMsgIndex.videoUrl
+                                                    ? true
+                                                    : false;
+                                            return (
+                                                foundVideo &&
+                                                foundReply && (
+                                                    <div
+                                                        key={foundVideo.get('video')}
+                                                        id={foundVideo.get('video')}
+                                                        className={`search-history-item search-history-item-${selected}`}
+                                                        onClick={(e) => this.handleClick(e)}
+                                                    >
+                                                        {foundReply.get('chosenReply')}
+                                                    </div>
+                                                )
+                                            );
                                         }
 
                                         // this.props.messages['_tail']['array']
