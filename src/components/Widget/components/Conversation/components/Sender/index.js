@@ -137,6 +137,11 @@ class Sender extends React.Component {
                                                 'nodes'
                                             ].map((item) => {
                                                 if (item['entry'][1]) {
+                                                    let selected =
+                                                        message.get('video') ===
+                                                        this.props.displayMsgIndex.videoUrl
+                                                            ? true
+                                                            : false;
                                                     return (
                                                         <div
                                                             key={message.get('video')}
