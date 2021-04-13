@@ -138,9 +138,9 @@ class Sender extends React.Component {
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = this.props.messages.reverse()[
-                                                '_tail'
-                                            ]['array'][index - 1];
+                                            let chosenReply = this.props.messages
+                                                .reverse()
+                                                ['_tail']['array'][index - 1].get('chosenReply');
                                             return (
                                                 <div
                                                     key={message.get('video')}
