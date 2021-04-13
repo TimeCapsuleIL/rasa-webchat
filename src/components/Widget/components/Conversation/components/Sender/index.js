@@ -134,17 +134,13 @@ class Sender extends React.Component {
                                             console.log('video index', index);
                                             console.log(
                                                 'video plus one',
-                                                this.props.messages['_tail']['array']
+                                                this.props.messages['_tail']['array'][index],
+                                                this.props.messages['_tail']['array'][index].get(
+                                                    'video'
+                                                ),
+                                                this.props.messages['_tail']['array'][index + 1]
                                             );
-                                            if (
-                                                this.props.messages[index + 1] &&
-                                                getChosenReply(index + 1)
-                                            ) {
-                                                console.log(
-                                                    'history message',
-                                                    getChosenReply(index + 1)
-                                                );
-                                            }
+
                                             let lastSlash = message.get('video').lastIndexOf('/');
                                             let selected =
                                                 message.get('video') ===
