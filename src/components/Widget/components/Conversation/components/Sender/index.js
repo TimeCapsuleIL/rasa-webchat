@@ -138,10 +138,21 @@ class Sender extends React.Component {
                                                 index,
                                                 this.props.messages.size,
                                                 chosenReply,
-                                                this.props.messages.reverse()
+                                                this.props.messages
                                             );
-                                            return (
-                                                chosenReply && (
+                                            if (index === 1) {
+                                                return (
+                                                    <div
+                                                        key={message.get('video')}
+                                                        id={message.get('video')}
+                                                        className={`search-history-item search-history-item-${selected}`}
+                                                        onClick={(e) => this.handleClick(e)}
+                                                    >
+                                                        {'להתחיל'}
+                                                    </div>
+                                                );
+                                            } else if (chosenReply) {
+                                                return (
                                                     <div
                                                         key={message.get('video')}
                                                         id={message.get('video')}
@@ -151,8 +162,8 @@ class Sender extends React.Component {
                                                         {/* {!chosenReply && 'להתחיל'} */}
                                                         {chosenReply}
                                                     </div>
-                                                )
-                                            );
+                                                );
+                                            }
                                         }
                                     })}
                                 </div>
