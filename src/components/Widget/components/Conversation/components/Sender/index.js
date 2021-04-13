@@ -127,10 +127,10 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
-                                        let foundVideo;
-                                        let foundVideoIndex;
-                                        let foundReply;
                                         if (message.get('video')) {
+                                            let foundVideo;
+                                            let foundVideoIndex;
+                                            let foundReply;
                                             foundVideo = message;
                                             foundVideoIndex = index;
                                             this.props.messages
