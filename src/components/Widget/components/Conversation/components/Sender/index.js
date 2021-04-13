@@ -132,11 +132,13 @@ class Sender extends React.Component {
                                                 'nodes'
                                             ]
                                         ) {
-                                            this.props.messages['_tail']['array'].map((item) => {
-                                                if (item.get('video')) {
-                                                    console.log(item.get('video'));
+                                            this.props.messages['_tail']['array'].map(
+                                                (item, index) => {
+                                                    if (item.get('chosenReply')) {
+                                                        console.log(item.get('chosenReply'));
+                                                    }
                                                 }
-                                            });
+                                            );
                                             // this.props.messages['_tail']['array'][index]['_root'][
                                             //     'nodes'
                                             // ].map((item) => {
