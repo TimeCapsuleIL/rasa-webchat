@@ -134,9 +134,9 @@ class Sender extends React.Component {
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = reversedArray['_tail']['array'][
-                                                index + 1
-                                            ].get('chosenReply');
+                                            let chosenReply = reversedArray[index + 1].get(
+                                                'chosenReply'
+                                            );
                                             console.log(
                                                 index,
                                                 reversedArray,
@@ -157,12 +157,8 @@ class Sender extends React.Component {
                                         }
                                     })}
                                     <div
-                                        key={reversedArray['_tail']['array'][
-                                            reversedArray.size - 2
-                                        ].get('video')}
-                                        id={reversedArray['_tail']['array'][
-                                            reversedArray.size - 2
-                                        ].get('video')}
+                                        key={reversedArray[reversedArray.length - 2].get('video')}
+                                        id={reversedArray[reversedArray.length - 2].get('video')}
                                         className={`search-history-item search-history-item-false`}
                                         onClick={(e) => this.handleClick(e)}
                                     >
