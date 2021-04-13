@@ -141,8 +141,7 @@ class Sender extends React.Component {
                                                     className={`search-history-item search-history-item-${selected}`}
                                                     onClick={(e) => this.handleClick(e)}
                                                 >
-                                                    {!chosenReply && 'להתחיל'}
-                                                    {chosenReply && chosenReply}
+                                                    {chosenReply ? chosenReply : 'להתחיל'}
                                                 </div>
                                             );
                                         }
