@@ -75,102 +75,112 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-            let reversedArray = this.props.messages.reverse()['_tail']['array'];
-            return (
-                <div className="widget-form-wrapper">
-                    <div className="form-left-element">
-                        <button
-                            onClick={this.handleShowSearchHistory}
-                            className="search-history-button"
-                        >
-                            שאלות קודמות
-                        </button>
-                        <div className="input-form-wrapper">
-                            <form
-                                ref={this.formRef}
-                                className="rw-sender"
-                                onSubmit={this.handleSubmit}
+            let reversedArray;
+            if (this.props.messages) {
+                reversedArray = this.props.messages.reverse()['_tail']['array'];
+            }
+
+            if (reversedArray) {
+                return (
+                    <div className="widget-form-wrapper">
+                        <div className="form-left-element">
+                            <button
+                                onClick={this.handleShowSearchHistory}
+                                className="search-history-button"
                             >
-                                <TextareaAutosize
-                                    type="text"
-                                    minRows={1}
-                                    onKeyDown={this.onEnterPress}
-                                    maxRows={3}
-                                    onChange={this.handleChange}
-                                    className="rw-new-message"
-                                    name="message"
-                                    placeholder={this.props.inputTextFieldHint}
-                                    disabled={this.props.transcript}
-                                    autoFocus
-                                    autoComplete="off"
-                                    value={this.props.transcript}
-                                />
-                                <button
-                                    type="button"
-                                    className="rw-mic"
-                                    onClick={
-                                        this.props.listening
-                                            ? this.props.stopListening
-                                            : this.props.startListening
-                                    }
+                                שאלות קודמות
+                            </button>
+                            <div className="input-form-wrapper">
+                                <form
+                                    ref={this.formRef}
+                                    className="rw-sender"
+                                    onSubmit={this.handleSubmit}
                                 >
-                                    <Mic
-                                        className="rw-mic-icon"
-                                        listening={this.props.listening}
-                                        alt="send"
+                                    <TextareaAutosize
+                                        type="text"
+                                        minRows={1}
+                                        onKeyDown={this.onEnterPress}
+                                        maxRows={3}
+                                        onChange={this.handleChange}
+                                        className="rw-new-message"
+                                        name="message"
+                                        placeholder={this.props.inputTextFieldHint}
+                                        disabled={this.props.transcript}
+                                        autoFocus
+                                        autoComplete="off"
+                                        value={this.props.transcript}
                                     />
-                                </button>
-                            </form>
-                            {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
-                            {this.state.showSearchHistory && (
-                                <div className="search-history-wrapper">
-                                    {reversedArray.map((message, index) => {
-                                        if (
-                                            message.get('video') &&
-                                            index !== reversedArray.size - 2
-                                        ) {
-                                            let selected =
-                                                message.get('video') ===
-                                                this.props.displayMsgIndex.videoUrl
-                                                    ? true
-                                                    : false;
-                                            let chosenReply = reversedArray[index - 1].get(
-                                                'chosenReply'
-                                            );
-                                            console.log(
-                                                index,
-                                                reversedArray,
-                                                chosenReply,
-                                                reversedArray[index - 1]
-                                            );
-                                            return (
-                                                <div
-                                                    key={message.get('video')}
-                                                    id={message.get('video')}
-                                                    className={`search-history-item search-history-item-${selected}`}
-                                                    onClick={(e) => this.handleClick(e)}
-                                                >
-                                                    {/* {!chosenReply && 'להתחיל'} */}
-                                                    {chosenReply}
-                                                </div>
-                                            );
+                                    <button
+                                        type="button"
+                                        className="rw-mic"
+                                        onClick={
+                                            this.props.listening
+                                                ? this.props.stopListening
+                                                : this.props.startListening
                                         }
-                                    })}
-                                    <div
-                                        key={reversedArray[reversedArray.length - 2].get('video')}
-                                        id={reversedArray[reversedArray.length - 2].get('video')}
-                                        className={`search-history-item search-history-item-false`}
-                                        onClick={(e) => this.handleClick(e)}
                                     >
-                                        {'להתחיל'}
+                                        <Mic
+                                            className="rw-mic-icon"
+                                            listening={this.props.listening}
+                                            alt="send"
+                                        />
+                                    </button>
+                                </form>
+                                {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
+                                {this.state.showSearchHistory && (
+                                    <div className="search-history-wrapper">
+                                        {reversedArray.map((message, index) => {
+                                            if (
+                                                message.get('video') &&
+                                                index !== reversedArray.size - 2
+                                            ) {
+                                                let selected =
+                                                    message.get('video') ===
+                                                    this.props.displayMsgIndex.videoUrl
+                                                        ? true
+                                                        : false;
+                                                let chosenReply = reversedArray[index - 1].get(
+                                                    'chosenReply'
+                                                );
+                                                console.log(
+                                                    index,
+                                                    reversedArray,
+                                                    chosenReply,
+                                                    reversedArray[index - 1]
+                                                );
+                                                return (
+                                                    <div
+                                                        key={message.get('video')}
+                                                        id={message.get('video')}
+                                                        className={`search-history-item search-history-item-${selected}`}
+                                                        onClick={(e) => this.handleClick(e)}
+                                                    >
+                                                        {/* {!chosenReply && 'להתחיל'} */}
+                                                        {chosenReply}
+                                                    </div>
+                                                );
+                                            }
+                                        })}
+                                        <div
+                                            key={reversedArray[reversedArray.length - 2].get(
+                                                'video'
+                                            )}
+                                            id={reversedArray[reversedArray.length - 2].get(
+                                                'video'
+                                            )}
+                                            className={`search-history-item search-history-item-false`}
+                                            onClick={(e) => this.handleClick(e)}
+                                        >
+                                            {'להתחיל'}
+                                        </div>
                                     </div>
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
+                        <div className="form-right-element"></div>
                     </div>
-                    <div className="form-right-element"></div>
-                </div>
-            );
+                );
+            }
         } else {
             if (this.props.transcript) {
                 if (!this.state.inputValue) {
