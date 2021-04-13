@@ -134,7 +134,7 @@ class Sender extends React.Component {
                                             console.log('video index', index);
                                             console.log(
                                                 'video plus one',
-                                                this.props.messages.reverse()[index + 1]
+                                                this.props.messages['_tail']['array']
                                             );
                                             if (
                                                 this.props.messages[index + 1] &&
