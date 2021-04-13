@@ -126,29 +126,16 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
-                                        if (
-                                            message.get('video') &&
-                                            this.props.messages['_tail']['array'][index]['_root'][
-                                                'nodes'
-                                            ]
-                                        ) {
+                                        if (message.get('video')) {
                                             this.props.messages['_tail']['array'].map(
-                                                (item, index) => {
+                                                (item, indexTwo) => {
                                                     if (item.get('chosenReply')) {
+                                                        console.log(index, indexTwo);
+
                                                         console.log(item.get('chosenReply'));
                                                     }
                                                 }
                                             );
-                                            // this.props.messages['_tail']['array'][index]['_root'][
-                                            //     'nodes'
-                                            // ].map((item) => {
-                                            //     if (
-                                            //         item['entry'] &&
-                                            //         item['entry'][0] === 'chosenReply'
-                                            //     ) {
-                                            //         console.log(item['entry'][1]);
-                                            //     }
-                                            // });
 
                                             // let lastSlash = message.get('video').lastIndexOf('/');
                                             // let selected =
