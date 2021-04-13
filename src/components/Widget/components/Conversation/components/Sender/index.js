@@ -142,13 +142,13 @@ class Sender extends React.Component {
                                                             : false;
                                                     let chosenReply = this.props.messages['_tail'][
                                                         'array'
-                                                    ][index + 3].get('chosenReply');
+                                                    ][index + 4].get('chosenReply');
                                                     console.log(
                                                         index,
                                                         this.props.messages['_tail']['array'],
                                                         chosenReply,
                                                         this.props.messages['_tail']['array'][
-                                                            index + 3
+                                                            index + 4
                                                         ].get('chosenReply')
                                                     );
                                                     return (
@@ -166,10 +166,10 @@ class Sender extends React.Component {
                                             })}
                                     {/* <div
                                         key={this.props.messages['_tail']['array'][
-                                            this.props.messages['_tail']['array'].length - 2
+                                            this.props.messages['_tail']['array'].length - 1
                                         ].get('video')}
                                         id={this.props.messages['_tail']['array'][
-                                            this.props.messages['_tail']['array'].length - 2
+                                            this.props.messages['_tail']['array'].length - 1
                                         ].get('video')}
                                         className={`search-history-item search-history-item-false`}
                                         onClick={(e) => this.handleClick(e)}
