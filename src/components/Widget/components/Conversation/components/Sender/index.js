@@ -126,24 +126,45 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            let selected =
-                                                message.get('video') ===
-                                                this.props.displayMsgIndex.videoUrl
-                                                    ? true
-                                                    : false;
-                                            let chosenReply = this.props.messages
-                                                .reverse()
-                                                ['_tail']['array'][index - 1].get('chosenReply');
-                                            return (
-                                                <div
-                                                    key={message.get('video')}
-                                                    id={message.get('video')}
-                                                    className={`search-history-item search-history-item-${selected}`}
-                                                    onClick={(e) => this.handleClick(e)}
-                                                >
-                                                    {chosenReply ? chosenReply : 'להתחיל'}
-                                                </div>
-                                            );
+                                            if (
+                                                this.props.messages
+                                                    .reverse()
+                                                    ['_tail']['array'][index - 1].get('chosenReply')
+                                            ) {
+                                                let selected =
+                                                    message.get('video') ===
+                                                    this.props.displayMsgIndex.videoUrl
+                                                        ? true
+                                                        : false;
+                                                let chosenReply = this.props.messages
+                                                    .reverse()
+                                                    ['_tail']['array'][index - 1].get(
+                                                        'chosenReply'
+                                                    );
+                                                if (chosenReply) {
+                                                    return (
+                                                        <div
+                                                            key={message.get('video')}
+                                                            id={message.get('video')}
+                                                            className={`search-history-item search-history-item-${selected}`}
+                                                            onClick={(e) => this.handleClick(e)}
+                                                        >
+                                                            {chosenReply}
+                                                        </div>
+                                                    );
+                                                } else {
+                                                    return (
+                                                        <div
+                                                            key={message.get('video')}
+                                                            id={message.get('video')}
+                                                            className={`search-history-item search-history-item-${selected}`}
+                                                            onClick={(e) => this.handleClick(e)}
+                                                        >
+                                                            {'להתחיל'}
+                                                        </div>
+                                                    );
+                                                }
+                                            }
                                         }
                                     })}
                                 </div>
