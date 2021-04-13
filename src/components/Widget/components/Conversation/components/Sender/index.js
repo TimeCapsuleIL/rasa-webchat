@@ -130,7 +130,10 @@ class Sender extends React.Component {
                                             this.props.messages['_tail']['array'][index]['_root'][
                                                 'nodes'
                                             ].map((item) => {
-                                                if (item['entry']) {
+                                                if (
+                                                    item['entry'] &&
+                                                    item['entry'][0] === 'chosenReply'
+                                                ) {
                                                     console.log(item['entry'][1]);
                                                 }
                                             });
