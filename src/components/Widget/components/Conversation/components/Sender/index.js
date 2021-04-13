@@ -134,11 +134,9 @@ class Sender extends React.Component {
                                             console.log('video index', index);
                                             console.log(
                                                 'video plus one',
-                                                this.props.messages['_tail']['array'][index],
-                                                this.props.messages['_tail']['array'][index].get(
-                                                    'video'
-                                                ),
-                                                this.props.messages['_tail']['array'][index + 1]
+                                                this.props.messages['_tail']['array'][index][
+                                                    '_root'
+                                                ]['nodes']
                                             );
 
                                             let lastSlash = message.get('video').lastIndexOf('/');
