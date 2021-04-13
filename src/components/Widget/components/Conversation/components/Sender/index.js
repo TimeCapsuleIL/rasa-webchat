@@ -135,13 +135,13 @@ class Sender extends React.Component {
                                                     ? true
                                                     : false;
                                             let chosenReply = reversedArray['_tail']['array'][
-                                                index - 1
+                                                index + 1
                                             ].get('chosenReply');
                                             console.log(
                                                 index,
                                                 reversedArray,
                                                 chosenReply,
-                                                reversedArray[index - 1]
+                                                reversedArray[index + 1]
                                             );
                                             return (
                                                 <div
