@@ -15,8 +15,6 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: false };
-        this.state = { videoUrlArray: [] };
-        this.state = { chosenReplyArray: [] };
         this.formRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
@@ -46,14 +44,14 @@ class Sender extends React.Component {
 
     componentDidMount() {
         // scrollToBottom();
-        console.log('sender mount messages', this.props.messages);
+        // console.log('sender mount messages', this.props.messages);
     }
 
     componentDidUpdate(prevProps, prevState) {
         // scrollToBottom();
-        console.log('sender update this.props.messages', this.props.messages);
-        console.log('sender prevProp messages', prevProps.messages);
-        console.log('sender prevState showsearchhistory', prevState.showSearchHistory);
+        // console.log('sender update this.props.messages', this.props.messages);
+        // console.log('sender prevProp messages', prevProps.messages);
+        // console.log('sender prevState showsearchhistory', prevState.showSearchHistory);
         if (prevState.showSearchHistory && this.props.messages.size != prevProps.messages.size) {
             this.setState({ showSearchHistory: false });
         }
@@ -128,35 +126,47 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
+                                    let foundVideo; let foundVideoIndex; let foundReply;
                                     {this.props.messages.reverse().map((message, index) => {
+                                        let foundVideo;
+                                        let foundVideoIndex;
+                                        let foundReply;
                                         if (message.get('video')) {
-                                            this.setState((prevState) => ({
-                                                videoUrlArray: [
-                                                    ...prevState.videoUrlArray,
-                                                    message,
-                                                ],
-                                            }));
+                                            foundVideo = message;
+                                            foundVideoIndex = index;
                                         }
-
-                                        if (message.get('chosenReply')) {
-                                            this.setState((prevState) => ({
-                                                chosenReplyArray: [
-                                                    ...prevState.chosenReplyArray,
-                                                    message,
-                                                ],
-                                            }));
+                                        if (
+                                            foundVideo &&
+                                            index > foundVideoIndex &&
+                                            !foundReply &&
+                                            message.get('chosenReply')
+                                        ) {
+                                            foundReply = message;
                                         }
+                                        let selected =
+                                            foundVideo.get('video') ===
+                                            this.props.displayMsgIndex.videoUrl
+                                                ? true
+                                                : false;
+                                        return (
+                                            <div
+                                                key={foundVideo.get('video')}
+                                                id={foundVideo.get('video')}
+                                                className={`search-history-item search-history-item-${selected}`}
+                                                onClick={(e) => this.handleClick(e)}
+                                            >
+                                                {foundReply.get('chosenReply')}
+                                            </div>
+                                        );
 
                                         // this.props.messages['_tail']['array']
                                         //     .reverse()
                                         //     .map((item, indexTwo) => {
                                         //         if (item.get('chosenReply')) {
                                         //             console.log(index, indexTwo);
-
                                         //             console.log(item.get('chosenReply'));
                                         //         }
                                         //     });
-
                                         // let lastSlash = message.get('video').lastIndexOf('/');
                                         // let selected =
                                         //     message.get('video') ===
@@ -170,7 +180,6 @@ class Sender extends React.Component {
                                         // //     .replace(/_/g, ' ')
                                         // //     .replace('/', '')
                                         // //     .replace('.', ': ');
-
                                         // return (
                                         //     <div
                                         //         key={message.get('video')}
@@ -187,7 +196,7 @@ class Sender extends React.Component {
                                         // );
                                         // }
                                     })}
-                                    {this.state.videoUrlArray.map((video, index) => {
+                                    {/* {this.state.videoUrlArray.map((video, index) => {
                                         let selected =
                                             video.get('video') ===
                                             this.props.displayMsgIndex.videoUrl
@@ -211,7 +220,7 @@ class Sender extends React.Component {
                                                 {chosenReplyArray[index].get('chosenReply')}
                                             </div>
                                         );
-                                    })}
+                                    })} */}
                                 </div>
                             )}
                         </div>
