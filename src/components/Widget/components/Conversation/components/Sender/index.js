@@ -126,43 +126,54 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
                                     {this.props.messages.reverse().map((message, index) => {
-                                        if (message.get('chosenReply')) {
-                                            console.log('chosenReply', index, message);
-                                        }
                                         if (message.get('video')) {
-                                            console.log('hm item', message);
-                                            console.log('video index', index);
                                             console.log(
                                                 'video plus one',
                                                 this.props.messages['_tail']['array'][index][
                                                     '_root'
                                                 ]['nodes']
                                             );
+                                            this.props.messages['_tail']['array'][index]['_root'][
+                                                'nodes'
+                                            ].map((item) => {
+                                                if (item['entry'][1]) {
+                                                    return (
+                                                        <div
+                                                            key={message.get('video')}
+                                                            id={message.get('video')}
+                                                            className={`search-history-item search-history-item-${selected}`}
+                                                            onClick={(e) => this.handleClick(e)}
+                                                        >
+                                                            {item['entry'][1]}
+                                                        </div>
+                                                    );
+                                                }
+                                            });
 
-                                            let lastSlash = message.get('video').lastIndexOf('/');
-                                            let selected =
-                                                message.get('video') ===
-                                                this.props.displayMsgIndex.videoUrl
-                                                    ? true
-                                                    : false;
-                                            let title = message
-                                                .get('video')
-                                                .slice(lastSlash)
-                                                .replace('.mp4', '')
-                                                .replace(/_/g, ' ')
-                                                .replace('/', '')
-                                                .replace('.', ': ');
+                                            // let lastSlash = message.get('video').lastIndexOf('/');
+                                            // let selected =
+                                            //     message.get('video') ===
+                                            //     this.props.displayMsgIndex.videoUrl
+                                            //         ? true
+                                            //         : false;
+                                            // let title = message
+                                            //     .get('video')
+                                            //     .slice(lastSlash)
+                                            //     .replace('.mp4', '')
+                                            //     .replace(/_/g, ' ')
+                                            //     .replace('/', '')
+                                            //     .replace('.', ': ');
 
-                                            return (
-                                                <div
-                                                    key={message.get('video')}
-                                                    id={message.get('video')}
-                                                    className={`search-history-item search-history-item-${selected}`}
-                                                    onClick={(e) => this.handleClick(e)}
-                                                >
-                                                    {title}
-                                                </div>
-                                            );
+                                            // return (
+                                            //     <div
+                                            //         key={message.get('video')}
+                                            //         id={message.get('video')}
+                                            //         className={`search-history-item search-history-item-${selected}`}
+                                            //         onClick={(e) => this.handleClick(e)}
+                                            //     >
+                                            //         {title}
+                                            //     </div>
+                                            // );
                                         }
                                     })}
                                 </div>
