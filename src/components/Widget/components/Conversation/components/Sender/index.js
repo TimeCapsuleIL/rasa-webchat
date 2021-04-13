@@ -128,7 +128,8 @@ class Sender extends React.Component {
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('chosenReply')) {
                                             let reversed = this.props.messages.reverse();
-                                            let videoUrl = reversed[index + 1].get('video');
+                                            // let videoUrl = reversed[index + 1].get('video');
+                                            console.log(reversed[index + 1]);
                                             return (
                                                 <div
                                                     key={videoUrl}
