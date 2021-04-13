@@ -131,12 +131,18 @@ class Sender extends React.Component {
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
                                             this.setState({
-                                                videoUrlArray: [...this.state.myArray, message],
+                                                videoUrlArray: [
+                                                    ...this.state.videoUrlArray,
+                                                    message,
+                                                ],
                                             });
                                         }
                                         if (message.get('chosenReply')) {
                                             this.setState({
-                                                chosenReplyArray: [...this.state.myArray, message],
+                                                chosenReplyArray: [
+                                                    ...this.state.chosenReplyArray,
+                                                    message,
+                                                ],
                                             });
                                         }
 
