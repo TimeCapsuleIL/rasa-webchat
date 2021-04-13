@@ -75,7 +75,7 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-            let reversedArray = this.props.messages.reverse();
+            let reversedArray = this.props.messages.reverse()['_tail']['array'];
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
