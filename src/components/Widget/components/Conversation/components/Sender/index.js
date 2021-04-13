@@ -15,6 +15,8 @@ class Sender extends React.Component {
         // console.log(this.props.messages);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: false };
+        this.state = { videoUrlArray: [] };
+        this.state = { chosenReplyArray: [] };
         this.formRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
@@ -76,6 +78,8 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
+            // let videoUrlArray = [];
+            // let chosenReplyArray = [];
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -125,48 +129,83 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {console.log('hm messages', this.props.messages)}
+
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            this.props.messages['_tail']['array']
-                                                .reverse()
-                                                .map((item, indexTwo) => {
-                                                    if (item.get('chosenReply')) {
-                                                        console.log(index, indexTwo);
-
-                                                        console.log(item.get('chosenReply'));
-                                                    }
-                                                });
-
-                                            // let lastSlash = message.get('video').lastIndexOf('/');
-                                            // let selected =
-                                            //     message.get('video') ===
-                                            //     this.props.displayMsgIndex.videoUrl
-                                            //         ? true
-                                            //         : false;
-                                            // // let title = message
-                                            // //     .get('video')
-                                            // //     .slice(lastSlash)
-                                            // //     .replace('.mp4', '')
-                                            // //     .replace(/_/g, ' ')
-                                            // //     .replace('/', '')
-                                            // //     .replace('.', ': ');
-
-                                            // return (
-                                            //     <div
-                                            //         key={message.get('video')}
-                                            //         id={message.get('video')}
-                                            //         className={`search-history-item search-history-item-${selected}`}
-                                            //         onClick={(e) => this.handleClick(e)}
-                                            //     >
-                                            //         {
-                                            //             this.props.messages['_tail']['array'][
-                                            //                 index
-                                            //             ]['_root']['nodes'][4]['entry'][1]
-                                            //         }
-                                            //     </div>
-                                            // );
+                                            this.state.videoUrlArray.push(message);
                                         }
+                                        if (item.get('chosenReply')) {
+                                            this.state.chosenReplyArray.push(message);
+                                        }
+
+                                        // this.props.messages['_tail']['array']
+                                        //     .reverse()
+                                        //     .map((item, indexTwo) => {
+                                        //         if (item.get('chosenReply')) {
+                                        //             console.log(index, indexTwo);
+
+                                        //             console.log(item.get('chosenReply'));
+                                        //         }
+                                        //     });
+
+                                        // let lastSlash = message.get('video').lastIndexOf('/');
+                                        // let selected =
+                                        //     message.get('video') ===
+                                        //     this.props.displayMsgIndex.videoUrl
+                                        //         ? true
+                                        //         : false;
+                                        // // let title = message
+                                        // //     .get('video')
+                                        // //     .slice(lastSlash)
+                                        // //     .replace('.mp4', '')
+                                        // //     .replace(/_/g, ' ')
+                                        // //     .replace('/', '')
+                                        // //     .replace('.', ': ');
+
+                                        // return (
+                                        //     <div
+                                        //         key={message.get('video')}
+                                        //         id={message.get('video')}
+                                        //         className={`search-history-item search-history-item-${selected}`}
+                                        //         onClick={(e) => this.handleClick(e)}
+                                        //     >
+                                        //         {
+                                        //             this.props.messages['_tail']['array'][
+                                        //                 index
+                                        //             ]['_root']['nodes'][4]['entry'][1]
+                                        //         }
+                                        //     </div>
+                                        // );
+                                        // }
                                     })}
+                                    {this.state.videoUrlArray.map((video, index)=>{
+                                         let selected =
+                                           video.get('video') ===
+                                            this.props.displayMsgIndex.videoUrl
+                                                ? true
+                                                : false;
+                                        // let title = message
+                                        //     .get('video')
+                                        //     .slice(lastSlash)
+                                        //     .replace('.mp4', '')
+                                        //     .replace(/_/g, ' ')
+                                        //     .replace('/', '')
+                                        //     .replace('.', ': ');
+
+                                        return (
+                                            <div
+                                                key={video.get('video')}
+                                                id={video.get('video')}
+                                                className={`search-history-item search-history-item-${selected}`}
+                                                onClick={(e) => this.handleClick(e)}
+                                            >
+                                                {
+                                                   chosenReplyArray[index].get("chosenReply")
+                                                }
+                                            </div>
+                                        );
+                                        }
+                                    }}
                                 </div>
                             )}
                         </div>
