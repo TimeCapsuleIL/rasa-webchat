@@ -78,8 +78,7 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-            // let videoUrlArray = [];
-            // let chosenReplyArray = [];
+
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -133,7 +132,7 @@ class Sender extends React.Component {
                                         if (message.get('video')) {
                                             this.state.videoUrlArray.push(message);
                                         }
-                                        if (item.get('chosenReply')) {
+                                        if (message.get('chosenReply')) {
                                             this.state.chosenReplyArray.push(message);
                                         }
 
