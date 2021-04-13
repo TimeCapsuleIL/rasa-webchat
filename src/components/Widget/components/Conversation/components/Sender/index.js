@@ -126,7 +126,6 @@ class Sender extends React.Component {
                                 <div className="search-history-wrapper">
                                     {this.props.messages.reverse().map((message, index) => {
                                         if (message.get('video')) {
-                                            console.log(index, this.props.messages.length);
                                             let selected =
                                                 message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
@@ -137,8 +136,9 @@ class Sender extends React.Component {
                                                 ['_tail']['array'][index - 1].get('chosenReply');
                                             console.log(
                                                 index,
-                                                this.props.messages.length,
-                                                chosenReply
+                                                this.props.messages.size,
+                                                chosenReply,
+                                                this.props.messages.reversed()
                                             );
                                             return (
                                                 chosenReply && (
