@@ -137,12 +137,12 @@ class Sender extends React.Component {
                                             let chosenReply = reversedArray['_tail']['array'][
                                                 index - 1
                                             ].get('chosenReply');
-                                            // console.log(
-                                            //     index,
-                                            //     this.props.messages.size,
-                                            //     chosenReply,
-                                            //     this.props.messages
-                                            // );
+                                            console.log(
+                                                index,
+                                                reversedArray,
+                                                chosenReply,
+                                                reversedArray[index - 1]
+                                            );
                                             return (
                                                 <div
                                                     key={message.get('video')}
@@ -157,12 +157,12 @@ class Sender extends React.Component {
                                         }
                                     })}
                                     <div
-                                        key={reversedArray['_tail']['array']
-                                            .reverse()[1]
-                                            .get('video')}
-                                        id={reversedArray['_tail']['array']
-                                            .reverse()[1]
-                                            .get('video')}
+                                        key={reversedArray['_tail']['array'][
+                                            reversedArray.size - 2
+                                        ].get('video')}
+                                        id={reversedArray['_tail']['array'][
+                                            reversedArray.size - 2
+                                        ].get('video')}
                                         className={`search-history-item search-history-item-false`}
                                         onClick={(e) => this.handleClick(e)}
                                     >
