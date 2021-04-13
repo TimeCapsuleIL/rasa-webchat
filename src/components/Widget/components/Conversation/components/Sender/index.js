@@ -132,7 +132,7 @@ class Sender extends React.Component {
                                         {reversedArray.map((message, index) => {
                                             if (
                                                 message.get('video') &&
-                                                index !== reversedArray.size - 2
+                                                index !== reversedArray.length - 2
                                             ) {
                                                 let selected =
                                                     message.get('video') ===
