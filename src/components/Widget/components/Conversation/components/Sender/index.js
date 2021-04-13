@@ -134,14 +134,14 @@ class Sender extends React.Component {
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = reversedArray[index + 1].get(
+                                            let chosenReply = reversedArray[index - 1].get(
                                                 'chosenReply'
                                             );
                                             console.log(
                                                 index,
                                                 reversedArray,
                                                 chosenReply,
-                                                reversedArray[index + 1]
+                                                reversedArray[index - 1]
                                             );
                                             return (
                                                 <div
