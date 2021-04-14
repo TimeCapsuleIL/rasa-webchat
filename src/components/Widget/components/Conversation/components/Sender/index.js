@@ -143,14 +143,18 @@ class Sender extends React.Component {
                                                             : false;
                                                     let chosenReply = this.props.messages['_tail'][
                                                         'array'
-                                                    ][index + 3].get('chosenReply');
+                                                    ]
+                                                        .reverse()
+                                                        [index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
-                                                        this.props.messages['_tail']['array'],
+                                                        this.props.messages['_tail'][
+                                                            'array'
+                                                        ].reverse(),
                                                         chosenReply,
-                                                        this.props.messages['_tail']['array'][
-                                                            index + 3
-                                                        ].get('chosenReply')
+                                                        this.props.messages['_tail']['array']
+                                                            .reverse()
+                                                            [index + 3].get('chosenReply')
                                                     );
                                                     if (
                                                         chosenReply &&
