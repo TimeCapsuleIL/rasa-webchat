@@ -131,10 +131,7 @@ class Sender extends React.Component {
                                                 if (
                                                     message.get('video') &&
                                                     index !== 0 &&
-                                                    index !==
-                                                        this.props.messages['_tail']['array']
-                                                            .length -
-                                                            1
+                                                    this.props.messages['_tail']['array'][index + 3]
                                                 ) {
                                                     let selected =
                                                         message.get('video') ===
