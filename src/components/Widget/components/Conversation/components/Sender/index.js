@@ -75,10 +75,10 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-            let reversedArray = [];
-            if (this.props.messages) {
-                reversedArray = this.props.messages['_tail']['array'].reverse();
-            }
+            // let reversedArray = [];
+            // if (this.props.messages) {
+            //     reversedArray = this.props.messages['_tail']['array'].reverse();
+            // }
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -125,51 +125,78 @@ class Sender extends React.Component {
                                 </button>
                             </form>
                             {/* http://video.timecapsule.ai/1e73f341519043d721f93669ded35ed4/preferences.music.mp4 */}
-                            {this.state.showSearchHistory && this.props.messages && (
+                            {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
-                                    {reversedArray.map((message, index) => {
+                                    {this.props.messages.map((message, index) => {
                                         if (
                                             message.get('video') &&
-                                            index !== 0 &&
-                                            reversedArray[index + 3]
+                                            index !== this.props.messages.size - 1
                                         ) {
                                             let selected =
                                                 message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = reversedArray[index + 3].get(
-                                                'chosenReply'
+                                            let chosenReply = this.props.messages['_tail']['array'][
+                                                index + 3
+                                            ].get('chosenReply');
+                                            return (
+                                                <div
+                                                    key={message.get('video')}
+                                                    id={message.get('video')}
+                                                    className={`search-history-item search-history-item-${selected}`}
+                                                    onClick={(e) => this.handleClick(e)}
+                                                >
+                                                    {chosenReply ? chosenReply : 'להתחיל'}
+                                                </div>
                                             );
-                                            console.log(index, reversedArray, reversedArray[index]);
-                                            if (chosenReply && index !== reversedArray.length - 1) {
-                                                return (
-                                                    <div
-                                                        key={message.get('video')}
-                                                        id={message.get('video')}
-                                                        className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {/* {!chosenReply && 'להתחיל'} */}
-                                                        {chosenReply}
-                                                    </div>
-                                                );
-                                            }
                                         }
                                     })}
-                                    {/* <div
-                                        key={this.props.messages['_tail']['array'][
-                                            this.props.messages['_tail']['array'].length - 1
-                                        ].get('video')}
-                                        id={this.props.messages['_tail']['array'][
-                                            this.props.messages['_tail']['array'].length - 1
-                                        ].get('video')}
-                                        className={`search-history-item search-history-item-false`}
-                                        onClick={(e) => this.handleClick(e)}
-                                    >
-                                        {'להתחיל'}
-                                    </div> */}
                                 </div>
+                                // <div className="search-history-wrapper">
+                                //     {reversedArray.map((message, index) => {
+                                //         if (
+                                //             message.get('video') &&
+                                //             index !== 0 &&
+                                //             reversedArray[index + 3]
+                                //         ) {
+                                //             let selected =
+                                //                 message.get('video') ===
+                                //                 this.props.displayMsgIndex.videoUrl
+                                //                     ? true
+                                //                     : false;
+                                //             let chosenReply = reversedArray[index + 3].get(
+                                //                 'chosenReply'
+                                //             );
+                                //             console.log(index, reversedArray, reversedArray[index]);
+                                //             if (chosenReply && index !== reversedArray.length - 1) {
+                                //                 return (
+                                //                     <div
+                                //                         key={message.get('video')}
+                                //                         id={message.get('video')}
+                                //                         className={`search-history-item search-history-item-${selected}`}
+                                //                         onClick={(e) => this.handleClick(e)}
+                                //                     >
+                                //                         {/* {!chosenReply && 'להתחיל'} */}
+                                //                         {chosenReply}
+                                //                     </div>
+                                //                 );
+                                //             }
+                                //         }
+                                //     })}
+                                //     {/* <div
+                                //         key={this.props.messages['_tail']['array'][
+                                //             this.props.messages['_tail']['array'].length - 1
+                                //         ].get('video')}
+                                //         id={this.props.messages['_tail']['array'][
+                                //             this.props.messages['_tail']['array'].length - 1
+                                //         ].get('video')}
+                                //         className={`search-history-item search-history-item-false`}
+                                //         onClick={(e) => this.handleClick(e)}
+                                //     >
+                                //         {'להתחיל'}
+                                //     </div> */}
+                                // </div>
                             )}
                         </div>
                     </div>
