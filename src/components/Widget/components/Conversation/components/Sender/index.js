@@ -129,12 +129,12 @@ class Sender extends React.Component {
                                             .reverse()
                                             .map((message, index) => {
                                                 if (
-                                                    message.get('video') &&
-                                                    index !==
-                                                        this.props.messages['_tail']['array']
-                                                            .length -
-                                                            1 &&
-                                                    index !== 0
+                                                    message.get('video')
+                                                    // index !==
+                                                    //     this.props.messages['_tail']['array']
+                                                    //         .length -
+                                                    //         1 &&
+                                                    // index !== 0
                                                 ) {
                                                     let selected =
                                                         message.get('video') ===
@@ -152,17 +152,25 @@ class Sender extends React.Component {
                                                             index + 3
                                                         ].get('chosenReply')
                                                     );
-                                                    return (
-                                                        <div
-                                                            key={message.get('video')}
-                                                            id={message.get('video')}
-                                                            className={`search-history-item search-history-item-${selected}`}
-                                                            onClick={(e) => this.handleClick(e)}
-                                                        >
-                                                            {/* {!chosenReply && 'להתחיל'} */}
-                                                            {chosenReply}
-                                                        </div>
-                                                    );
+                                                    if (
+                                                        chosenReply &&
+                                                        index !==
+                                                            this.props.messages['_tail']['array']
+                                                                .length -
+                                                                1
+                                                    ) {
+                                                        return (
+                                                            <div
+                                                                key={message.get('video')}
+                                                                id={message.get('video')}
+                                                                className={`search-history-item search-history-item-${selected}`}
+                                                                onClick={(e) => this.handleClick(e)}
+                                                            >
+                                                                {/* {!chosenReply && 'להתחיל'} */}
+                                                                {chosenReply}
+                                                            </div>
+                                                        );
+                                                    }
                                                 }
                                             })}
                                     {/* <div
