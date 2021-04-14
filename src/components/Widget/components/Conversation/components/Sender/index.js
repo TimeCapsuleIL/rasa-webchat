@@ -125,9 +125,10 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {this.props.messages &&
-                                        this.props.messages['_tail']['array'].map(
-                                            (message, index) => {
-                                                if (message.get('video')) {
+                                        this.props.messages['_tail']['array']
+                                            .reverse()
+                                            .map((message, index) => {
+                                                if (message.get('video') && index !== 0) {
                                                     let selected =
                                                         message.get('video') ===
                                                         this.props.displayMsgIndex.videoUrl
@@ -135,14 +136,18 @@ class Sender extends React.Component {
                                                             : false;
                                                     let chosenReply = this.props.messages['_tail'][
                                                         'array'
-                                                    ][index + 3].get('chosenReply');
+                                                    ]
+                                                        .reverse()
+                                                        [index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
-                                                        this.props.messages['_tail']['array'],
+                                                        this.props.messages['_tail'][
+                                                            'array'
+                                                        ].reverse(),
                                                         chosenReply,
-                                                        this.props.messages['_tail']['array'][
-                                                            index + 3
-                                                        ].get('chosenReply')
+                                                        this.props.messages['_tail']['array']
+                                                            .reverse()
+                                                            [index + 3].get('chosenReply')
                                                     );
                                                     if (
                                                         chosenReply &&
@@ -164,8 +169,7 @@ class Sender extends React.Component {
                                                         );
                                                     }
                                                 }
-                                            }
-                                        )}
+                                            })}
                                     {/* <div
                                         key={this.props.messages['_tail']['array'][
                                             this.props.messages['_tail']['array'].length - 1
