@@ -41,16 +41,9 @@ class Sender extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // scrollToBottom();
-        // console.log('sender mount messages', this.props.messages);
-    }
+    componentDidMount() {}
 
     componentDidUpdate(prevProps, prevState) {
-        // scrollToBottom();
-        // console.log('sender update this.props.messages', this.props.messages);
-        // console.log('sender prevProp messages', prevProps.messages);
-        // console.log('sender prevState showsearchhistory', prevState.showSearchHistory);
         if (prevState.showSearchHistory && this.props.messages.size != prevProps.messages.size) {
             this.setState({ showSearchHistory: false });
         }
@@ -226,6 +219,8 @@ class Sender extends React.Component {
                                     disabled={
                                         !(this.state.inputValue && this.state.inputValue.length > 0)
                                     }
+                                    id={''}
+                                    onSubmit={(e) => this.handleClick(e)}
                                 >
                                     <Send
                                         className="rw-send-icon"
