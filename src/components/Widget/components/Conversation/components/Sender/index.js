@@ -152,18 +152,23 @@ class Sender extends React.Component {
                                                     </div>
                                                 );
                                             }
-                                            if (index === 0) {
-                                                return (
-                                                    <div
-                                                        key={message.get('video')}
-                                                        id={message.get('video')}
-                                                        className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
-                                                    >
-                                                        {'מבוא'}
-                                                    </div>
-                                                );
-                                            }
+                                        } else if (message.get('video') && index === 0) {
+                                            let selected =
+                                                message.get('video') ===
+                                                this.props.displayMsgIndex.videoUrl
+                                                    ? true
+                                                    : false;
+
+                                            return (
+                                                <div
+                                                    key={message.get('video')}
+                                                    id={message.get('video')}
+                                                    className={`search-history-item search-history-item-${selected}`}
+                                                    onClick={(e) => this.handleClick(e)}
+                                                >
+                                                    {'מבוא'}
+                                                </div>
+                                            );
                                         }
                                     })}
                                 </div>
