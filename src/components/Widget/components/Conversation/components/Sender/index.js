@@ -128,7 +128,14 @@ class Sender extends React.Component {
                                         this.props.messages['_tail']['array']
                                             .reverse()
                                             .map((message, index) => {
-                                                if (message.get('video') && index !== 0) {
+                                                if (
+                                                    message.get('video') &&
+                                                    index !== 0 &&
+                                                    index !==
+                                                        this.props.messages['_tail']['array']
+                                                            .length -
+                                                            1
+                                                ) {
                                                     let selected =
                                                         message.get('video') ===
                                                         this.props.displayMsgIndex.videoUrl
