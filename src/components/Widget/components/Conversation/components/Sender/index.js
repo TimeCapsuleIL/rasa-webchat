@@ -229,9 +229,9 @@ class Sender extends React.Component {
                                     disabled={
                                         !(this.state.inputValue && this.state.inputValue.length > 0)
                                     }
-                                    id={''}
-                                    onSubmit={(e) => this.onEnterPressSubmitButton(e)}
-                                    onClick={(e) => this.handleClick(e)}
+                                    // id={''}
+                                    // onSubmit={(e) => this.onEnterPressSubmitButton(e)}
+                                    // onClick={(e) => this.handleClick(e)}
                                 >
                                     <Send
                                         className="rw-send-icon"
