@@ -75,7 +75,10 @@ class Sender extends React.Component {
         ) {
             this.props.recognition.lang = 'he-IL';
             const { getChosenReply } = this.props;
-
+            let reversedArray = [];
+            if (this.props.messages) {
+                reversedArray = this.props.messages['_tail']['array'].reverse();
+            }
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
@@ -125,48 +128,43 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {this.props.messages &&
-                                        this.props.messages['_tail']['array']
-                                            .reverse()
-                                            .map((message, index) => {
+                                        reversedArray.map((message, index) => {
+                                            if (
+                                                message.get('video') &&
+                                                index !== 0 &&
+                                                reversedArray[index + 3]
+                                            ) {
+                                                let selected =
+                                                    message.get('video') ===
+                                                    this.props.displayMsgIndex.videoUrl
+                                                        ? true
+                                                        : false;
+                                                let chosenReply = reversedArray[index + 3].get(
+                                                    'chosenReply'
+                                                );
+                                                console.log(
+                                                    index,
+                                                    reversedArray,
+                                                    reversedArray[index]
+                                                );
                                                 if (
-                                                    message.get('video') &&
-                                                    index !== 0 &&
-                                                    this.props.messages['_tail']['array'][index + 3]
+                                                    chosenReply &&
+                                                    index !== reversedArray.length - 1
                                                 ) {
-                                                    let selected =
-                                                        message.get('video') ===
-                                                        this.props.displayMsgIndex.videoUrl
-                                                            ? true
-                                                            : false;
-                                                    let chosenReply = this.props.messages['_tail'][
-                                                        'array'
-                                                    ][index + 3].get('chosenReply');
-                                                    console.log(
-                                                        index,
-                                                        this.props.messages['_tail']['array'],
-                                                        this.props.messages['_tail']['array'][index]
+                                                    return (
+                                                        <div
+                                                            key={message.get('video')}
+                                                            id={message.get('video')}
+                                                            className={`search-history-item search-history-item-${selected}`}
+                                                            onClick={(e) => this.handleClick(e)}
+                                                        >
+                                                            {/* {!chosenReply && 'להתחיל'} */}
+                                                            {chosenReply}
+                                                        </div>
                                                     );
-                                                    if (
-                                                        chosenReply &&
-                                                        index !==
-                                                            this.props.messages['_tail']['array']
-                                                                .length -
-                                                                1
-                                                    ) {
-                                                        return (
-                                                            <div
-                                                                key={message.get('video')}
-                                                                id={message.get('video')}
-                                                                className={`search-history-item search-history-item-${selected}`}
-                                                                onClick={(e) => this.handleClick(e)}
-                                                            >
-                                                                {/* {!chosenReply && 'להתחיל'} */}
-                                                                {chosenReply}
-                                                            </div>
-                                                        );
-                                                    }
                                                 }
-                                            })}
+                                            }
+                                        })}
                                     {/* <div
                                         key={this.props.messages['_tail']['array'][
                                             this.props.messages['_tail']['array'].length - 1
