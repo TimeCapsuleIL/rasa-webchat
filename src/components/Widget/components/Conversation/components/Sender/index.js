@@ -74,7 +74,6 @@ class Sender extends React.Component {
             this.props.listening
         ) {
             this.props.recognition.lang = 'he-IL';
-            const { getChosenReply } = this.props;
             // let reversedArray = [];
             // if (this.props.messages) {
             //     reversedArray = this.props.messages['_tail']['array'].reverse();
@@ -131,17 +130,17 @@ class Sender extends React.Component {
                                         console.log(this.props.messages);
                                         if (
                                             message.get('video') &&
-                                            this.props.messages['_tail']['array'][index - 3]
+                                            this.props.messages['_tail']['array'][index - 2]
                                         ) {
                                             let selected =
                                                 message.get('video') ===
                                                 this.props.displayMsgIndex.videoUrl
                                                     ? true
                                                     : false;
-                                            let chosenReply = this.props.messages['_tail']['array'][
-                                                index - 3
-                                            ].get('chosenReply');
-                                            if (chosenReply) {
+                                            let text = this.props.messages['_tail']['array'][
+                                                index - 2
+                                            ].get('text');
+                                            if (text) {
                                                 return (
                                                     <div
                                                         key={message.get('video')}
@@ -149,7 +148,19 @@ class Sender extends React.Component {
                                                         className={`search-history-item search-history-item-${selected}`}
                                                         onClick={(e) => this.handleClick(e)}
                                                     >
-                                                        {chosenReply}
+                                                        {text}
+                                                    </div>
+                                                );
+                                            }
+                                            if (index === 0) {
+                                                return (
+                                                    <div
+                                                        key={message.get('video')}
+                                                        id={message.get('video')}
+                                                        className={`search-history-item search-history-item-${selected}`}
+                                                        onClick={(e) => this.handleClick(e)}
+                                                    >
+                                                        {'מבוא'}
                                                     </div>
                                                 );
                                             }
@@ -233,7 +244,6 @@ class Sender extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    getChosenReply: (id) => state.messages.get(id).get('chosenReply'),
     messages: state.messages,
     displayMsgIndex: state.displayMsgIndex,
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),
@@ -254,7 +264,6 @@ Sender.propTypes = {
     resetTranscript: PropTypes.func,
     changeDisplayMsgIndex: PropTypes.func,
     displayMsgIndex: PropTypes.string,
-    getChosenReply: PropTypes.func,
 };
 
 const options = {
