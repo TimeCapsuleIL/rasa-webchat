@@ -158,24 +158,13 @@ class Messages extends Component {
             groups.push(group); // finally push last group of messages.
 
             let showThisMessage;
-            // let selectedIndex;
-            // groups.forEach((item, index) => {
-            //     item.messages.forEach(message => {
-            //         if (!selectedIndex && message.key === this.props.displayMsgIndex.videoUrl) {
-            //             selectedIndex = index;
-            //         }
-            //     });
-            // });
 
-            // if (selectedIndex) {
-            //     showThisMessage = [groups[selectedIndex]];
-            // } else {
-            //     showThisMessage = [groups[groups.length - 1]];
-            // }
             console.log('groups', groups);
             console.log('displayMsgIndex.videoUrl', this.props.displayMsgIndex.videoUrl);
             if (!this.props.displayMsgIndex.videoUrl) {
-                showThisMessage = [groups[groups.length - 1]];
+                // showThisMessage = [groups[groups.length - 1]];
+                let selectedIndex = groups.length - 1;
+                showThisMessage = [groups[selectedIndex]];
             } else {
                 let selectedIndex;
                 groups.forEach((item, index) => {

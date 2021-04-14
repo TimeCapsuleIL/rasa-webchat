@@ -19,7 +19,7 @@ class Sender extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
-        this.onEnterPressSubmitButton = this.onEnterPressSubmitButton.bind(this);
+        // this.onEnterPressSubmitButton = this.onEnterPressSubmitButton.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -30,6 +30,7 @@ class Sender extends React.Component {
 
     handleSubmit(e) {
         this.props.sendMessage(e);
+        this.props.changeDisplayMsgIndex('');
         this.setState({ inputValue: '' });
     }
 
@@ -42,14 +43,14 @@ class Sender extends React.Component {
         }
     }
 
-    onEnterPressSubmitButton(e) {
-        if (e.keyCode === 13 && e.shiftKey === false) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.props.changeDisplayMsgIndex(e.target.id);
-            this.setState({ showSearchHistory: false });
-        }
-    }
+    // onEnterPressSubmitButton(e) {
+    //     if (e.keyCode === 13 && e.shiftKey === false) {
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //         this.props.changeDisplayMsgIndex(e.target.id);
+    //         this.setState({ showSearchHistory: false });
+    //     }
+    // }
 
     componentDidMount() {}
 
@@ -77,10 +78,7 @@ class Sender extends React.Component {
             this.props.listening
         ) {
             this.props.recognition.lang = 'he-IL';
-            // let reversedArray = [];
-            // if (this.props.messages) {
-            //     reversedArray = this.props.messages['_tail']['array'].reverse();
-            // }
+
             return (
                 <div className="widget-form-wrapper">
                     <div className="form-left-element">
