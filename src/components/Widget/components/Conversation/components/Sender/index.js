@@ -141,20 +141,19 @@ class Sender extends React.Component {
                                                         this.props.displayMsgIndex.videoUrl
                                                             ? true
                                                             : false;
-                                                    let chosenReply = this.props.messages['_tail'][
-                                                        'array'
-                                                    ]
-                                                        .reverse()
-                                                        [index + 3].get('chosenReply');
+                                                    // let chosenReply = this.props.messages['_tail'][
+                                                    //     'array'
+                                                    // ]
+                                                    //     .reverse()
+                                                    //     [index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
                                                         this.props.messages['_tail'][
                                                             'array'
                                                         ].reverse(),
-                                                        chosenReply,
-                                                        this.props.messages['_tail']['array']
-                                                            .reverse()
-                                                            [index + 3].get('chosenReply')
+                                                        this.props.messages['_tail'][
+                                                            'array'
+                                                        ].reverse()[index]
                                                     );
                                                     if (
                                                         chosenReply &&
