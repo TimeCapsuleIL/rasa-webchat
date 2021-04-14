@@ -19,6 +19,7 @@ class Sender extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onEnterPress = this.onEnterPress.bind(this);
+        this.onEnterPressSubmitButton = this.onEnterPressSubmitButton.bind(this);
         this.handleShowSearchHistory = this.handleShowSearchHistory.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -38,6 +39,15 @@ class Sender extends React.Component {
             // by dispatching the event we trigger onSubmit
             // formRef.current.submit() would not trigger onSubmit
             this.formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
+        }
+    }
+
+    onEnterPressSubmitButton(e) {
+        if (e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.props.changeDisplayMsgIndex(e.target.id);
+            this.setState({ showSearchHistory: false });
         }
     }
 
@@ -220,7 +230,7 @@ class Sender extends React.Component {
                                         !(this.state.inputValue && this.state.inputValue.length > 0)
                                     }
                                     id={''}
-                                    onSubmit={(e) => this.handleClick(e)}
+                                    onSubmit={(e) => this.onEnterPressSubmitButton(e)}
                                 >
                                     <Send
                                         className="rw-send-icon"
