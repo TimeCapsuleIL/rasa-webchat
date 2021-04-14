@@ -141,18 +141,18 @@ class Sender extends React.Component {
                                                         this.props.displayMsgIndex.videoUrl
                                                             ? true
                                                             : false;
-                                                    // let chosenReply = this.props.messages['_tail'][
-                                                    //     'array'
-                                                    // ]
-                                                    //     .reverse()
-                                                    //     [index + 3].get('chosenReply');
+                                                    let chosenReply = this.props.messages['_tail'][
+                                                        'array'
+                                                    ]
+                                                        .reverse()
+                                                        [index + 3].get('chosenReply');
                                                     console.log(
                                                         index,
                                                         this.props.messages['_tail']['array'],
                                                         this.props.messages['_tail']['array'][index]
                                                     );
                                                     if (
-                                                        'chosenReply' &&
+                                                        chosenReply &&
                                                         index !==
                                                             this.props.messages['_tail']['array']
                                                                 .length -
@@ -166,7 +166,7 @@ class Sender extends React.Component {
                                                                 onClick={(e) => this.handleClick(e)}
                                                             >
                                                                 {/* {!chosenReply && 'להתחיל'} */}
-                                                                {'chosenReply'}
+                                                                {chosenReply}
                                                             </div>
                                                         );
                                                     }
