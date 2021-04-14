@@ -128,6 +128,7 @@ class Sender extends React.Component {
                             {this.state.showSearchHistory && (
                                 <div className="search-history-wrapper">
                                     {this.props.messages.map((message, index) => {
+                                        console.log(this.props.messages);
                                         if (
                                             message.get('video') &&
                                             this.props.messages['_tail']['array'][index - 3]
