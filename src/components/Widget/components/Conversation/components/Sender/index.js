@@ -48,10 +48,6 @@ class Sender extends React.Component {
             e.stopPropagation();
             this.props.changeDisplayMsgIndex(e.target.id);
             this.setState({ showSearchHistory: false });
-        } else {
-            e.stopPropagation();
-            this.props.changeDisplayMsgIndex(e.target.id);
-            this.setState({ showSearchHistory: false });
         }
     }
 
@@ -235,6 +231,7 @@ class Sender extends React.Component {
                                     }
                                     id={''}
                                     onSubmit={(e) => this.onEnterPressSubmitButton(e)}
+                                    onClick={(e) => this.handleClick(e)}
                                 >
                                     <Send
                                         className="rw-send-icon"
