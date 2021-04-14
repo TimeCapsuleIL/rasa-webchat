@@ -173,6 +173,7 @@ class Messages extends Component {
             //     showThisMessage = [groups[groups.length - 1]];
             // }
             console.log('groups', groups);
+            console.log('displayMsgIndex.videoUrl', this.props.displayMsgIndex.videoUrl);
             if (!this.props.displayMsgIndex.videoUrl) {
                 showThisMessage = [groups[groups.length - 1]];
             } else {

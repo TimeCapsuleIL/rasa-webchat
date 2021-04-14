@@ -14,7 +14,7 @@ import {
 
 import * as actionTypes from '../actions/actionTypes';
 
-export default function() {
+export default function () {
     //   const initialState = List([]);
 
     const initialState = {
@@ -29,9 +29,6 @@ export default function() {
                     videoUrl: action.text,
                 };
             }
-            //   case actionTypes.ADD_NEW_RESPONSE_MESSAGE: {
-            //     return storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.RESPONSE)));
-            //   }
 
             default:
                 return state;
