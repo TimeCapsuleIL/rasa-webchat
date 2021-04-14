@@ -48,6 +48,10 @@ class Sender extends React.Component {
             e.stopPropagation();
             this.props.changeDisplayMsgIndex(e.target.id);
             this.setState({ showSearchHistory: false });
+        } else {
+            e.stopPropagation();
+            this.props.changeDisplayMsgIndex(e.target.id);
+            this.setState({ showSearchHistory: false });
         }
     }
 
