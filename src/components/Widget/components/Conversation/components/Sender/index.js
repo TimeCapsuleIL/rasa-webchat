@@ -130,7 +130,7 @@ class Sender extends React.Component {
                                     {this.props.messages.map((message, index) => {
                                         if (
                                             message.get('video') &&
-                                            index !== this.props.messages.size - 1
+                                            this.props.messages['_tail']['array'][index - 1]
                                         ) {
                                             let selected =
                                                 message.get('video') ===
@@ -138,8 +138,9 @@ class Sender extends React.Component {
                                                     ? true
                                                     : false;
                                             let chosenReply = this.props.messages['_tail']['array'][
-                                                index + 3
+                                                index - 1
                                             ].get('chosenReply');
+                                            console.log('sh messages', this.props.messages);
                                             return (
                                                 <div
                                                     key={message.get('video')}
