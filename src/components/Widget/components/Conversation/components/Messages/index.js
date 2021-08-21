@@ -41,12 +41,10 @@ class Messages extends Component {
 
     componentDidMount() {
         // scrollToBottom();
-        console.log('messages component didMount', this.props.displayMsgIndex);
     }
 
     componentDidUpdate() {
         // scrollToBottom();
-        console.log('messages component didUpdate', this.props.displayMsgIndex);
     }
 
     getComponentToRender = (message, index, isLast) => {

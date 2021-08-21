@@ -11,6 +11,7 @@ const Conversation = props => (
         <Header
             title={props.title}
             subtitle={props.subtitle}
+            customData={props.customData}
             toggleChat={props.toggleChat}
             toggleFullScreen={props.toggleFullScreen}
             fullScreenMode={props.fullScreenMode}
@@ -34,6 +35,7 @@ const Conversation = props => (
             sendMessage={props.sendMessage}
             disabledInput={props.disabledInput}
             changeDisplayMsgIndex={props.changeDisplayMsgIndex}
+            customData={props.customData}
         />
     </div>
 );
@@ -41,6 +43,7 @@ const Conversation = props => (
 Conversation.propTypes = {
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    customData: PropTypes.shape({}),
     sendMessage: PropTypes.func,
     profileAvatar: PropTypes.string,
     toggleFullScreen: PropTypes.func,

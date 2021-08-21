@@ -4,7 +4,6 @@ export default function (socketUrl, customData, path) {
   const options = path ? { path } : {};
   const socket = io(socketUrl, options);
   socket.on('connect', () => {
-    console.log(`connect:${socket.id}`);
     socket.customData = customData;
   });
 

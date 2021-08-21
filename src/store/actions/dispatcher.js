@@ -38,7 +38,6 @@ export function addCarousel(carousel) {
 }
 
 export function addVideoSnippet(video) {
-  console.log("from dispatcher add video snippet", video)
   store.dispatch(actions.addVideoSnippet(video));
 }
 
