@@ -12,7 +12,7 @@ import ThemeContext from '../../../../ThemeContext';
 import Sender from '../Sender';
 import displayMsgIndex from '../../../../../../store/reducers/displayMsgIndex';
 
-const isToday = (date) => {
+const isToday = date => {
     const today = new Date();
     return (
         date.getDate() === today.getDate() &&
@@ -21,7 +21,7 @@ const isToday = (date) => {
     );
 };
 
-const formatDate = (date) => {
+const formatDate = date => {
     const dateToFormat = new Date(date);
     const showDate = isToday(dateToFormat) ? '' : `${dateToFormat.toLocaleDateString()} `;
     return `${showDate}${dateToFormat.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
@@ -68,8 +68,8 @@ class Messages extends Component {
                 }
                 case MESSAGES_TYPES.CUSTOM_COMPONENT:
                     return connect(
-                        (store) => ({ store }),
-                        (dispatch) => ({ dispatch })
+                        store => ({ store }),
+                        dispatch => ({ dispatch })
                     )(this.props.customComponent);
                 default:
                     return null;
@@ -114,7 +114,7 @@ class Messages extends Component {
                     ? formatDate
                     : null;
 
-            const renderMessageDate = (message) => {
+            const renderMessageDate = message => {
                 const timestamp = message.get('timestamp');
 
                 if (!dateRenderer || !timestamp) return null;
@@ -157,8 +157,6 @@ class Messages extends Component {
 
             let showThisMessage;
 
-            console.log('groups', groups);
-            console.log('displayMsgIndex.videoUrl', this.props.displayMsgIndex.videoUrl);
             if (!this.props.displayMsgIndex.videoUrl) {
                 // showThisMessage = [groups[groups.length - 1]];
                 let selectedIndex = groups.length - 1;
@@ -166,7 +164,7 @@ class Messages extends Component {
             } else {
                 let selectedIndex;
                 groups.forEach((item, index) => {
-                    item.messages.forEach((message) => {
+                    item.messages.forEach(message => {
                         if (!selectedIndex && message.key === this.props.displayMsgIndex.videoUrl) {
                             selectedIndex = index;
                         }
@@ -223,7 +221,7 @@ Message.defaultTypes = {
     displayTypingIndication: false,
 };
 
-export default connect((store) => ({
+export default connect(store => ({
     messages: store.messages,
     displayMsgIndex: store.displayMsgIndex,
     displayTypingIndication: store.behavior.get('messageDelayed'),

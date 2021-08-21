@@ -14,6 +14,7 @@ class Sender extends React.Component {
         super(props);
         this.state = { inputValue: '' };
         this.state = { showSearchHistory: false };
+        this.state = { language: 'HE' };
         this.formRef = React.createRef();
 
         this.handleChange = this.handleChange.bind(this);
@@ -53,7 +54,11 @@ class Sender extends React.Component {
     // }
 
     componentDidMount() {
-        console.log(this.props.customData)
+        if (this.props.customData.resourcesID.includes('lang-EN')) {
+            this.setState({ language: 'EN' });
+        } else {
+            this.setState({ language: 'HE' });
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -82,7 +87,7 @@ class Sender extends React.Component {
             this.props.recognition.lang = 'he-IL';
 
             return (
-                <div className="widget-form-wrapper">
+                <div className={`widget-form-wrapper-${this.state.language !== 'EN'}`}>
                     <div className="form-left-element">
                         <button
                             onClick={this.handleShowSearchHistory}
@@ -148,7 +153,7 @@ class Sender extends React.Component {
                                                         key={message.get('video')}
                                                         id={message.get('video')}
                                                         className={`search-history-item search-history-item-${selected}`}
-                                                        onClick={(e) => this.handleClick(e)}
+                                                        onClick={e => this.handleClick(e)}
                                                     >
                                                         {text}
                                                     </div>
@@ -166,7 +171,7 @@ class Sender extends React.Component {
                                                     key={message.get('video')}
                                                     id={message.get('video')}
                                                     className={`search-history-item search-history-item-${selected}`}
-                                                    onClick={(e) => this.handleClick(e)}
+                                                    onClick={e => this.handleClick(e)}
                                                 >
                                                     {'מבוא'}
                                                 </div>
@@ -253,7 +258,7 @@ class Sender extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     messages: state.messages,
     displayMsgIndex: state.displayMsgIndex,
     inputTextFieldHint: state.behavior.get('inputTextFieldHint'),

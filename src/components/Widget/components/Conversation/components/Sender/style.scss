@@ -2,7 +2,7 @@
 
 @import 'common.scss';
 
-.widget-form-wrapper {
+.widget-form-wrapper-true {
     display: flex;
     justify-content: center;
     margin-top: 20px;
@@ -13,13 +13,17 @@
     z-index: 100;
 }
 
+.widget-form-wrapper-false {
+    display: none;
+}
+
 .input-form-wrapper {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow: visible;
-    height:fit-content
+    height: fit-content;
 }
 
 .search-history-wrapper {
@@ -49,7 +53,6 @@
 
 .search-history-item-true {
     background-color: #e0e2e4;
-    
 }
 
 .search-history-item:hover {
@@ -120,7 +123,7 @@
         border: 0;
 
         .#{$namespace}mic-icon {
-            fill: #6687BA;
+            fill: #6687ba;
             transition: fill 0.35s;
         }
 
