@@ -30,6 +30,7 @@ const Conversation = props => (
             sendMessage={props.sendMessage}
             disabledInput={props.disabledInput}
             changeDisplayMsgIndex={props.changeDisplayMsgIndex}
+            customData={props.customData}
         />
         <Sender
             sendMessage={props.sendMessage}

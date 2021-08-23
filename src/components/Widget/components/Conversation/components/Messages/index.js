@@ -27,12 +27,12 @@ const formatDate = date => {
     return `${showDate}${dateToFormat.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
 };
 
-const scrollToBottom = () => {
-    const messagesDiv = document.getElementById('rw-messages');
-    if (messagesDiv) {
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-};
+// const scrollToBottom = () => {
+//     const messagesDiv = document.getElementById('rw-messages');
+//     if (messagesDiv) {
+//         messagesDiv.scrollTop = messagesDiv.scrollHeight;
+//     }
+// };
 
 class Messages extends Component {
     constructor(props) {
@@ -215,6 +215,7 @@ Messages.propTypes = {
     showMessageDate: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
     displayTypingIndication: PropTypes.bool,
     changeDisplayMsgIndex: PropTypes.func,
+    customData: PropTypes.shape({}),
 };
 
 Message.defaultTypes = {
