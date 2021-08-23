@@ -59,7 +59,7 @@ class Buttons extends PureComponent {
                 {(isLast || persit) && (
                     <div className="rw-replies">
                         {this.state.language === 'HE' && (
-                            <div className="reply-prompt">אולי יעניין אותר גם על:</div>
+                            <div className="reply-prompt lang-HE">אולי יעניין אותר גם על:</div>
                         )}
                         {this.state.language === 'EN' && (
                             <div className="reply-prompt">You also may like:</div>
