@@ -92,6 +92,7 @@ class Messages extends Component {
                 message={message}
                 isLast={isLast}
                 changeDisplayMsgIndex={this.props.changeDisplayMsgIndex}
+                customData={this.props.customData}
             />
         );
     };
