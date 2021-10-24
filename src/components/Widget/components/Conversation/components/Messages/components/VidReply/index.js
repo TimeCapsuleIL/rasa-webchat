@@ -21,7 +21,6 @@ class VidReply extends PureComponent {
                             height="fit-content"
                             width="100%"
                             className="video-element"
-                            playsinline
                             controls
                         >
                             <source src={this.props.message.get('video')} type="video/mp4" />
