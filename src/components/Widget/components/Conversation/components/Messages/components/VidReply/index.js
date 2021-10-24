@@ -16,10 +16,10 @@ class VidReply extends PureComponent {
                             className="video-logo"
                         />
                         <video
-                            playsinline
+                            playsInline
                             controls
-                            autoplay
-                            height="fit-content"
+                            autoPlay
+                            height=""
                             width="100%"
                             className="video-element"
                         >
