@@ -15,13 +15,7 @@ class VidReply extends PureComponent {
                             alt="time capsule logo"
                             className="video-logo"
                         />
-                        <video
-                            controls
-                            autoPlay="autoplay"
-                            height="100%"
-                            width="100%"
-                            className="video-element"
-                        >
+                        <video width="100%" className="video-element" playsinline autoplay controls>
                             <source src={this.props.message.get('video')} type="video/mp4" />
                         </video>
                     </div>
