@@ -18,7 +18,7 @@ class VidReply extends PureComponent {
                         <video
                             playsInline
                             autoPlay
-                            muted
+                            // muted
                             controls
                             height="fit-content"
                             width="100%"
