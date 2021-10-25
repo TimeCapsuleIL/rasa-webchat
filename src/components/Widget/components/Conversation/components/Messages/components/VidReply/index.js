@@ -16,13 +16,13 @@ class VidReply extends PureComponent {
                             className="video-logo"
                         />
                         <video
-                            playsInline="playsinline"
-                            autoPlay="autoplay"
+                            playsInline
+                            autoPlay
+                            muted
+                            controls
                             height="fit-content"
                             width="100%"
                             className="video-element"
-                            controls
-                            muted
                         >
                             <source src={this.props.message.get('video')} type="video/mp4" />
                         </video>
