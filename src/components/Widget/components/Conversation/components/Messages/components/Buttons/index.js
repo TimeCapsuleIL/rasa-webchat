@@ -58,22 +58,18 @@ class Buttons extends PureComponent {
                 {message.get('text') !== 'null' && <Message message={message} />}
                 {(isLast || persit) && (
                     <div className="rw-replies">
-                        {this.state.language === 'HE' &&
-                            message.get('video')(
-                                <div className="reply-prompt lang-HE">אולי יעניין אותר גם על:</div>
-                            )}
-                        {this.state.language === 'EN' &&
-                            message.get('video')(
-                                <div className="reply-prompt">You also may like:</div>
-                            )}
-                        {this.state.language === 'HE' &&
-                            !message.get('video')(
-                                <div className="reply-prompt lang-HE">מה לגבי אחד מהבאים?</div>
-                            )}
-                        {this.state.language === 'EN' &&
-                            !message.get('video')(
-                                <div className="reply-prompt">What about one of the following?</div>
-                            )}
+                        {this.state.language === 'HE' && message.get('video') && (
+                            <div className="reply-prompt lang-HE">אולי יעניין אותר גם על:</div>
+                        )}
+                        {this.state.language === 'EN' && message.get('video') && (
+                            <div className="reply-prompt">You also may like:</div>
+                        )}
+                        {this.state.language === 'HE' && message.get('video') && (
+                            <div className="reply-prompt lang-HE">אולי יעניין אותר גם על:</div>
+                        )}
+                        {this.state.language === 'EN' && message.get('video') && (
+                            <div className="reply-prompt">What about one of these:</div>
+                        )}
                         {buttons.map((reply, index) => {
                             if (reply.get('type') === 'web_url') {
                                 return (
