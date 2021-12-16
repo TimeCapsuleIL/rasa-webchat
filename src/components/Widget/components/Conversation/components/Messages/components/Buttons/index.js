@@ -64,10 +64,10 @@ class Buttons extends PureComponent {
                         {this.state.language === 'EN' && message.get('video') && (
                             <div className="reply-prompt">You also may like:</div>
                         )}
-                        {this.state.language === 'HE' && message.get('video') && (
+                        {this.state.language === 'HE' && !message.get('video') && (
                             <div className="reply-prompt lang-HE">אולי יעניין אותר גם על:</div>
                         )}
-                        {this.state.language === 'EN' && message.get('video') && (
+                        {this.state.language === 'EN' && !message.get('video') && (
                             <div className="reply-prompt">What about one of these:</div>
                         )}
                         {buttons.map((reply, index) => {
