@@ -137,6 +137,7 @@ class Widget extends Component {
                     dispatch(closeChat());
                     showTooltip(true);
                 }
+                this.props.setMessageSent('from bot');
             };
             if (when === 'always') {
                 send();
