@@ -36,6 +36,7 @@ class Buttons extends PureComponent {
     } = this.props;
 
     const payload = reply.get('payload');
+    console.log(payload)
     const title = reply.get('title');
     chooseReply(payload, title, id);
     // this.props.changeInputFieldHint('Type a message...');
